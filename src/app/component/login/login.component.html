@@ -1,0 +1,31 @@
+ 
+  <div class="row" [hidden]="loggedIn">
+      <div class="col col-centered col-md-4 col-10 col-sm-6 mx-auto jumbotron">
+          
+        <h2 class="clean-font text-center">Logowanie</h2>
+        <p class="clean-font text-center red-alert" [hidden]="!isLoginError">{{loginErrorMsg}}</p>
+        <br [hidden]="isLoginError"/>
+    
+    
+        <form class="form-signin" (ngSubmit)="onSubmit()">
+            <input type="text" class="form-control text-center" name="username"
+            [(ngModel)]="model.username" placeholder="Login" required autofocus/>
+            <br />
+
+            <input type="password" class="form-control text-center" name="password" 
+            [(ngModel)]="model.password" placeholder="Hasło" required/>
+
+            <br/>
+
+            <div class="form-group">
+                <button class="btn btn-primary btn-block" type="submit">Login</button>
+            </div>
+
+        </form>  
+         
+      </div>
+  </div>
+  <div [hidden]="!loggedIn">
+      <h2>Welcome to Admin Portal!</h2>
+  </div>
+

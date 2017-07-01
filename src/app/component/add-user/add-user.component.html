@@ -1,0 +1,40 @@
+<h3>Dodaj użytkownika: </h3>
+<h4>{{ msgError }}</h4>
+<form (ngSubmit)="onSubmit()">
+  <div class="form-group">
+    <label for="firstname">Imie:</label>
+    <input type="text" [(ngModel)]="user.firstName" class="form-control" id="firstname" name="firstname" [ngModelOptions]="{standalone: true}"/>
+  </div>
+  <div class="form-group">
+    <label for="lastname">Nazwisko:</label>
+    <input type="text" [(ngModel)]="user.lastName" class="form-control" id="lastname" [ngModelOptions]="{standalone: true}"/>
+  </div>
+  <div class="form-group">
+    <label for="phone">Numer telefonu:</label>
+    <input type="number" [(ngModel)]="user.phone" class="form-control" id="phone" [ngModelOptions]="{standalone: true}"/>
+  </div>
+  <div class="form-group">
+    <label for="email">Addres Email:</label>
+    <input type="email" [(ngModel)]="user.email" class="form-control" id="email" [ngModelOptions]="{standalone: true}"/>
+  </div>
+  <div class="form-group">
+    <label for="username">Nazwa użytkownika:</label>
+    <input type="text" [(ngModel)]="user.username" class="form-control" id="username" [ngModelOptions]="{standalone: true}"/>
+  </div>
+  <div class="form-group">
+    <label for="password">Hasło:</label>
+    <input type="password" [(ngModel)]="user.password" class="form-control" id="password" [ngModelOptions]="{standalone: true}"/>
+  </div>
+  <div class="form-group">
+  <label for="roles">Select list:</label>
+  <select class="form-control"  [(ngModel)]="selectedRole" [ngModelOptions]="{standalone: true}">
+    <option *ngFor="let role of roles" [ngValue]="role">{{ role.name }}</option>
+  </select>
+</div>
+  <div class="form-group"> 
+    <div class="col-sm-offset-10 col-sm-2">
+      <button type="submit" class="btn btn-default">Dodaj</button>
+    </div>
+  </div>
+  
+</form>
