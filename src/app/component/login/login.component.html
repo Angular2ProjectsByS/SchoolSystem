@@ -1,31 +1,35 @@
  
-  <div class="row" [hidden]="loggedIn">
-      <div class="col col-centered col-md-4 col-10 col-sm-6 mx-auto jumbotron">
-          
-        <h2 class="clean-font text-center">Logowanie</h2>
-        <p class="clean-font text-center red-alert" [hidden]="!isLoginError">{{loginErrorMsg}}</p>
-        <br [hidden]="isLoginError"/>
+  <div class="container" [hidden]="loggedIn">
+  <div>
+  <div class="row flex-container">
+      <div class="col col-md-4 col-10 col-sm-8 col-xs-10 flex-child">
+        <div class="jumbotron">
+            <h2 class="clean-font text-center">Logowanie</h2>
+            <p class="clean-font text-center red-alert" [hidden]="!isLoginError">{{loginErrorMsg}}</p>
+            <br [hidden]="isLoginError"/>
     
     
-        <form class="form-signin" (ngSubmit)="onSubmit()">
-            <input type="text" class="form-control text-center" name="username"
-            [(ngModel)]="model.username" placeholder="Login" required autofocus/>
-            <br />
+            <form class="form-signin" (ngSubmit)="onSubmit()">
+                <input type="text" class="form-control text-center" name="username"
+                [(ngModel)]="model.username" placeholder="Login" required autofocus/>
+                <br />
 
-            <input type="password" class="form-control text-center" name="password" 
-            [(ngModel)]="model.password" placeholder="Hasło" required/>
+                <input type="password" class="form-control text-center" name="password" 
+                [(ngModel)]="model.password" placeholder="Hasło" required/>
 
-            <br/>
+                <br/>
 
-            <div class="form-group">
-                <button class="btn btn-primary btn-block" type="submit">Login</button>
-            </div>
+                <div class="form-group">
+                    <button class="btn btn-primary btn-block" type="submit">Login</button>
+                </div>
 
-        </form>  
-         
+            </form>  
+        </div> 
       </div>
-  </div>
   <div [hidden]="!loggedIn">
       <h2>Welcome to Admin Portal!</h2>
   </div>
+    </div>
+</div>
+</div>
 
