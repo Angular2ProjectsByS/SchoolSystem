@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../service/user.service';
 import { Role } from '../../model/role';
 import { User } from '../../model/user';
+import { UserRole } from '../../model/user-role';
 
 @Component({
   selector: 'app-add-user',
@@ -31,6 +32,9 @@ export class AddUserComponent implements OnInit {
   }
 
   onSubmit() {
+    //console.log(this.selectedRole.name);
+    this.user.userRoles[0] = new UserRole();
+    this.user.userRoles[0].roleId = this.selectedRole.roleId;
     this.userService.addUser(this.user).subscribe(
       res => {
         this.msgError = "Dodanie użytkownika zakończone sukcesem. Status: " + res.status;

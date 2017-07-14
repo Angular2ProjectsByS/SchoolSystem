@@ -1,9 +1,12 @@
+import { UserRole } from './user-role';
+
 export class User {
     userId: number;
-    userName: string = "";
+    username: string = "";
     password: string = "";
     firstName: string = "";
-    lastname: string = "";
+    lastName: string = "";
     email: string = "";
     phone: string = "";
+    userRoles : UserRole[] = [];
 }

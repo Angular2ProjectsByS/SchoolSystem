@@ -1,8 +1,8 @@
  
-  <div class="container" [hidden]="loggedIn">
+  <div class="container" >
   <div>
-  <div class="row flex-container">
-      <div class="col col-md-4 col-10 col-sm-8 col-xs-10 flex-child">
+  <div class="row" [ngClass]="{'flex-container': !loggedIn}">
+      <div class="col col-md-4 col-10 col-sm-8 col-xs-10 flex-child" [hidden]="loggedIn">
         <div class="jumbotron">
             <h2 class="clean-font text-center">Logowanie</h2>
             <p class="clean-font text-center red-alert" [hidden]="!isLoginError">{{loginErrorMsg}}</p>
@@ -26,10 +26,12 @@
             </form>  
         </div> 
       </div>
-  <div [hidden]="!loggedIn">
-      <h2>Welcome to Admin Portal!</h2>
-  </div>
+  
+        <div [hidden]="!loggedIn" class="col-10">
+            <h2>Welcome to Admin Portal!</h2>
+        </div>
     </div>
+    
 </div>
 </div>
 
