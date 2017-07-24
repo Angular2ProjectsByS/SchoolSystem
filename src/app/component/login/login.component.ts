@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/Rx';
 import {LoginService } from '../../service/login.service';
+import { Constants } from '../../constants/constants';
 
 @Component({
   selector: 'app-login',
@@ -22,8 +23,7 @@ export class LoginComponent implements OnInit {
 
   checkAdminIsLogged() {
       console.log("check admin is logged");
-        if (localStorage.getItem("AdminIsLogged") == null || 
-            localStorage.getItem("AdminIsLogged") == '') {
+        if (localStorage.getItem(Constants.AdminIsLogged) == null) {
           this.loggedIn = false;
       }    
       else {
@@ -34,13 +34,13 @@ export class LoginComponent implements OnInit {
 
   checkLoginError() {
         console.log("check login errors");
-        if (localStorage.getItem("LogginErrorMsg") == null || localStorage.getItem("LogginErrorMsg") == '') {
+        if (localStorage.getItem(Constants.LogginErrorMsg) == null || localStorage.getItem(Constants.LogginErrorMsg) == '') {
             this.isLoginError = false;    
         }
         else {
             console.log("Wystąpiły błędy logowania");
             this.isLoginError = true;
-            this.loginErrorMsg = localStorage.getItem("LogginErrorMsg");
+            this.loginErrorMsg = localStorage.getItem(Constants.LogginErrorMsg);
         }
   }
 
@@ -55,31 +55,35 @@ export class LoginComponent implements OnInit {
                 console.log("Authorization: " + headers.get("Authorization"));
                 var token = res.headers.get("authorization");
                 console.log("Token: " + token);
-                localStorage.setItem("Token", token); 
-                localStorage.setItem("AdminIsLogged", "true");
+                localStorage.setItem(Constants.Token, token); 
+                localStorage.setItem(Constants.AdminIsLogged, "true");
                 location.reload();
 
             },
             err => {
 
+                let message = "";
+
                 if (err.status == 401) {
 
                     console.log("Request Logowania zakończony niepowodzeniem");
-                    let message = "Logowanie nieudane. Błędne dane logowania.";
+                    message = "Logowanie nieudane. Błędne dane logowania.";
                     console.log(message);
-                    localStorage.setItem("LogginErrorMsg", message);
-                    localStorage.setItem("AdminIsLogged", "");
-
+                    
                 } 
                 else if (err.status < 200 || err.status >= 300) {
 
                     console.log("Request Logowania zakończony niepowodzeniem");
-                    let message = "Błąd serwera. Spróbuj jeszcze raz.";
+                    message = "Błąd serwera. Spróbuj jeszcze raz.";
                     console.log(message);
-                    localStorage.setItem("LogginErrorMsg", message);
-                    localStorage.setItem("AdminIsLogged", "");
-
+                    
                 }  
+
+                localStorage.setItem(Constants.LogginErrorMsg, message);
+
+                if (localStorage.getItem(Constants.AdminIsLogged)) {
+                    localStorage.removeItem(Constants.AdminIsLogged);
+                }
 
                 location.reload();
             }

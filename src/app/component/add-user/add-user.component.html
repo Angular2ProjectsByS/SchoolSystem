@@ -12,7 +12,9 @@
   </div>
   <div class="form-group">
     <label for="phone">Numer telefonu:</label>
-    <input type="number" [(ngModel)]="user.phone" class="form-control" id="phone" [ngModelOptions]="{standalone: true}"/>
+    <input type="text" [ngModel]="user.phone | phoneNumber" 
+    (ngModelChange)="user.phone=$event"
+    class="form-control" id="phone" [ngModelOptions]="{standalone: true}"/>
   </div>
   <div class="form-group">
     <label for="email">Addres Email:</label>

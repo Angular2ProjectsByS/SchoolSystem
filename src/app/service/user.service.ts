@@ -15,12 +15,7 @@ export class UserService {
     let headers = new Headers();
 
     headers.append('Content-Type', 'application/json');
-    // headers.append('Access-Control-Allow-Origin', '*');
-    // headers.append('Access-Control-Request-Headers', 
-    //     'access-control-allow-origin,content-type, Authorization');
     headers.append("authorization", localStorage.getItem("Token"));
-
-    //console.log(localStorage.getItem("Token"));
 
     return this.http.get(url, {headers: headers});
   }
@@ -30,9 +25,6 @@ export class UserService {
     let headers = new Headers();
 
     headers.append('Content-Type', 'application/json');
-    // headers.append('Access-Control-Allow-Origin', '*');
-    // headers.append('Access-Control-Request-Headers', 
-    //     'access-control-allow-origin,content-type, Authorization');
     headers.append("authorization", localStorage.getItem("Token"));  
 
     console.log(JSON.stringify(user));

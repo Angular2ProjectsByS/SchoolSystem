@@ -12,12 +12,11 @@ export class LoginService {
     let headers = new Headers();
 
     headers.append('Content-Type', 'application/json');
-    // headers.append('Access-Control-Allow-Origin', '*');
-    // headers.append('Access-Control-Request-Headers', 
-    //     'access-control-allow-origin,content-type, Authorization');
 
     console.log(JSON.stringify(model));
     return this.http.post(url, JSON.stringify(model), {headers: headers}); 
   }  
+
+  
 
 }

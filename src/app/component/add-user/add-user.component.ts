@@ -3,11 +3,12 @@ import { UserService } from '../../service/user.service';
 import { Role } from '../../model/role';
 import { User } from '../../model/user';
 import { UserRole } from '../../model/user-role';
+import { PhoneNumberPipe } from '../../pipe/phone-number.pipe';
 
 @Component({
   selector: 'app-add-user',
   templateUrl: './add-user.component.html',
-  styleUrls: ['./add-user.component.css']
+  styleUrls: ['./add-user.component.css'],
 })
 export class AddUserComponent implements OnInit {
 
@@ -40,7 +41,13 @@ export class AddUserComponent implements OnInit {
         this.msgError = "Dodanie użytkownika zakończone sukcesem. Status: " + res.status;
       },
       err => {
-        this.msgError = "Dodanie użytkowanika zakończone niepowodzeniem. Status " + err.status;
+        if (err.headers.get("error_message") != null) {
+          this.msgError = err.headers.get("error_message") + " Status " + err.status;
+        }
+        else {
+          this.msgError = "Dodanie użytkowanika zakończone niepowodzeniem. Status " + err.status;
+        }
+
       }
     );
   }
