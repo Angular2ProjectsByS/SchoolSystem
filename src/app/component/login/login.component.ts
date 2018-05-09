@@ -3,6 +3,8 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/Rx';
 import {LoginService } from '../../service/login.service';
 import { Constants } from '../../constants/constants';
+import * as JwtDecode from "jwt-decode";
+import { UserType } from '../../constants/UserType';
 
 @Component({
   selector: 'app-login',
@@ -11,7 +13,7 @@ import { Constants } from '../../constants/constants';
 })
 export class LoginComponent implements OnInit {
 
-    private model = {'username':'', 'password':''};
+    private credentials = {'username':'', 'password':''};
     private loggedIn: boolean;
     private isLoginError : boolean;
     private loginErrorMsg : string;
@@ -24,12 +26,13 @@ export class LoginComponent implements OnInit {
   checkAdminIsLogged() {
       console.log("check admin is logged");
         if (localStorage.getItem(Constants.AdminIsLogged) == null) {
-          this.loggedIn = false;
-      }    
-      else {
-          this.loggedIn = true;
-          console.log("Witamy admina");
-      }
+            this.loggedIn = false;
+            console.log("Ustawiam na admina jak zalogowany");
+        }    
+        else {
+            this.loggedIn = true;
+            console.log("Witamy admina");
+        }
   }
 
   checkLoginError() {
@@ -45,19 +48,18 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
-      this.loginService.login(this.model).subscribe(
+      console.log("Wysyłam żądanie logowania.");
+      this.loginService.login(this.credentials).subscribe(
             res => {
+                //console.log(res);
+                let body = JSON.parse(JSON.parse((JSON.stringify(res['_body']))));
+                this.parseRoles(body.roles);
 
-                console.log("Udało się zalogować");
-                var headers = res.headers;
-
-                console.log("Date: " + headers.get("Date"));
-                console.log("Authorization: " + headers.get("Authorization"));
-                var token = res.headers.get("authorization");
-                console.log("Token: " + token);
-                localStorage.setItem(Constants.Token, token); 
-                localStorage.setItem(Constants.AdminIsLogged, "true");
-                location.reload();
+                localStorage.setItem(Constants.Token, body.token); 
+                localStorage.setItem(Constants.RefreshToken, body.refreshToken);
+                localStorage.setItem(Constants.Roles, JSON.stringify(Constants.UserTypes))
+                
+                //location.reload();
 
             },
             err => {
@@ -85,9 +87,16 @@ export class LoginComponent implements OnInit {
                     localStorage.removeItem(Constants.AdminIsLogged);
                 }
 
-                location.reload();
+                //location.reload();
             }
       );
+  }
+
+  parseRoles(roles): void {
+     console.log("Parsuje role"); 
+    for (let role of roles) {
+        Constants.UserTypes.push(UserType["" + role]);
+    }
   }
 
   ngOnInit() {

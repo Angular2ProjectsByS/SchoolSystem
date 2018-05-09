@@ -11,11 +11,11 @@
     
             <form class="form-signin" (ngSubmit)="onSubmit()">
                 <input type="text" class="form-control text-center" name="username"
-                [(ngModel)]="model.username" placeholder="Login" required autofocus/>
+                [(ngModel)]="credentials.username" placeholder="Login" required autofocus/>
                 <br />
 
                 <input type="password" class="form-control text-center" name="password" 
-                [(ngModel)]="model.password" placeholder="Hasło" required/>
+                [(ngModel)]="credentials.password" placeholder="Hasło" required/>
 
                 <br/>
 

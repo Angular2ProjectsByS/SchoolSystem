@@ -12,6 +12,7 @@ import { LoginComponent } from './component/login/login.component';
 import { NavbarComponent } from './component/navbar/navbar.component';
 import { AddUserComponent } from './component/add-user/add-user.component';
 import { PhoneNumberPipe } from './pipe/phone-number.pipe';
+import { AddSchoolClassComponent } from './component/add-school-class/add-school-class.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { PhoneNumberPipe } from './pipe/phone-number.pipe';
     LoginComponent,
     NavbarComponent,
     AddUserComponent,
-    PhoneNumberPipe
+    PhoneNumberPipe,
+    AddSchoolClassComponent
   ],
   imports: [
     BrowserModule,
