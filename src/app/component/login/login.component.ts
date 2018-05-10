@@ -53,14 +53,24 @@ export class LoginComponent implements OnInit {
             res => {
                 //console.log(res);
                 let body = JSON.parse(JSON.parse((JSON.stringify(res['_body']))));
-                this.parseRoles(body.roles);
+                
+
+                let decodedToken = JwtDecode(body.token);
+                console.log("Decoded token: ");
+                console.log(decodedToken["scopes"]);    
+                Constants.UserTypes = this.parseRoles(decodedToken["scopes"]);
+
+                console.log("UserTypes: ");
+                for (let userType of Constants.UserTypes) {
+                    console.log(userType);
+                }
 
                 localStorage.setItem(Constants.Token, body.token); 
                 localStorage.setItem(Constants.RefreshToken, body.refreshToken);
                 localStorage.setItem(Constants.Roles, JSON.stringify(Constants.UserTypes))
-                
-                //location.reload();
 
+                
+                
             },
             err => {
 
@@ -87,16 +97,18 @@ export class LoginComponent implements OnInit {
                     localStorage.removeItem(Constants.AdminIsLogged);
                 }
 
-                //location.reload();
+                location.reload();
             }
       );
   }
 
-  parseRoles(roles): void {
-     console.log("Parsuje role"); 
-    for (let role of roles) {
-        Constants.UserTypes.push(UserType["" + role]);
+  parseRoles(roles): UserType[] {
+    let userTypes: UserType[] = [];
+     for (let role of roles) {
+        userTypes.push(UserType["" + role]);
     }
+
+    return userTypes;
   }
 
   ngOnInit() {
