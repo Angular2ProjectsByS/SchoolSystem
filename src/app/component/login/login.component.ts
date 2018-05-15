@@ -5,9 +5,11 @@ import {LoginService } from '../../service/login.service';
 import { Constants } from '../../constants/constants';
 import * as JwtDecode from "jwt-decode";
 import { UserType } from '../../constants/UserType';
+import { PageNavigator } from "../../service/PageNavigator";
 
 @Component({
   selector: 'app-login',
+  providers: [PageNavigator],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
@@ -18,20 +20,20 @@ export class LoginComponent implements OnInit {
     private isLoginError : boolean;
     private loginErrorMsg : string;
 
-  constructor(private loginService: LoginService) {
+  constructor(private loginService: LoginService, private pageNavigator : PageNavigator) {
         this.checkAdminIsLogged();
         this.checkLoginError();  
   }
 
   checkAdminIsLogged() {
       console.log("check admin is logged");
-        if (localStorage.getItem(Constants.AdminIsLogged) == null) {
+        if (localStorage.getItem(Constants.IsUserLogged) == null) {
             this.loggedIn = false;
-            console.log("Ustawiam na admina jak zalogowany");
+            console.log("Ustawiam użytkownika na zalogowanego");
         }    
         else {
             this.loggedIn = true;
-            console.log("Witamy admina");
+            console.log("Witamy użytkownika");
         }
   }
 
@@ -58,19 +60,18 @@ export class LoginComponent implements OnInit {
                 let decodedToken = JwtDecode(body.token);
                 console.log("Decoded token: ");
                 console.log(decodedToken["scopes"]);    
-                Constants.UserTypes = this.parseRoles(decodedToken["scopes"]);
+                let userTypes: UserType[] = this.parseRoles(decodedToken["scopes"]);
 
                 console.log("UserTypes: ");
-                for (let userType of Constants.UserTypes) {
+                for (let userType of userTypes) {
                     console.log(userType);
                 }
 
                 localStorage.setItem(Constants.Token, body.token); 
                 localStorage.setItem(Constants.RefreshToken, body.refreshToken);
-                localStorage.setItem(Constants.Roles, JSON.stringify(Constants.UserTypes))
+                localStorage.setItem(Constants.Roles, JSON.stringify(userTypes))
 
-                
-                
+                this.pageNavigator.navigateToUserPanel(userTypes)
             },
             err => {
 
@@ -93,8 +94,8 @@ export class LoginComponent implements OnInit {
 
                 localStorage.setItem(Constants.LogginErrorMsg, message);
 
-                if (localStorage.getItem(Constants.AdminIsLogged)) {
-                    localStorage.removeItem(Constants.AdminIsLogged);
+                if (localStorage.getItem(Constants.IsUserLogged)) {
+                    localStorage.removeItem(Constants.IsUserLogged);
                 }
 
                 location.reload();

@@ -1,9 +1,0 @@
-.navbar-default .navbar-nav > li > a
-{
-   
- }
-
- .navbar-default .navbar-nav > li > a:hover, 
- .navbar-default .navbar-nav > li > a:focus {
-          background-image: linear-gradient(to bottom,#dbdbdb 0,#e2e2e2 100%);
- }
