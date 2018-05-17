@@ -1,0 +1,93 @@
+.container-fluid {
+    margin-right: 0;
+    margin-left: 0;
+    padding: 0;
+}
+
+header {
+    opacity: .8;
+}
+
+#sidenav {
+    display: inline-block;
+    transition: .2s;
+    background: #2C8437;
+    border-bottom-right-radius: 10%;
+    color: #fff;
+    z-index: 1;
+    position: absolute;
+    left: -170px;
+
+}
+
+#sidenav ul {
+    padding: 5px 10px;
+    margin: 0;
+}
+
+#sidenav ul li {
+    margin: 5px 0;
+    font-size: 1.1em;
+}
+
+#sidenav ul li .pod-image {
+    margin-right: 5px;
+    width: 25px;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+#sidenav:hover {
+    left: 0px;
+}
+
+.pod {
+    display: flex;
+}
+
+main {
+    margin-left: 10px;
+    padding: 0 15px;
+}
+
+main .card {
+    margin: 5px;
+    padding: 10px;
+    padding-bottom: 0; 
+    text-align: center;
+    overflow: hidden;
+}
+
+
+
+main .card i {
+    font-size: 6em;
+    transition: .2s;
+    height: 90%;
+}
+
+main .card:hover i {
+    transform: scale(1.2) translateY(10%);
+}
+
+main .card p {
+    margin: 5px 0;
+    transition: 1s;
+}
+
+main .card:hover p {
+    transform: translateY(200%);
+}
+
+@media only screen and (max-width: 575px) {
+    #sidenav {
+        position: fixed;
+        left: -170px;
+    }
+}
+
+.school-classes {
+    background: #1abc9c;
+}
+
+
