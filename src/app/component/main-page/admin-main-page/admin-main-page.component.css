@@ -87,12 +87,6 @@ main .card:hover p {
     transform: translateY(200%);
 }
 
-@media only screen and (max-width: 360px) {
-    main {
-        margin: 10px 5px;
-    }
-}
-
 .school-classes {
     background: #1abc9c;
 }
@@ -117,4 +111,8 @@ main .card:hover p {
     background: #e74c3c;
 }
 
-
+@media only screen and (max-width: 380px) {
+    main {
+        margin: 10px 5px;
+    }
+}
