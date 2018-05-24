@@ -1,44 +1,37 @@
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+
 .container-fluid {
     margin-right: 0;
     margin-left: 0;
     padding: 0;
 }
 
+.navbar {
+    box-shadow: 0 0px 2px 2px #000; 
+}
+
+.nav-link {
+    color:#fff !important;
+    transition: .2s;
+}
+
+.nav-link i {
+    margin-right: 5px;
+}
+
+.nav-link:hover {
+    color: #e1cd61 !important;
+    background-color: #fff;
+    transform: scale(1.05);
+}
+
 header {
     opacity: .8;
-}
-
-#sidenav {
-    display: inline-block;
-    transition: .2s;
-    background: #2C8437;
-    border-bottom-right-radius: 10%;
-    color: #fff;
-    z-index: 1;
-    position: absolute;
-    left: -170px;
-
-}
-
-#sidenav ul {
-    padding: 5px 10px;
-    margin: 0;
-}
-
-#sidenav ul li {
-    margin: 5px 0;
-    font-size: 1.1em;
-}
-
-#sidenav ul li .pod-image {
-    margin-right: 5px;
-    width: 25px;
-    box-sizing: border-box;
-    text-align: center;
-}
-
-#sidenav:hover {
-    left: 0px;
+    height: 200px;
 }
 
 .pod {
@@ -46,8 +39,17 @@ header {
 }
 
 main {
-    margin-left: 10px;
+    margin: 20px 40px; 
     padding: 0 15px;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: inset 0 0 0 1000px rgba(255,255,255,0.3);
+    padding-bottom: 30px;
+}
+
+.option-group-title {
+    text-align: center;
 }
 
 main .card {
@@ -56,9 +58,15 @@ main .card {
     padding-bottom: 0; 
     text-align: center;
     overflow: hidden;
+    transition: .5s;
+    color:#eee;
+    cursor: pointer;
 }
 
-
+main .card:hover i {
+    transform: scale(1.2) translateY(10%);
+    color: #e1cd61;
+}
 
 main .card i {
     font-size: 6em;
@@ -66,28 +74,47 @@ main .card i {
     height: 90%;
 }
 
-main .card:hover i {
-    transform: scale(1.2) translateY(10%);
-}
-
 main .card p {
     margin: 5px 0;
     transition: 1s;
+}
+
+main .card:hover {
+    background: white;
 }
 
 main .card:hover p {
     transform: translateY(200%);
 }
 
-@media only screen and (max-width: 575px) {
-    #sidenav {
-        position: fixed;
-        left: -170px;
+@media only screen and (max-width: 360px) {
+    main {
+        margin: 10px 5px;
     }
 }
 
 .school-classes {
     background: #1abc9c;
+}
+
+.users {
+    background: #3498db;
+}
+
+.classrooms {
+    background: #9b59b6;
+}
+
+.student-groups {
+    background: #f1c40f;
+}
+
+.school-subjects {
+    background: #e67e22;
+}
+
+.register {
+    background: #e74c3c;
 }
 
 
