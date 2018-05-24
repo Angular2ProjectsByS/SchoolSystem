@@ -1,9 +1,9 @@
 #main-app-container {
     width: 100%;
     height: 100vh;
-    background-image: url('../assets/img/background/login-view-edited.jpg') !important; 
+    background-image: url('../assets/img/background/login-view-edited.jpg'); 
     background-size: cover;
     background-position: center center;
-    background-attachment: fixed;  
-    overflow: scroll;
+    background-attachment: fixed;
+    overflow: auto;  
 }
