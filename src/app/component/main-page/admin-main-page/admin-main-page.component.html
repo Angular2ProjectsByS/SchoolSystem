@@ -11,7 +11,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                 <li class="nav-item school-classes">
-                    <a class="nav-link" href=""><i class="fas fa-graduation-cap"></i>Klasy<span class="sr-only">(current)</span></a>
+                    <a class="nav-link" routerLinkActive="active" [routerLink]="['/admin/classes']"><i class="fas fa-graduation-cap"></i>Klasy<span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item users">
                     <a class="nav-link" href=""><i class="fas fa-users"></i>Użytkownicy</a>
@@ -32,48 +32,6 @@
         </div>
     </nav>
   <main>
-    <div class="row">
-        <div class="col-12">
-            <h2 class="option-group-title">Wybierz grupę operacji:</h2>
-        </div>
-    </div>
-    <div class="row">
-      <div class="col-12 col-sm-4">
-            <div class="school-classes card">
-                    <i class="fas fa-graduation-cap"></i>
-                    <p>Klasy</p>
-            </div>
-        </div>
-      <div class="col-12 col-sm-4">
-            <div class="users card">
-                <i class="fas fa-users"></i>
-                <p>Użytkownicy</p>  
-            </div>
-      </div>
-      <div class="col-12 col-sm-4">
-            <div class="classrooms card">
-                <i class="fas fa-building"></i>
-                <p>Sale lekcyje</p>     
-            </div>
-     </div>
-      <div class="col-12 col-sm-4">
-            <div class="student-groups card">
-                <i class="fas fa-object-group"></i>
-                <p>Grupy zajęciowe</p>        
-            </div>
-      </div>
-      <div class="col-12 col-sm-4">
-            <div class="school-subjects card">
-                <i class="fas fa-clipboard"></i>
-                <p>Przedmioty</p>        
-            </div>
-      </div>
-      <div class="col-12 col-sm-4">
-            <div class="register card">
-                <i class="fas fa-book"></i>
-                <p>Rejestr</p>        
-            </div>
-      </div>
-    </div>
+    <router-outlet></router-outlet>
   </main>
 </div>

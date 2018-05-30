@@ -1,0 +1,62 @@
+.option-group-title {
+    text-align: center;
+}
+
+.card {
+    margin: 5px;
+    padding: 10px;
+    padding-bottom: 0; 
+    text-align: center;
+    overflow: hidden;
+    transition: .5s;
+    color:#eee;
+    cursor: pointer;
+}
+
+.card:hover i {
+    transform: scale(1.2) translateY(10%);
+    color: #e1cd61;
+}
+
+.card i {
+    font-size: 6em;
+    transition: .2s;
+    height: 90%;
+}
+
+.card p {
+    margin: 5px 0;
+    transition: 1s;
+}
+
+.card:hover {
+    background: white;
+}
+
+.card:hover p {
+    transform: translateY(200%);
+}
+
+.school-classes {
+    background: #1abc9c;
+}
+
+.users {
+    background: #3498db;
+}
+
+.classrooms {
+    background: #9b59b6;
+}
+
+.student-groups {
+    background: #f1c40f;
+}
+
+.school-subjects {
+    background: #e67e22;
+}
+
+.register {
+    background: #e74c3c;
+}

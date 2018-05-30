@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import * as $ from 'jquery';
 
 @Component({
   selector: 'app-admin-main-page',
@@ -10,6 +11,11 @@ export class AdminMainPageComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    $(document).ready(function(){
+      $(".nav-link").click(function(){
+          $(".navbar-toggler").click();
+      });
+  });
   }
 
 }

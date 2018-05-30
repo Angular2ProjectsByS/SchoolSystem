@@ -5,6 +5,8 @@ import { LoginComponent } from './component/login/login.component';
 import { AddUserComponent } from './component/add-user/add-user.component';
 
 import { AdminMainPageComponent } from './component/main-page/admin-main-page/admin-main-page.component';
+import { AdminOptionsComponent } from "./component/main-page/admin-main-page/pages/admin-options/admin-options.component";
+import { AdminClassesComponent } from "./component/main-page/admin-main-page/pages/admin-classes/admin-classes.component";
 
 const appRoutes: Routes = [
     {
@@ -22,7 +24,22 @@ const appRoutes: Routes = [
     },
     {
         path: "admin",
-        component: AdminMainPageComponent
+        component: AdminMainPageComponent, 
+        children: [
+            {
+                path: '',
+                redirectTo: '/admin/options',
+                pathMatch: 'full'
+            },
+            {
+                path: 'options',
+                component: AdminOptionsComponent
+            },
+            {
+                path: 'classes',
+                component: AdminClassesComponent
+            }
+        ]
     }
 ]; 
 
