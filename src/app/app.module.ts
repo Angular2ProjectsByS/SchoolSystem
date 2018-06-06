@@ -14,7 +14,7 @@ import { PhoneNumberPipe } from './pipe/phone-number.pipe';
 import { AddSchoolClassComponent } from './component/add-school-class/add-school-class.component';
 import { AdminMainPageComponent } from './component/main-page/admin-main-page/admin-main-page.component';
 import { AdminOptionsComponent } from './component/main-page/admin-main-page/pages/admin-options/admin-options.component';
-import { AdminClassesComponent } from './component/main-page/admin-main-page/pages/admin-classes/admin-classes.component';
+import { AdminClassesComponent } from './component/main-page/admin-main-page/pages/admin-nav-cards/admin-classes/admin-classes.component';
 
 @NgModule({
   declarations: [

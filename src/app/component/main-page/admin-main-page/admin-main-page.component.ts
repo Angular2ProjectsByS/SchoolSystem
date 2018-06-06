@@ -12,7 +12,14 @@ export class AdminMainPageComponent implements OnInit {
 
   ngOnInit() {
     $(document).ready(function(){
+     
+      
       $(".nav-link").click(function(){
+        alert(".navbar-toggler: " + $('.navbar-toggler').position().top);
+        alert("")
+        if ( $('.navbar-toggler').position().top > $('#navbarSupportedContent').position().top ) {
+          alert("Przycisk jest wyżej");
+        }
           $(".navbar-toggler").click();
       });
   });
