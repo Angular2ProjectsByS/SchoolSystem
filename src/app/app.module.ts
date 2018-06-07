@@ -16,6 +16,7 @@ import { AdminMainPageComponent } from './component/admin/main-page/admin-main-p
 import { AdminOptionsComponent } from './component/admin/pages/admin-options/admin-options.component';
 import { AdminClassesComponent } from './component/admin/pages/admin-nav-cards/admin-classes/admin-classes.component';
 import { AdminPrefixesComponent } from './component/admin/pages/admin-prefixes/admin-prefixes.component';
+import { SearchBarComponent } from './component/common/search-bar/search-bar.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { AdminPrefixesComponent } from './component/admin/pages/admin-prefixes/a
     AdminMainPageComponent,
     AdminOptionsComponent,
     AdminClassesComponent,
-    AdminPrefixesComponent
+    AdminPrefixesComponent,
+    SearchBarComponent
   ],
   imports: [
     BrowserModule,
