@@ -12,10 +12,10 @@ export class SearchBarComponent implements OnInit {
 
   ngOnInit() {
     $(".search-field").focus(function() {
-      $("i").css("transform", "rotate(90deg)");
+      $(".search-button-img").addClass("rotate-90");
     });
     $(".search-field").focusout(function() {
-      $("i").css("transform", "rotate(0deg)");
+      $(".search-button-img").removeClass("rotate-90");
     });
   }
 

@@ -4,10 +4,16 @@
     margin-left: 5px;
 }
 
-
 button.search-button {
     margin-right: -8px;
-    transition: all 1s; 
+}
+
+.search-button-img {
+    transition: all .5s;
+}
+
+.rotate-90 {
+    transform: rotate(90deg);
 }
 
  
