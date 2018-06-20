@@ -8,7 +8,7 @@ export class RestService {
 
   entityClass : any;
   
-  async get<T>(url:string) {
+  async get<T>(url:string, callback: (componentData : T[], loading : boolean) => void) {
     
     console.log("Wykonuję rządanie");
     
@@ -17,11 +17,12 @@ export class RestService {
     await this.httpClient.get(url).subscribe(
       res => {
         result = <T[]> res.json();
+        callback(result, false);
         console.log("RestService:get() Mam dane" + result);
         console.log(result);
       },
       err => {
-        result = null;
+        result = null
       }
     );
 

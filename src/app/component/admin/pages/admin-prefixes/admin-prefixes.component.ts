@@ -11,6 +11,7 @@ import { Constants } from '../../../../constants/constants';
 export class AdminPrefixesComponent implements OnInit {
 
   noPrefixes: boolean = false;
+  loading: boolean = true;
   errorMessage : string;
   prefixes : Prefix[];
 
@@ -23,9 +24,15 @@ export class AdminPrefixesComponent implements OnInit {
   private async loadAllPrefixes() {
     console.log("Load prefixes");
     let url = "/rest/api/" + "class-prefixex/get/all";
-    let result =  await this.restService.get<Prefix>(url);
+    let result =  await this.restService.get<Prefix>(url, this.fetchPrefixesToView);
     console.log("Result: ");
     console.log(result);
+  }
+
+  private fetchPrefixesToView(prefixes : Prefix[], loading : boolean) {
+    console.log("AdminPrefixesComponent: fetchPrefixesToView");
+    this.prefixes = prefixes;
+    this.loading = loading;
   }
 
 }
