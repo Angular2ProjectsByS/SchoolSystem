@@ -14,7 +14,7 @@ export class RestService {
     
     let result = null;
 
-    await this.httpClient.get(url).subscribe(
+    await this.httpClient.get(url).toPromise().then(
       res => {
         result = <T[]> res.json();
         console.log("RestService:get() Mam dane" + result);
@@ -24,6 +24,9 @@ export class RestService {
         result = null;
       }
     );
+
+    console.log("Wynik po awaicie: ");
+    console.log(result);
 
     console.log("Zwracam wynik");
     return result;

@@ -51,7 +51,7 @@ export class LoginComponent implements OnInit {
 
   onSubmit() {
       console.log("Wysyłam żądanie logowania.");
-      this.loginService.login(this.credentials).subscribe(
+      this.loginService.login(this.credentials).toPromise().then(
             res => {
                 //console.log(res);
                 let body = JSON.parse(JSON.parse((JSON.stringify(res['_body']))));

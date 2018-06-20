@@ -22,7 +22,7 @@ export class AddUserComponent implements OnInit {
   }
 
   private initRoleList() {
-    this.userService.getAllRoles().subscribe(
+    this.userService.getAllRoles().toPromise().then(
       res => {
         this.roles = <Role[]> res.json();
       },
@@ -36,7 +36,7 @@ export class AddUserComponent implements OnInit {
     //console.log(this.selectedRole.name);
     this.user.userRoles[0] = new UserRole();
     this.user.userRoles[0].roleId = this.selectedRole.roleId;
-    this.userService.addUser(this.user).subscribe(
+    this.userService.addUser(this.user).toPromise().then(
       res => {
         this.msgError = "Dodanie użytkownika zakończone sukcesem. Status: " + res.status;
       },
