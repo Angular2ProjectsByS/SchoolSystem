@@ -1,2 +1,27 @@
-<h4>Prefiksy</h4>
-<app-search-bar></app-search-bar>
+<div id="prefix-container">
+    <h4>Prefiksy</h4>
+    <app-search-bar></app-search-bar>
+    <p [hidden]="!noPrefixes">Brak prefiksów w bazie</p>
+    <app-error-banner [message]="errorMessage"></app-error-banner>
+    <table [hidden]="noPrefixes" class="table table-striped table-hover">
+        <thead class="thead-dark">
+            <tr>
+                <th>Lp.</th>
+                <th>Nazwa</th>
+                <th>Data utworzenia</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>2</td>
+                <td>3</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>5</td>
+                <td>6</td>
+            </tr>
+        </tbody> 
+    </table>
+</div>

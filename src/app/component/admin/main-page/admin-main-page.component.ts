@@ -12,8 +12,6 @@ export class AdminMainPageComponent implements OnInit {
 
   ngOnInit() {
     $(document).ready(function(){
-     
-      
       $(".dropdown-item").click(function(){
           $(".navbar-toggler").click();
       });

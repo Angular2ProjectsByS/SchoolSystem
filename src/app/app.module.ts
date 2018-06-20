@@ -1,10 +1,12 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
+import { HttpModule, Http } from '@angular/http';
 
 import { LoginService } from './service/login.service';
 import { UserService } from './service/user.service';
+import { HttpClient } from './service/global/request/http-client';
+import { RestService } from './service/global/request/rest-service.service';
 import { routing } from './app.routing';
  
 import { AppComponent } from './app.component';
@@ -17,6 +19,9 @@ import { AdminOptionsComponent } from './component/admin/pages/admin-options/adm
 import { AdminClassesComponent } from './component/admin/pages/admin-nav-cards/admin-classes/admin-classes.component';
 import { AdminPrefixesComponent } from './component/admin/pages/admin-prefixes/admin-prefixes.component';
 import { SearchBarComponent } from './component/common/search-bar/search-bar.component';
+import { ErrorBannerComponent } from './component/common/error-banner/error-banner.component';
+
+
 
 @NgModule({
   declarations: [
@@ -29,7 +34,8 @@ import { SearchBarComponent } from './component/common/search-bar/search-bar.com
     AdminOptionsComponent,
     AdminClassesComponent,
     AdminPrefixesComponent,
-    SearchBarComponent
+    SearchBarComponent,
+    ErrorBannerComponent
   ],
   imports: [
     BrowserModule,
@@ -39,7 +45,9 @@ import { SearchBarComponent } from './component/common/search-bar/search-bar.com
   ],
   providers: [
     LoginService,
-    UserService
+    UserService,
+    HttpClient,
+    RestService
   ],
   bootstrap: [AppComponent]
 })
