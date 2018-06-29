@@ -14,7 +14,9 @@ export class AdminPrefixesComponent implements OnInit {
   errorMessage : string;
   prefixes : Prefix[];
 
-  constructor(private restService : RestService) { }
+  constructor(private restService : RestService) {
+    
+  }
 
   ngOnInit() {
     this.loadAllPrefixes();
@@ -23,9 +25,18 @@ export class AdminPrefixesComponent implements OnInit {
   private async loadAllPrefixes() {
     console.log("Load prefixes");
     let url = "/rest/api/" + "class-prefixex/get/all";
-    let result =  await this.restService.get<Prefix>(url);
-    console.log("Result: ");
-    console.log(result);
+    this.prefixes =  await this.restService.get<Prefix>(url);
+    this.setNoPrefixesMessage();
   }
 
+  private setNoPrefixesMessage() {
+    if (this.prefixes != null) {
+      console.log("Result: ");
+      console.log(this.prefixes);
+      this.noPrefixes = false;
+    }
+    else {
+      this.noPrefixes = true;
+    }
+  }
 }
