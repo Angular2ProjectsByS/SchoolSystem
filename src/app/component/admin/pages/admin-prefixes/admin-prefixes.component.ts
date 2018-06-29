@@ -15,11 +15,11 @@ export class AdminPrefixesComponent implements OnInit {
   prefixes : Prefix[];
 
   constructor(private restService : RestService) {
-    
+    this.loadAllPrefixes();
   }
 
   ngOnInit() {
-    this.loadAllPrefixes();
+    
   }
 
   private async loadAllPrefixes() {
