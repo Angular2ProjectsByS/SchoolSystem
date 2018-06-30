@@ -1,4 +1,9 @@
+
 table {
-    margin: 10px 5px;
+    
     background: #fff;
+}
+
+button-margins {
+    margin: 0;
 }

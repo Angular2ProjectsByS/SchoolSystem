@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { RestService } from '../../../../service/global/request/rest-service.service';
 import { Prefix } from '../../../../model/school-classes/details/prefix';
 import { Constants } from '../../../../constants/constants';
+import { ViewEncapsulation } from "@angular/core";
 
 @Component({
   selector: 'app-admin-prefixes',
