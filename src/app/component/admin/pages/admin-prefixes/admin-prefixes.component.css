@@ -1,7 +1,21 @@
 
 table {
-    
+    font-size: 14px;
     background: #fff;
+}
+
+table td, table th {
+    text-align: center;
+}
+
+
+table tbody tr td button {
+    margin-right: 5px;
+    transition: all .4s;
+}
+
+table tbody tr td button:hover {
+    transform: scale(1.2);
 }
 
 button-margins {

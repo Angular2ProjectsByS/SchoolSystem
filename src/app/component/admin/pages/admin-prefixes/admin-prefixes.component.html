@@ -12,14 +12,21 @@
                 <th>Lp.</th>
                 <th>Nazwa</th>
                 <th>Data utworzenia</th>
+                <th>Operacje</th>
             </tr>
         </thead>
         <tbody>
             <tr *ngFor="let prefix of prefixes; let i = index">
-                <td>{{ i }}</td>
-                <td>{{ prefix?.name }}</td>
-                <td>{{ prefix?.creationTime }}</td>
+                <td class="align-middle">{{ i + 1}}</td>
+                <td class="align-middle">{{ prefix?.name }}</td>
+                <td class="align-middle">{{ prefix?.creationTime }}</td>
+                <td class="d-flex justify-content-center">
+                    <button title="Edytuj" class="btn btn-warning"><i class="far fa-edit"></i></button>
+                    <button (click)="showDeleteModal(i)" title="Usuń" class="btn btn-danger"><i class="far fa-trash-alt"></i></button> 
+                </td>
             </tr>
         </tbody> 
     </table>
+
+    <app-two-buttons-modal></app-two-buttons-modal>
 </div>
