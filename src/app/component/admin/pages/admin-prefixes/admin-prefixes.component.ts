@@ -57,9 +57,9 @@ export class AdminPrefixesComponent implements OnInit {
   }
 
   private setupModalData(index) {
-    this.modalData.body = "Czy napewno chcesz usunąć prefix \" " 
+    this.modalData.body = "Czy napewno chcesz usunąć prefix \"" 
       + this.prefixes[index].name
-      + " \"? ";
+      + "\"? ";
 
     this.modalData.title = "Usuwanie prefiksu \"" + this.prefixes[index].name + "\""; 
   }
