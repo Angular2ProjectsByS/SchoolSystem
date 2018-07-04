@@ -18,14 +18,22 @@ export class TwoButtonsModalComponent implements OnInit {
     
   }
 
+  startAcceptActions() {
+    this.emitRequestEvent();
+    this.closeModal();
+  }
+
   emitRequestEvent() {
     console.log("TwoButtonsModalComponent: emitRequstEvent");
     console.log("Wysyłam trigger");
     this.requetTrigger.emit(null);
   }
 
+  closeModal() {
+    $("#messageModal").modal('hide');
+  }
+
   showModal() {
-    console.log("Pokazuję Modal");
     $("#messageModal").modal('show');
   }
 
