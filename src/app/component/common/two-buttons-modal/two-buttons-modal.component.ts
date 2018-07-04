@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ModalData } from '../../../model/view/ModalData'
 
 @Component({
@@ -8,10 +8,14 @@ import { ModalData } from '../../../model/view/ModalData'
 })
 export class TwoButtonsModalComponent implements OnInit {
 
-  private modalData: ModalData;
+  @Input() modalData: ModalData;
 
   constructor() {
 
+  }
+
+  showModal() {
+    
   }
 
   ngOnInit() {

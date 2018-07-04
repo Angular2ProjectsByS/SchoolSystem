@@ -4,8 +4,6 @@
     <p [hidden]="!noPrefixes">Brak prefiksów w bazie</p>
     <app-error-banner [message]="errorMessage"></app-error-banner>
 
-    <p>Prefiksy</p>
-
     <table *ngIf="(prefixes)?.length > 0" [hidden]="noPrefixes" class="table table-striped table-hover">
         <thead class="thead-dark">
             <tr>
@@ -28,5 +26,6 @@
         </tbody> 
     </table>
 
-    <app-two-buttons-modal></app-two-buttons-modal>
+    <app-two-buttons-modal #twoButtonsModal (requetTrigger)="sendDeletePrfixRequest()" [modalData]="modalData">
+    </app-two-buttons-modal>
 </div>
