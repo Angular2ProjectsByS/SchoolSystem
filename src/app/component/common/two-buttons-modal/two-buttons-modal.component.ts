@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { ModalData } from '../../../model/view/ModalData'
+import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
+import { ModalData } from '../../../model/view/ModalData';
+import * as $ from 'jquery';
+import 'bootstrap';
 
 @Component({
   selector: 'app-two-buttons-modal',
@@ -8,13 +10,27 @@ import { ModalData } from '../../../model/view/ModalData'
 })
 export class TwoButtonsModalComponent implements OnInit {
 
-  private modalData: ModalData;
+  @Input() modalData: ModalData;
+  @Output() requetTrigger : EventEmitter<any> = new EventEmitter<any>();
+  @Input() deleteMessageTrigger: EventEmitter<any> = new EventEmitter();
 
   constructor() {
+    
+  }
 
+  emitRequestEvent() {
+    console.log("TwoButtonsModalComponent: emitRequstEvent");
+    console.log("Wysyłam trigger");
+    this.requetTrigger.emit(null);
+  }
+
+  showModal() {
+    console.log("Pokazuję Modal");
+    $("#messageModal").modal('show');
   }
 
   ngOnInit() {
+  
   }
 
 }

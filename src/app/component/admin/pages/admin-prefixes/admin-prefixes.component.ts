@@ -1,10 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { RestService } from '../../../../service/global/request/rest-service.service';
 import { Prefix } from '../../../../model/school-classes/details/prefix';
 import { Constants } from '../../../../constants/constants';
 import { ViewEncapsulation } from "@angular/core";
 import { ModalData } from '../../../../model/view/ModalData';
 import { URLS } from '../../../../constants/urls';
+import { EventEmitter } from 'protractor';
+import { TwoButtonsModalComponent } from '../../../common/two-buttons-modal/two-buttons-modal.component';
 
 @Component({
   selector: 'app-admin-prefixes',
@@ -14,16 +16,26 @@ import { URLS } from '../../../../constants/urls';
 export class AdminPrefixesComponent implements OnInit {
 
   noPrefixes: boolean = false;
-  errorMessage : string;
+  errorMessage: string;
   prefixes : Prefix[];
   modalData : ModalData;
+  prefixToDeletePosition : number;
+  @ViewChild("twoButtonsModal") twoButtonsModal: TwoButtonsModalComponent;
 
   constructor(private restService : RestService) {
+    this.initModalData();
     this.loadAllPrefixes();
   }
 
   ngOnInit() {
     
+  }
+
+  private initModalData():void {
+    this.modalData = new ModalData();
+    this.modalData.title = "";
+    this.modalData.body = "";
+    this.modalData.url = "";
   }
 
   private async loadAllPrefixes() {
@@ -46,18 +58,20 @@ export class AdminPrefixesComponent implements OnInit {
 
   private setupModalData(index) {
     this.modalData.body = "Czy napewno chcesz usunąć prefix \" " 
-      + this.prefixes[index].name 
+      + this.prefixes[index].name
       + " \"? ";
 
     this.modalData.title = "Usuwanie prefiksu \"" + this.prefixes[index].name + "\""; 
-    this.modalData.url = URLS.prefixes.getOne + "\\" + index;
-    console.log("Url do pobrania prefiksu: ");
-    console.log(this.modalData.url);
   }
 
   showDeleteModal(index) {
     this.setupModalData(index);
-    console.log("index: " + index);
+    this.prefixToDeletePosition = index;
+    this.twoButtonsModal.showModal();
+  }
+
+  sendDeletePrfixRequest() {
+    console.log("Wysyłam żądanie usunięcia");
   }
 
 }
