@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ErrorBannerComponent } from './error-banner.component';
+import { MessageBannerComponent } from './message-banner.component';
 
 describe('ErrorBannerComponent', () => {
-  let component: ErrorBannerComponent;
-  let fixture: ComponentFixture<ErrorBannerComponent>;
+  let component: MessageBannerComponent;
+  let fixture: ComponentFixture<MessageBannerComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ErrorBannerComponent ]
+      declarations: [ MessageBannerComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ErrorBannerComponent);
+    fixture = TestBed.createComponent(MessageBannerComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

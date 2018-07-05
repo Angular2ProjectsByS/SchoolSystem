@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from './http-client';
+import { ResultRequestSet } from '../../../model/request/result-request-set';
+import { ResultRequest } from '../../../model/request/result-request';
 
 @Injectable()
 export class RestService {
@@ -8,28 +10,35 @@ export class RestService {
 
   entityClass : any;
   
-  async get<T>(url:string) {
-    
-    console.log("Wykonuję rządanie");
-    
-    let result = null;
+  async get<T>(url:string) : Promise<ResultRequestSet<T>> {
+  
+    let resultRequestSet = new ResultRequestSet<T>();
 
     await this.httpClient.get(url).toPromise().then(
       res => {
-        result = <T[]> res.json();
-        console.log("RestService:get() Mam dane" + result);
-        console.log(result);
+        resultRequestSet.setAll(res, true);
       },
       err => {
-        result = null;
+        resultRequestSet.setAll(err, false);
       }
     );
 
-    console.log("Wynik po awaicie: ");
-    console.log(result);
+    return resultRequestSet;
+  }
 
-    console.log("Zwracam wynik");
-    return result;
+  async delete(url) : Promise<ResultRequest> {
+    let requestResult: ResultRequest = new ResultRequest();
+
+    await this.httpClient.delete(url).toPromise().then(
+      res => {
+        requestResult.setAll(res.status, true);
+      },
+      err => {
+        requestResult.setAll(err.status, false);
+      }
+    )
+
+    return requestResult;
   }
 
 }

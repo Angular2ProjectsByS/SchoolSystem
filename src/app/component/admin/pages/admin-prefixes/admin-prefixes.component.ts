@@ -1,12 +1,11 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { RestService } from '../../../../service/global/request/rest-service.service';
 import { Prefix } from '../../../../model/school-classes/details/prefix';
-import { Constants } from '../../../../constants/constants';
-import { ViewEncapsulation } from "@angular/core";
 import { ModalData } from '../../../../model/view/ModalData';
 import { URLS } from '../../../../constants/urls';
-import { EventEmitter } from 'protractor';
 import { TwoButtonsModalComponent } from '../../../common/two-buttons-modal/two-buttons-modal.component';
+import { ResultRequest } from '../../../../model/request/result-request';
+import { Constants } from '../../../../constants/constants';
 
 @Component({
   selector: 'app-admin-prefixes',
@@ -16,7 +15,7 @@ import { TwoButtonsModalComponent } from '../../../common/two-buttons-modal/two-
 export class AdminPrefixesComponent implements OnInit {
 
   noPrefixes: boolean = false;
-  errorMessage: string;
+  banerMessage: string;
   prefixes : Prefix[];
   modalData : ModalData;
   prefixToDeletePosition : number;
@@ -41,18 +40,28 @@ export class AdminPrefixesComponent implements OnInit {
   private async loadAllPrefixes() {
     console.log("Load prefixes");
     let url = URLS.prefixes.getAll;
-    this.prefixes =  await this.restService.get<Prefix>(url);
-    this.setNoPrefixesMessage();
+    let resultRequestSet = await this.restService.get<Prefix>(url);
+    this.prefixes = resultRequestSet.result;
+    this.checkResponseCode(resultRequestSet);
   }
 
-  private setNoPrefixesMessage() {
-    if (this.prefixes != null) {
-      console.log("Result: ");
-      console.log(this.prefixes);
-      this.noPrefixes = false;
+  private checkResponseCode(requestResult : ResultRequest) {
+      if (requestResult.responseCode >= 400) {
+        this.noPrefixes = true;
+        this.setProperMessageBanerContent(requestResult);
+      }
+      else {
+        this.noPrefixes = false;
+        this.banerMessage = null;
+      }
+  }
+
+  private setProperMessageBanerContent(requestResult : ResultRequest) {
+    if (requestResult.responseCode >= 400 && requestResult.responseCode < 500) {
+      this.banerMessage = Constants.LOADING_SCH_PREFIXES_ERROR + Constants.MESSAGE_ERROR_400;
     }
-    else {
-      this.noPrefixes = true;
+    else if (requestResult.responseCode >= 500) {
+      this.banerMessage = Constants.LOADING_SCH_PREFIXES_ERROR + Constants.MESSAGE_ERROR_500;
     }
   }
 
@@ -72,6 +81,10 @@ export class AdminPrefixesComponent implements OnInit {
 
   sendDeletePrfixRequest() {
     console.log("Wysyłam żądanie usunięcia");
+    let url = URLS.prefixes.deleteOne + "/" + this.prefixes[this.prefixToDeletePosition].id;
+    let success = this.restService.delete(url);
   }
+
+
 
 }

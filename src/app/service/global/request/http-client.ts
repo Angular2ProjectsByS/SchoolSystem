@@ -7,23 +7,35 @@ export class HttpClient {
     
     constructor(private http: Http) {}
 
-    private createAuthorizationHeader(headers: Headers) {
+    private addAuthorizationToHeaders(headers: Headers){
         let accessToken = localStorage.getItem(Constants.Token);
         console.log(accessToken);
         headers.append('Authorization', accessToken);
         headers.append('Access-Control-Allow-Origin', '*');
     }
-    
 
-    public get(url) {
+    private createAuthorizationHeader(): Headers{
         let headers = new Headers();
-        this.createAuthorizationHeader(headers);
+        let accessToken = localStorage.getItem(Constants.Token);
+        console.log(accessToken);
+        headers.append('Authorization', accessToken);
+        headers.append('Access-Control-Allow-Origin', '*');
+
+        return headers;
+    }
+    
+    public get(url) {
+        let headers = this.createAuthorizationHeader();
         return this.http.get(url, {headers: headers});
     }
 
     public post(url) {
-        let headers = new Headers();
-        this.createAuthorizationHeader(headers);
+        let headers = this.createAuthorizationHeader();
         return this.http.post(url, {headers: headers});
+    }
+
+    public delete(url) {
+        let headers = this.createAuthorizationHeader();
+        return this.http.delete(url, {headers: headers}); 
     }
 }

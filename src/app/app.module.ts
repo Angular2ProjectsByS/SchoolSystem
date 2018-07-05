@@ -19,7 +19,7 @@ import { AdminOptionsComponent } from './component/admin/pages/admin-options/adm
 import { AdminClassesComponent } from './component/admin/pages/admin-nav-cards/admin-classes/admin-classes.component';
 import { AdminPrefixesComponent } from './component/admin/pages/admin-prefixes/admin-prefixes.component';
 import { SearchBarComponent } from './component/common/search-bar/search-bar.component';
-import { ErrorBannerComponent } from './component/common/error-banner/error-banner.component';
+import { MessageBannerComponent } from './component/common/message-banner/message-banner.component';
 import { TwoButtonsModalComponent } from './component/common/two-buttons-modal/two-buttons-modal.component';
 
 
@@ -36,7 +36,7 @@ import { TwoButtonsModalComponent } from './component/common/two-buttons-modal/t
     AdminClassesComponent,
     AdminPrefixesComponent,
     SearchBarComponent,
-    ErrorBannerComponent,
+    MessageBannerComponent,
     TwoButtonsModalComponent
   ],
   imports: [
