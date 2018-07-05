@@ -1,7 +1,7 @@
 import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
 import { ModalData } from '../../../model/view/ModalData';
-import * as $ from 'jquery';
-import 'bootstrap';
+declare var $: any;
+
 
 @Component({
   selector: 'app-two-buttons-modal',
