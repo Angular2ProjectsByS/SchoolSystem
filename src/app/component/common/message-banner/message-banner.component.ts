@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { BannerMessageInfo } from '../../../model/view/banner-message-info';
+declare var $: any;
 
 @Component({
   selector: 'app-message-banner',
@@ -20,6 +21,7 @@ export class MessageBannerComponent implements OnInit, OnChanges {
     console.log("Wykryto zmiany w ErrorBannerComponent");
     if (this.banerInfo) {
       this.display = true;
+      this.changeStyle();
     }
     else {
       this.display = false;
@@ -27,7 +29,11 @@ export class MessageBannerComponent implements OnInit, OnChanges {
   }
 
   private changeStyle() {
-    
+    $("#message-content").removeClass(function(index, className) {
+      return (className.match(/(^|\s)alert-\S+/g) || []).join(' ');
+    });
+
+    $("#message-content").addClass(this.banerInfo.alertStyle);
   }
 
 }
