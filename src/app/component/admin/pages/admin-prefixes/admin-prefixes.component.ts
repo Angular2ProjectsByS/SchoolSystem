@@ -6,6 +6,7 @@ import { URLS } from '../../../../constants/urls';
 import { TwoButtonsModalComponent } from '../../../common/two-buttons-modal/two-buttons-modal.component';
 import { ResultRequest } from '../../../../model/request/result-request';
 import { Constants } from '../../../../constants/constants';
+import { BannerMessageInfo } from '../../../../model/view/banner-message-info';
 
 @Component({
   selector: 'app-admin-prefixes',
@@ -15,7 +16,7 @@ import { Constants } from '../../../../constants/constants';
 export class AdminPrefixesComponent implements OnInit {
 
   noPrefixes: boolean = false;
-  banerMessage: string;
+  banerInfo: BannerMessageInfo;
   prefixes : Prefix[];
   modalData : ModalData;
   prefixToDeletePosition : number;
@@ -52,17 +53,34 @@ export class AdminPrefixesComponent implements OnInit {
       }
       else {
         this.noPrefixes = false;
-        this.banerMessage = null;
+        this.banerInfo = null;
       }
   }
 
   private setProperMessageBanerContent(requestResult : ResultRequest) {
     if (requestResult.responseCode >= 400 && requestResult.responseCode < 500) {
-      this.banerMessage = Constants.LOADING_SCH_PREFIXES_ERROR + Constants.MESSAGE_ERROR_400;
+      this.banerInfo = new BannerMessageInfo();
+
+      this.banerInfo
+        .setAll(
+          Constants.LOADING_SCH_PREFIXES_ERROR + Constants.MESSAGE_ERROR_400, 
+          Constants.ALERT_STYLES.ALERT_DANGER);
     }
     else if (requestResult.responseCode >= 500) {
-      this.banerMessage = Constants.LOADING_SCH_PREFIXES_ERROR + Constants.MESSAGE_ERROR_500;
+      this.banerInfo = new BannerMessageInfo();
+      
+      this.banerInfo
+        .setAll(
+          Constants.LOADING_SCH_PREFIXES_ERROR + Constants.MESSAGE_ERROR_500, 
+          Constants.ALERT_STYLES.ALERT_DANGER);
+
     }
+  }
+
+  showDeleteModal(index) {
+    this.setupModalData(index);
+    this.prefixToDeletePosition = index;
+    this.twoButtonsModal.showModal();
   }
 
   private setupModalData(index) {
@@ -73,16 +91,10 @@ export class AdminPrefixesComponent implements OnInit {
     this.modalData.title = "Usuwanie prefiksu \"" + this.prefixes[index].name + "\""; 
   }
 
-  showDeleteModal(index) {
-    this.setupModalData(index);
-    this.prefixToDeletePosition = index;
-    this.twoButtonsModal.showModal();
-  }
-
   sendDeletePrfixRequest() {
     console.log("Wysyłam żądanie usunięcia");
     let url = URLS.prefixes.deleteOne + "/" + this.prefixes[this.prefixToDeletePosition].id;
-    let success = this.restService.delete(url);
+    let response = this.restService.delete(url);
   }
 
 

@@ -18,5 +18,10 @@ export class Constants {
     public static MESSAGE_ERROR_500 = " Błąd serwera.";
 
     public static LOADING_SCH_PREFIXES_ERROR = "Niepowodzenie w pobraniu prefiksów.";
+
+    public static ALERT_STYLES = {
+        ALERT_DANGER : "alert-danger",
+        ALERT_SUCCESS : "alert-success"
+    }
 }
 
