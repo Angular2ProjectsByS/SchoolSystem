@@ -1,12 +1,12 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { RestService } from '../../../../service/global/request/rest-service.service';
-import { Prefix } from '../../../../model/school-classes/details/prefix';
-import { ModalData } from '../../../../model/view/ModalData';
-import { URLS } from '../../../../constants/urls';
-import { TwoButtonsModalComponent } from '../../../common/two-buttons-modal/two-buttons-modal.component';
-import { ResultRequest } from '../../../../model/request/result-request';
-import { Constants } from '../../../../constants/constants';
-import { BannerMessageInfo } from '../../../../model/view/banner-message-info';
+import { RestService } from '../../../../../service/global/request/rest-service.service';
+import { Prefix } from '../../../../../model/school-classes/details/prefix';
+import { ModalData } from '../../../../../model/view/ModalData';
+import { URLS } from '../../../../../constants/urls';
+import { TwoButtonsModalComponent } from '../../../../common/two-buttons-modal/two-buttons-modal.component';
+import { ResultRequest } from '../../../../../model/request/result-request';
+import { Constants } from '../../../../../constants/constants';
+import { BannerMessageInfo } from '../../../../../model/view/banner-message-info';
 
 @Component({
   selector: 'app-admin-prefixes',
@@ -20,6 +20,7 @@ export class AdminPrefixesComponent implements OnInit {
   prefixes : Prefix[];
   modalData : ModalData;
   prefixToDeletePosition : number;
+  showAddForm : boolean = false;
   @ViewChild("twoButtonsModal") twoButtonsModal: TwoButtonsModalComponent;
 
   constructor(private restService : RestService) {
@@ -28,7 +29,6 @@ export class AdminPrefixesComponent implements OnInit {
   }
 
   ngOnInit() {
-    
   }
 
   private initModalData():void {
@@ -61,13 +61,12 @@ export class AdminPrefixesComponent implements OnInit {
     if (resultRequest.responseCode == 200) {
       if (resultRequest.result.length == 0) {
         
-
         this.noPrefixes = true;
         this.banerInfo = new BannerMessageInfo();
 
         this.banerInfo
           .setAll(
-            "Brak prefiksów w bazie",
+            Constants.NO_SCH_PREFIXES_MESSAGE,
             Constants.ALERT_STYLES.ALERT_WARNING
           );
       }
@@ -80,7 +79,7 @@ export class AdminPrefixesComponent implements OnInit {
         this.banerInfo = new BannerMessageInfo();
         this.banerInfo
           .setAll(
-            "Czynność zakończona powodzeniem",
+            Constants.REQUEST_SUCCESS_MESSAGE,
             Constants.ALERT_STYLES.ALERT_SUCCESS
           );
       }
@@ -118,11 +117,11 @@ export class AdminPrefixesComponent implements OnInit {
     this.modalData.title = "Usuwanie prefiksu \"" + this.prefixes[index].name + "\""; 
   }
 
-  async sendDeletePrfixRequest() {
+  async deletePrfixRequest() {
     let url = URLS.prefixes.deleteOne + "/" + this.prefixes[this.prefixToDeletePosition].id;
     let response = await this.restService.delete(url);
-    this.setProperMessageBanerContent(response, "Niepowodzenie usunięcia prefiksu.", true);
-    if (response.responseCode != 200) {
+    this.setProperMessageBanerContent(response, Constants.DELETING_PREFIX_FAILURE_MESSAGE, true);
+    if (response.responseCode == 200) {
       this.loadAllPrefixes(); 
     }
   }

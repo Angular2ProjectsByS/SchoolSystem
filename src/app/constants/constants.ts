@@ -11,6 +11,7 @@ export class Constants {
     
     public static SCH_PREFIX_PREFIX_URL: string = Constants.SERVER_PROXY + "/class-prefixex";
 
+    public static REQUEST_SUCCESS_MESSAGE = "Czynność zakończona powodzieniem.";
     public static MESSAGE_ERROR_PREFIX = "Czynność zakończona niepowodzieniem."; 
     public static MESSAGE_ERROR_SUFIX = " Proszę spróbować ponownie.";
 
@@ -18,6 +19,8 @@ export class Constants {
     public static MESSAGE_ERROR_500 = " Błąd serwera.";
 
     public static LOADING_SCH_PREFIXES_ERROR = "Niepowodzenie w pobraniu prefiksów.";
+    public static DELETING_PREFIX_FAILURE_MESSAGE = "Niepowodzenie usunięcia prefiksu.";
+    public static NO_SCH_PREFIXES_MESSAGE = "Brak prefiksów w bazie.";
 
     public static ALERT_STYLES = {
         ALERT_DANGER : "alert-danger",

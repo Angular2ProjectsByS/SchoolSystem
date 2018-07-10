@@ -7,7 +7,7 @@ import { AddUserComponent } from './component/add-user/add-user.component';
 import { AdminMainPageComponent } from './component/admin/main-page/admin-main-page.component';
 import { AdminOptionsComponent } from "./component/admin/pages/admin-options/admin-options.component";
 import { AdminClassesComponent } from "./component/admin/pages/admin-nav-cards/admin-classes/admin-classes.component";
-import { AdminPrefixesComponent } from './component/admin/pages/admin-prefixes/admin-prefixes.component';
+import { AdminPrefixesComponent } from './component/admin/pages/prefixes/admin-prefixes-main/admin-prefixes.component';
 
 const appRoutes: Routes = [
     {
