@@ -39,17 +39,17 @@ export class AdminPrefixesComponent implements OnInit {
   }
 
   private async loadAllPrefixes() {
-    console.log("Load prefixes");
     let url = URLS.prefixes.getAll;
     let resultRequestSet = await this.restService.get<Prefix>(url);
     this.prefixes = resultRequestSet.result;
     this.checkResponseCode(resultRequestSet);
+    this.checkPrefixesExists(resultRequestSet);
   }
 
   private checkResponseCode(requestResult : ResultRequest) {
       if (requestResult.responseCode >= 400) {
         this.noPrefixes = true;
-        this.setProperMessageBanerContent(requestResult);
+        this.setProperMessageBanerContent(requestResult, Constants.LOADING_SCH_PREFIXES_ERROR, false);
       }
       else {
         this.noPrefixes = false;
@@ -57,13 +57,40 @@ export class AdminPrefixesComponent implements OnInit {
       }
   }
 
-  private setProperMessageBanerContent(requestResult : ResultRequest) {
+  private checkPrefixesExists(resultRequest) {
+    if (resultRequest.responseCode == 200) {
+      if (resultRequest.result.length == 0) {
+        
+
+        this.noPrefixes = true;
+        this.banerInfo = new BannerMessageInfo();
+
+        this.banerInfo
+          .setAll(
+            "Brak prefiksów w bazie",
+            Constants.ALERT_STYLES.ALERT_WARNING
+          );
+      }
+    }
+  }
+
+  private setProperMessageBanerContent(requestResult : ResultRequest, errorString: string, showSuccess : boolean) {
+    if (showSuccess) {
+      if (requestResult.responseCode == 200) {
+        this.banerInfo = new BannerMessageInfo();
+        this.banerInfo
+          .setAll(
+            "Czynność zakończona powodzeniem",
+            Constants.ALERT_STYLES.ALERT_SUCCESS
+          );
+      }
+    }
     if (requestResult.responseCode >= 400 && requestResult.responseCode < 500) {
       this.banerInfo = new BannerMessageInfo();
 
       this.banerInfo
         .setAll(
-          Constants.LOADING_SCH_PREFIXES_ERROR + Constants.MESSAGE_ERROR_400, 
+          errorString + Constants.MESSAGE_ERROR_400, 
           Constants.ALERT_STYLES.ALERT_DANGER);
     }
     else if (requestResult.responseCode >= 500) {
@@ -71,7 +98,7 @@ export class AdminPrefixesComponent implements OnInit {
       
       this.banerInfo
         .setAll(
-          Constants.LOADING_SCH_PREFIXES_ERROR + Constants.MESSAGE_ERROR_500, 
+          errorString + Constants.MESSAGE_ERROR_500, 
           Constants.ALERT_STYLES.ALERT_DANGER);
 
     }
@@ -91,10 +118,13 @@ export class AdminPrefixesComponent implements OnInit {
     this.modalData.title = "Usuwanie prefiksu \"" + this.prefixes[index].name + "\""; 
   }
 
-  sendDeletePrfixRequest() {
-    console.log("Wysyłam żądanie usunięcia");
+  async sendDeletePrfixRequest() {
     let url = URLS.prefixes.deleteOne + "/" + this.prefixes[this.prefixToDeletePosition].id;
-    let response = this.restService.delete(url);
+    let response = await this.restService.delete(url);
+    this.setProperMessageBanerContent(response, "Niepowodzenie usunięcia prefiksu.", true);
+    if (response.responseCode != 200) {
+      this.loadAllPrefixes(); 
+    }
   }
 
 

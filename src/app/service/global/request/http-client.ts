@@ -9,7 +9,6 @@ export class HttpClient {
 
     private addAuthorizationToHeaders(headers: Headers){
         let accessToken = localStorage.getItem(Constants.Token);
-        console.log(accessToken);
         headers.append('Authorization', accessToken);
         headers.append('Access-Control-Allow-Origin', '*');
     }
@@ -17,7 +16,6 @@ export class HttpClient {
     private createAuthorizationHeader(): Headers{
         let headers = new Headers();
         let accessToken = localStorage.getItem(Constants.Token);
-        console.log(accessToken);
         headers.append('Authorization', accessToken);
         headers.append('Access-Control-Allow-Origin', '*');
 

@@ -21,7 +21,8 @@ export class Constants {
 
     public static ALERT_STYLES = {
         ALERT_DANGER : "alert-danger",
-        ALERT_SUCCESS : "alert-success"
+        ALERT_SUCCESS : "alert-success",
+        ALERT_WARNING : "alert-warning"
     }
 }
 

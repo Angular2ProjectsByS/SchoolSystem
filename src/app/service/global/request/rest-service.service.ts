@@ -8,8 +8,7 @@ export class RestService {
 
   constructor(private httpClient : HttpClient) {  }
 
-  entityClass : any;
-  
+
   async get<T>(url:string) : Promise<ResultRequestSet<T>> {
   
     let resultRequestSet = new ResultRequestSet<T>();
