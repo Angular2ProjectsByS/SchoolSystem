@@ -1,23 +1,33 @@
 <div id="form-sch-prefix">
   <h4 class="title">Dodaj nowy prefiks, prefiksy <i class="fas fa-info-circle" data-toggle="collapse" data-target="#info-prefix-add"></i></h4>
   <div id="info-prefix-add" class="alert alert-warning alert-dismissible collapse" role="alert">
-      Nowe prefiksy dodawaj po spacji w polu edycyjnym. Dzięki temu nie musisz wysyłać wszystkich perfiksów pojedynczo.
+      Jeżeli chcesz dodać tylko jeden prefiks, wpisz go w pole edycjne i kliknij 'Wyślij'. Natomiast przy dodaniu wielu elementów, kiedy 
+      wprowadzisz już pefiks, naciśnij spację. Dzięki czemu znajdzie się on w sekcji 'Do wysłania'. Gdy już wprowadzanie prefiksów zostanie
+      zakończenie kliknij przycisk 'Wyślij'.
       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
         <span aria-hidden="true">&times;</span>
       </button>
   </div>
   <form>
     <div class="row">
-      <div class="col col-12 col-sm-10">
+      <div class="col">
           <div class="form-group">
-              <input type="text" placeholder="Prefiks, pefiksy" class="form-control"/>
+              <input id="prefixes-input" type="text" placeholder="Prefiks, np: 'a'" (keyup.space)="addPrefixToSet()" [(ngModel)]="actualPrefix" class="form-control" [ngModelOptions]="{standalone: true}"/>
           </div>
       </div>
-      <div class="col col-12 col-sm-2">
-          <div class="form-group">
-              <button class="form-control btn btn-primary">Wyślij</button>
-          </div>
-      </div>
+    </div>
+    <div class="row">
+        <div class="col col-12 col-sm-10">
+            <div id="prefixes-panel" class="h-100">
+                Do wysłania:
+                <span *ngFor="let prefix of prefixesToSend" class="prefix-item">{{ prefix }}<i class="fas fa-times prefix-item-delete"></i></span>
+            </div>
+        </div>
+        <div class="col col-12 col-sm-2">
+            <div class="form-group d-flex h-100 align-items-center">
+                <button class="form-control btn btn-primary ">Wyślij</button>
+            </div>
+        </div>
     </div>
   </form>
 </div>
