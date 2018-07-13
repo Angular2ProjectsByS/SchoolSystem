@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Headers } from '@angular/http';
+import { Http, Headers, Jsonp } from '@angular/http';
 import { Constants } from '../../../constants/constants';
 
 @Injectable()
@@ -29,7 +29,8 @@ export class HttpClient {
 
     public post(url, body) {
         let headers = this.createAuthorizationHeader();
-        return this.http.post(url, {headers: headers, body: body});
+        headers.append("Content-Type", "application/json");
+        return this.http.post(url, JSON.stringify(body), {headers: headers});
     }
 
     public delete(url) {

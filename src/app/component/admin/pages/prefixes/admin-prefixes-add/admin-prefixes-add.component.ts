@@ -13,7 +13,7 @@ import { BannerMessageInfo } from '../../../../../model/view/banner-message-info
 })
 export class AdminPrefixesAddComponent implements OnInit {
 
-  private prefixesToSend : Array<string> = ['a', 'b'];
+  private prefixesToSend : Array<string> = [];
   actualPrefix : string;
   validationMessage : string;
   @Output() showMessageResultTrigger: EventEmitter<BannerMessageInfo> = new EventEmitter<BannerMessageInfo>();
@@ -95,6 +95,8 @@ export class AdminPrefixesAddComponent implements OnInit {
   checkRequestResultErrors(requestResult) {
     console.log("Sprawdzam błędy");
 
+    console.log(requestResult);
+
     let banerInfo = new BannerMessageInfo();
     banerInfo.alertStyle = Constants.ALERT_STYLES.ALERT_DANGER;
 
@@ -104,11 +106,12 @@ export class AdminPrefixesAddComponent implements OnInit {
     if (requestResult.responseCode == 200) {
       message = Constants.SCH_PREFIXES_ADD_SET_SUCCESS_MESSAGE;
       banerInfo.alertStyle = Constants.ALERT_STYLES.ALERT_SUCCESS;
+      this.prefixesToSend = [];
     }
     else if (requestResult.responseCode >= 400 && requestResult.responseCode < 500) {
       message = Constants.SCH_PREFIXES_ADD_SET_FAILURE_MESSAGE + " " + Constants.MESSAGE_ERROR_400;
       if (requestResult.responseCode == 409) {
-        message += " " + requestResult.result[0];  
+        message += " " + requestResult.result;  
       }
     }
     else if (requestResult.responseCode >= 500) {
