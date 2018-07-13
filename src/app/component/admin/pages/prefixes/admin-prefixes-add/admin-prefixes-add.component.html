@@ -19,15 +19,14 @@
     </div>
     <div class="row">
         <div class="col col-12 col-sm-10">
-            <div id="prefixes-panel" class="">
+            <div id="prefixes-panel" class="h-100"d>
                 <span>Do wysłania:</span>
                 <span *ngFor="let prefix of prefixesToSend; let i = index" class="prefix-item">{{ prefix }}<i class="fas fa-times prefix-item-delete" (click)="removePrefixFromSet(i)"></i></span>
-                <div class="clear-fix"></div>
             </div>
         </div>
         <div class="col col-12 col-sm-2">
             <div class="form-group d-flex h-100 align-items-center">
-                <button class="form-control btn btn-primary ">Wyślij</button>
+                <button class="form-control btn btn-primary" (click)="sendPrefixes()">Wyślij</button>
             </div>
         </div>
     </div>

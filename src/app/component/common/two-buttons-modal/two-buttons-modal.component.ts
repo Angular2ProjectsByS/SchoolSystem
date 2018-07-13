@@ -12,7 +12,6 @@ export class TwoButtonsModalComponent implements OnInit {
 
   @Input() modalData: ModalData;
   @Output() requetTrigger : EventEmitter<any> = new EventEmitter<any>();
-  @Input() deleteMessageTrigger: EventEmitter<any> = new EventEmitter();
 
   constructor() {
     

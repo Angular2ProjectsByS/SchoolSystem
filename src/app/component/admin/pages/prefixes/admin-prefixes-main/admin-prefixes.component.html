@@ -2,7 +2,7 @@
     <h4>Prefiksy</h4>
     <app-search-bar (showAddFormTrigger)="showAddForm = !showAddForm"></app-search-bar>
     <app-message-banner [banerInfo]="banerInfo"></app-message-banner>
-    <app-admin-prefixes-add [hidden]="!showAddForm"></app-admin-prefixes-add>
+    <app-admin-prefixes-add [hidden]="!showAddForm" (showMessageResultTrigger)="showAddSetMessageResult($event)"></app-admin-prefixes-add>
 
     <table *ngIf="(prefixes)?.length > 0" [hidden]="noPrefixes" class="table table-striped table-hover">
         <thead class="thead-dark">

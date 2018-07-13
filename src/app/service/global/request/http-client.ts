@@ -27,9 +27,9 @@ export class HttpClient {
         return this.http.get(url, {headers: headers});
     }
 
-    public post(url) {
+    public post(url, body) {
         let headers = this.createAuthorizationHeader();
-        return this.http.post(url, {headers: headers});
+        return this.http.post(url, {headers: headers, body: body});
     }
 
     public delete(url) {

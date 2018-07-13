@@ -35,9 +35,25 @@ export class RestService {
       err => {
         requestResult.setAll(err.status, false);
       }
-    )
+    );
 
     return requestResult;
+  }
+
+  async addSet(url, set) : Promise<ResultRequestSet<string>> {
+    let requestResultSet = new ResultRequestSet<string>();
+
+    await this.httpClient.post(url, set).toPromise().then(
+      res => {
+        requestResultSet.setAll(res, true);
+      },
+      err => {
+        requestResultSet.setAll(err, false);
+      }
+    );
+
+    return requestResultSet;
+
   }
 
 }

@@ -126,6 +126,14 @@ export class AdminPrefixesComponent implements OnInit {
     }
   }
 
+  showAddSetMessageResult(banerInfo) {
+    console.log("Rezultat zbioru: ");
+    console.log(banerInfo);
+    
+    this.banerInfo = banerInfo;
+    
+  }
+
 
 
 }

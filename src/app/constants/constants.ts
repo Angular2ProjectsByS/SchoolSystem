@@ -15,12 +15,15 @@ export class Constants {
     public static MESSAGE_ERROR_PREFIX = "Czynność zakończona niepowodzieniem."; 
     public static MESSAGE_ERROR_SUFIX = " Proszę spróbować ponownie.";
 
-    public static MESSAGE_ERROR_400 = " Błąd aplikacji.";
-    public static MESSAGE_ERROR_500 = " Błąd serwera.";
+    public static MESSAGE_ERROR_400 = "Błąd aplikacji.";
+    public static MESSAGE_ERROR_500 = "Błąd serwera.";
 
     public static LOADING_SCH_PREFIXES_ERROR = "Niepowodzenie w pobraniu prefiksów.";
     public static DELETING_PREFIX_FAILURE_MESSAGE = "Niepowodzenie usunięcia prefiksu.";
     public static NO_SCH_PREFIXES_MESSAGE = "Brak prefiksów w bazie.";
+    
+    public static SCH_PREFIXES_ADD_SET_FAILURE_MESSAGE = "Niepowodzenie dodania zbioru prefiksów.";
+    public static SCH_PREFIXES_ADD_SET_SUCCESS_MESSAGE = "Dodanie prefiksów zakończone powodzeniem.";
 
     public static ALERT_STYLES = {
         ALERT_DANGER : "alert-danger",
