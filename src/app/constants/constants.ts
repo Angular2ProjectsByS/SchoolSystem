@@ -22,8 +22,8 @@ export class Constants {
     public static DELETING_PREFIX_FAILURE_MESSAGE = "Niepowodzenie usunięcia prefiksu.";
     public static NO_SCH_PREFIXES_MESSAGE = "Brak prefiksów w bazie.";
     
-    public static SCH_PREFIXES_ADD_SET_FAILURE_MESSAGE = "Niepowodzenie dodania zbioru prefiksów.";
-    public static SCH_PREFIXES_ADD_SET_SUCCESS_MESSAGE = "Dodanie prefiksów zakończone powodzeniem.";
+    public static SCH_PREFIXES_ADD_SET_FAILURE_MESSAGE = "Niepowodzenie dodania prefiksu/prefiksów.";
+    public static SCH_PREFIXES_ADD_SET_SUCCESS_MESSAGE = "Dodanie prefiksu/prefiksów zakończone powodzeniem.";
 
     public static ALERT_STYLES = {
         ALERT_DANGER : "alert-danger",

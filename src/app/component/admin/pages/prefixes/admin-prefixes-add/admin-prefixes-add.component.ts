@@ -14,7 +14,7 @@ import { BannerMessageInfo } from '../../../../../model/view/banner-message-info
 export class AdminPrefixesAddComponent implements OnInit {
 
   private prefixesToSend : Array<string> = [];
-  actualPrefix : string;
+  actualPrefixName : string;
   validationMessage : string;
   @Output() showMessageResultTrigger: EventEmitter<BannerMessageInfo> = new EventEmitter<BannerMessageInfo>();
 
@@ -25,12 +25,12 @@ export class AdminPrefixesAddComponent implements OnInit {
   }
 
   addPrefixToSet() {
-    let prefixName = this.actualPrefix.trim();
+    let prefixName = this.actualPrefixName.trim();
 
     if (this.checkPrefixName(prefixName)) {
-      this.validatePrefix(prefixName);
+      this.validatePrefixName(prefixName);
       this.prefixesToSend.push(prefixName);
-      this.actualPrefix = "";
+      this.actualPrefixName = "";
       
       if (this.validationMessage !== "") {
         this.validationMessage = null;
@@ -49,7 +49,7 @@ export class AdminPrefixesAddComponent implements OnInit {
       isValidName = false;
       this.validationMessage = "Prefiks znajduje się już w zbiorze.";
     }
-    else if (!this.validatePrefix(name)){
+    else if (!this.validatePrefixName(name)){
       isValidName = false;
       this.validationMessage = "Nazwa prefiksu posiada nieprawidłowy format.";
     }
@@ -58,11 +58,11 @@ export class AdminPrefixesAddComponent implements OnInit {
   }
 
   private removeLastSpaceFromPrefix() {
-    this.actualPrefix = this.actualPrefix.substring(0, this.actualPrefix.length - 1);
+    this.actualPrefixName = this.actualPrefixName.substring(0, this.actualPrefixName.length - 1);
   }
 
 
-  validatePrefix(name) {
+  validatePrefixName(name) {
     var pattern = /^[a-z]+$/g;
     return pattern.test(name);
   }
@@ -72,12 +72,37 @@ export class AdminPrefixesAddComponent implements OnInit {
   }
 
   async sendPrefixes() {
-    console.log("Wysyłam zbiór prefiksów.");
+    let requestResult = null;
+    if (this.prefixesToSend.length > 0) {
+      requestResult = this.sendPrefixCollection();
+    }
+    else {
+      requestResult = this.sendOnePrefix();
+    }
+
+  }
+
+  async sendPrefixCollection() {
     let prefixes = this.wrapPrefixesNamesToClasses();
-    let requestResult = await this.restService.addSet(URLS.prefixes.addSet, prefixes);
+    let requestResult = await this.restService.add(URLS.prefixes.addSet, prefixes);
     console.log("requestResult: ");
     console.log(requestResult);
     this.checkRequestResultErrors(requestResult);
+
+  }
+
+  async sendOnePrefix() {
+    let requestResult= null;
+    if (this.validatePrefixName(this.actualPrefixName)) {
+      let prefix = new Prefix();
+      prefix.name = this.actualPrefixName;
+      requestResult = await this.restService.add(URLS.prefixes.addOne, prefix);
+      this.checkRequestResultErrors(requestResult);
+    }
+    else {
+      this.validationMessage = "Nazwa prefiksu posiada nieprawidłowy format.";
+    }
+
   }
 
   wrapPrefixesNamesToClasses(): Array<Prefix>  {

@@ -40,7 +40,7 @@ export class RestService {
     return requestResult;
   }
 
-  async addSet(url, set) : Promise<ResultRequestSet<string>> {
+  async add(url, set) : Promise<ResultRequestSet<string>> {
     let requestResultSet = new ResultRequestSet<string>();
 
     await this.httpClient.post(url, set).toPromise().then(
