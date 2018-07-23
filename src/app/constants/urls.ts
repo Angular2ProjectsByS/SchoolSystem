@@ -1,4 +1,4 @@
-import { Constants } from "./constants";
+import { Constants } from "@app/constants/constants";
 
 export class URLS {
     static prefixes = {

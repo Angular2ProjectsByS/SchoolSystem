@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MessageBannerComponent } from './message-banner.component';
+import { MessageBannerComponent } from '@app/component/common/message-banner/message-banner.component';
 
 describe('ErrorBannerComponent', () => {
   let component: MessageBannerComponent;

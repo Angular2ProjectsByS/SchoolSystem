@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/Rx';
-import {LoginService } from '../../service/login.service';
-import { Constants } from '../../constants/constants';
+import {LoginService } from '@app/service/login.service';
+import { Constants } from '@app/constants/constants';
 import * as JwtDecode from "jwt-decode";
-import { UserType } from '../../constants/UserType';
-import { PageNavigator } from "../../service/PageNavigator";
+import { UserType } from '@app/constants/UserType';
+import { PageNavigator } from "@app/service/PageNavigator";
 
 @Component({
   selector: 'app-login',

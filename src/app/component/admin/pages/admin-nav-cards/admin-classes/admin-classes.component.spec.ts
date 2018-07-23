@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AdminClassesComponent } from './admin-classes.component';
+import { AdminClassesComponent } from '@app/component/admin/pages/admin-nav-cards/admin-classes/admin-classes.component';
 
 describe('AdminClassesComponent', () => {
   let component: AdminClassesComponent;

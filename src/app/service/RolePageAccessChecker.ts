@@ -1,5 +1,5 @@
-import { UserType } from "../constants/UserType"
-import { Constants } from "../constants/constants"
+import { UserType } from "@app/constants/UserType"
+import { Constants } from "@app/constants/constants"
 
 export class RolePageAccessChecker {
 

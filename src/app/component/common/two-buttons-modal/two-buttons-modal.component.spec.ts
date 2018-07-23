@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TwoButtonsModalComponent } from './two-buttons-modal.component';
+import { TwoButtonsModalComponent } from '@app/component/common/two-buttons-modal/two-buttons-modal.component';
 
 describe('TwoButtonsModalComponent', () => {
   let component: TwoButtonsModalComponent;

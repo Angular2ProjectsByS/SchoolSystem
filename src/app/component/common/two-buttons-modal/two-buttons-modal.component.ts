@@ -1,5 +1,5 @@
 import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
-import { ModalData } from '../../../model/view/ModalData';
+import { ModalData } from '@app/model/view/ModalData';
 declare var $: any;
 
 

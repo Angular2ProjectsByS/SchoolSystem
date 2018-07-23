@@ -1,4 +1,4 @@
-import { UserType } from "../constants/UserType";
+import { UserType } from "@app/constants/UserType";
 import { Router } from '@angular/router';
 import { defaultUrlMatcher } from "@angular/router/src/shared";
 import { Injectable } from "@angular/core";

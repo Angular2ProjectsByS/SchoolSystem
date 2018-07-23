@@ -22,3 +22,20 @@ table tbody tr td button:hover {
 button-margins {
     margin: 0;
 }
+
+tbody tr div {
+    clear: both;
+    display: block;
+}
+
+.operation-cell {
+    border: 0;
+}
+ 
+table tbody:nth-child(even) {
+    background: rgba(244, 244, 244, 1);
+}
+
+table tbody:nth-child(odd) {
+    background: rgba(255, 255, 255, 1);
+}

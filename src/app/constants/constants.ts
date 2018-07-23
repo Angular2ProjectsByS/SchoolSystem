@@ -1,4 +1,4 @@
-import { UserType } from "../constants/UserType"
+import { UserType } from "@app/constants/UserType"
 
 export class Constants {
     public static SERVER_ADDRESS: string = "http://localhost:8081/";
@@ -24,6 +24,8 @@ export class Constants {
     
     public static SCH_PREFIXES_ADD_SET_FAILURE_MESSAGE = "Niepowodzenie dodania prefiksu/prefiksów.";
     public static SCH_PREFIXES_ADD_SET_SUCCESS_MESSAGE = "Dodanie prefiksu/prefiksów zakończone powodzeniem.";
+    public static SCH_PREFIX_EXISTS_MESSAGE = "Prefiks znajduje się już w zbiorze.";
+    public static SCH_PREFIX_VALIDATION_ERROR_MESSAGE = "Nazwa prefiksu posiada nieprawidłowy format.";
 
     public static ALERT_STYLES = {
         ALERT_DANGER : "alert-danger",

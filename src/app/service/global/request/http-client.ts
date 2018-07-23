@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, Jsonp } from '@angular/http';
-import { Constants } from '../../../constants/constants';
+import { Constants } from '@app/constants/constants';
 
 @Injectable()
 export class HttpClient {

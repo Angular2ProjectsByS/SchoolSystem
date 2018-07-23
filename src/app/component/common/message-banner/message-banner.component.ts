@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, OnChanges } from '@angular/core';
-import { BannerMessageInfo } from '../../../model/view/banner-message-info';
+import { BannerMessageInfo } from '@app/model/view/banner-message-info';
 declare var $: any;
 
 @Component({
@@ -20,10 +20,12 @@ export class MessageBannerComponent implements OnInit, OnChanges {
   ngOnChanges() {
     console.log("Wykryto zmiany w ErrorBannerComponent");
     if (this.banerInfo) {
+      console.log("Ustawiam display na true");
       this.display = true;
       this.changeStyle();
     }
     else {
+      console.log("Ustawiam display na false");
       this.display = false;
     }
   }

@@ -1,4 +1,4 @@
-import { ResultRequest } from "./result-request";
+import { ResultRequest } from "@app/model/request/result-request";
 
 
 export class ResultRequestSet<T> extends ResultRequest {

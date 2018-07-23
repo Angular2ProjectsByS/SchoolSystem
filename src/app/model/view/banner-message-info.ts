@@ -1,4 +1,4 @@
-import { Constants } from "../../constants/constants";
+import { Constants } from "@app/constants/constants";
 
 export class BannerMessageInfo {
     

@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AdminPrefixesComponent } from './admin-prefixes.component';
+import { AdminPrefixesComponent } from '@app/component/admin/pages/prefixes/admin-prefixes-main/admin-prefixes.component';
 
 describe('AdminPrefixesComponent', () => {
   let component: AdminPrefixesComponent;

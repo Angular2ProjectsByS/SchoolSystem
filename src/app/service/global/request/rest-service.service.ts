@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from './http-client';
-import { ResultRequestSet } from '../../../model/request/result-request-set';
-import { ResultRequest } from '../../../model/request/result-request';
+import { HttpClient } from '@app/service/global/request/http-client';
+import { ResultRequestSet } from '@app/model/request/result-request-set';
+import { ResultRequest } from '@app/model/request/result-request';
 
 @Injectable()
 export class RestService {
@@ -40,10 +40,26 @@ export class RestService {
     return requestResult;
   }
 
-  async add(url, set) : Promise<ResultRequestSet<string>> {
+  async add(url, body) : Promise<ResultRequestSet<string>> {
     let requestResultSet = new ResultRequestSet<string>();
 
-    await this.httpClient.post(url, set).toPromise().then(
+    await this.httpClient.post(url, body).toPromise().then(
+      res => {
+        requestResultSet.setAll(res, true);
+      },
+      err => {
+        requestResultSet.setAll(err, false);
+      }
+    );
+
+    return requestResultSet;
+
+  }
+
+  async update(url, body) : Promise<ResultRequestSet<string>> {
+    let requestResultSet = new ResultRequestSet<string>();
+
+    await this.httpClient.post(url, body).toPromise().then(
       res => {
         requestResultSet.setAll(res, true);
       },

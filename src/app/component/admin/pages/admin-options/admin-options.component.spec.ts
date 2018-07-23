@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AdminOptionsComponent } from './admin-options.component';
+import { AdminOptionsComponent } from '@app/component/admin/pages/admin-options/admin-options.component';
 
 describe('AdminOptionsComponent', () => {
   let component: AdminOptionsComponent;

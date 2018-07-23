@@ -1,9 +1,11 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { RestService } from '../../../../../service/global/request/rest-service.service';
-import { Prefix } from '../../../../../model/school-classes/details/prefix';
-import { URLS } from '../../../../../constants/urls';
-import { Constants } from '../../../../../constants/constants';
-import { BannerMessageInfo } from '../../../../../model/view/banner-message-info';
+import { RestService } from '@app/service/global/request/rest-service.service';
+import { Prefix } from '@app/model/school-classes/details/prefix';
+import { URLS } from '@app/constants/urls';
+import { Constants } from '@app/constants/constants';
+import { BannerMessageInfo } from '@app/model/view/banner-message-info';
+import { ResponseMessages } from '@app/model/view/response-messages';
+import { MessageBannerService } from '@app/service/global/request/message-banner.service';
 
 
 @Component({
@@ -16,12 +18,22 @@ export class AdminPrefixesAddComponent implements OnInit {
   private prefixesToSend : Array<string> = [];
   actualPrefixName : string;
   validationMessage : string;
+  responseMessages : ResponseMessages;
   @Output() showMessageResultTrigger: EventEmitter<BannerMessageInfo> = new EventEmitter<BannerMessageInfo>();
 
 
-  constructor(private restService: RestService) { }
+  constructor(private restService: RestService, private responseService: MessageBannerService) { 
+    this.setResponseMessages();
+  }
 
   ngOnInit() {
+  }
+
+  setResponseMessages() {
+    this.responseMessages = new ResponseMessages();
+    this.responseMessages.code200 = Constants.SCH_PREFIXES_ADD_SET_SUCCESS_MESSAGE;
+    this.responseMessages.code400 = Constants.SCH_PREFIXES_ADD_SET_FAILURE_MESSAGE + " " + Constants.MESSAGE_ERROR_400;
+    this.responseMessages.code500 = Constants.SCH_PREFIXES_ADD_SET_FAILURE_MESSAGE + " " + Constants.MESSAGE_ERROR_500;
   }
 
   addPrefixToSet() {
@@ -47,11 +59,11 @@ export class AdminPrefixesAddComponent implements OnInit {
 
     if (this.prefixesToSend.indexOf(name) != -1) {
       isValidName = false;
-      this.validationMessage = "Prefiks znajduje się już w zbiorze.";
+      this.validationMessage = Constants.SCH_PREFIX_EXISTS_MESSAGE;
     }
     else if (!this.validatePrefixName(name)){
       isValidName = false;
-      this.validationMessage = "Nazwa prefiksu posiada nieprawidłowy format.";
+      this.validationMessage = Constants.SCH_PREFIX_VALIDATION_ERROR_MESSAGE;
     }
 
     return isValidName;
@@ -74,10 +86,10 @@ export class AdminPrefixesAddComponent implements OnInit {
   async sendPrefixes() {
     let requestResult = null;
     if (this.prefixesToSend.length > 0) {
-      requestResult = this.sendPrefixCollection();
+      this.sendPrefixCollection();
     }
     else {
-      requestResult = this.sendOnePrefix();
+      this.sendOnePrefix();
     }
 
   }
@@ -87,8 +99,11 @@ export class AdminPrefixesAddComponent implements OnInit {
     let requestResult = await this.restService.add(URLS.prefixes.addSet, prefixes);
     console.log("requestResult: ");
     console.log(requestResult);
-    this.checkRequestResultErrors(requestResult);
+    this.responseService.checkRespone(requestResult, this.showMessageResultTrigger, this.responseMessages);
 
+    if (requestResult.responseCode == 200) {
+      this.prefixesToSend = [];
+    }
   }
 
   async sendOnePrefix() {
@@ -97,7 +112,7 @@ export class AdminPrefixesAddComponent implements OnInit {
       let prefix = new Prefix();
       prefix.name = this.actualPrefixName;
       requestResult = await this.restService.add(URLS.prefixes.addOne, prefix);
-      this.checkRequestResultErrors(requestResult);
+      this.responseService.checkRespone(requestResult, this.showMessageResultTrigger, this.responseMessages);
     }
     else {
       this.validationMessage = "Nazwa prefiksu posiada nieprawidłowy format.";
@@ -106,7 +121,7 @@ export class AdminPrefixesAddComponent implements OnInit {
   }
 
   wrapPrefixesNamesToClasses(): Array<Prefix>  {
-    let prefixes : Array<Prefix> = []; 
+    let prefixes : Array<Prefix> = [];
 
     for (let prefixName of this.prefixesToSend) {
       let prefix = new Prefix();
@@ -115,38 +130,6 @@ export class AdminPrefixesAddComponent implements OnInit {
     }
 
     return prefixes;
-  }
-
-  checkRequestResultErrors(requestResult) {
-    console.log("Sprawdzam błędy");
-
-    console.log(requestResult);
-
-    let banerInfo = new BannerMessageInfo();
-    banerInfo.alertStyle = Constants.ALERT_STYLES.ALERT_DANGER;
-
-    console.log(requestResult.responseCode);
-    let message = "";
-
-    if (requestResult.responseCode == 200) {
-      message = Constants.SCH_PREFIXES_ADD_SET_SUCCESS_MESSAGE;
-      banerInfo.alertStyle = Constants.ALERT_STYLES.ALERT_SUCCESS;
-      this.prefixesToSend = [];
-    }
-    else if (requestResult.responseCode >= 400 && requestResult.responseCode < 500) {
-      message = Constants.SCH_PREFIXES_ADD_SET_FAILURE_MESSAGE + " " + Constants.MESSAGE_ERROR_400;
-      if (requestResult.responseCode == 409) {
-        message += " " + requestResult.result;  
-      }
-    }
-    else if (requestResult.responseCode >= 500) {
-      console.log("Błąd 500");
-      message = Constants.SCH_PREFIXES_ADD_SET_FAILURE_MESSAGE + " " + Constants.MESSAGE_ERROR_500;
-    }
-
-    banerInfo.message = message;
-
-    this.showMessageResultTrigger.emit(banerInfo);
   }
 
 }
