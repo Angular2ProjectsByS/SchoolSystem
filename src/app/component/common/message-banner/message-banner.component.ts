@@ -22,6 +22,7 @@ export class MessageBannerComponent implements OnInit, OnChanges {
     if (this.banerInfo) {
       console.log("Ustawiam display na true");
       this.display = true;
+      console.log("message: " + this.banerInfo.message);
       this.changeStyle();
     }
     else {
