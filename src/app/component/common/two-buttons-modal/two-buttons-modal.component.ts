@@ -11,7 +11,7 @@ declare var $: any;
 export class TwoButtonsModalComponent implements OnInit {
 
   @Input() modalData: ModalData;
-  @Output() requetTrigger : EventEmitter<any> = new EventEmitter<any>();
+  @Output() requestTrigger : EventEmitter<any> = new EventEmitter<any>();
 
   constructor() {
     
@@ -25,7 +25,7 @@ export class TwoButtonsModalComponent implements OnInit {
   emitRequestEvent() {
     console.log("TwoButtonsModalComponent: emitRequstEvent");
     console.log("Wysyłam trigger");
-    this.requetTrigger.emit(null);
+    this.requestTrigger.emit(null);
   }
 
   closeModal() {

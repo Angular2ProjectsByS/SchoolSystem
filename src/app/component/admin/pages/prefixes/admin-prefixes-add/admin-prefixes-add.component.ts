@@ -73,7 +73,6 @@ export class AdminPrefixesAddComponent implements OnInit {
     this.actualPrefixName = this.actualPrefixName.substring(0, this.actualPrefixName.length - 1);
   }
 
-
   validatePrefixName(name) {
     var pattern = /^[a-z]+$/g;
     return pattern.test(name);
@@ -91,7 +90,6 @@ export class AdminPrefixesAddComponent implements OnInit {
     else {
       this.sendOnePrefix();
     }
-
   }
 
   async sendPrefixCollection() {
@@ -113,11 +111,18 @@ export class AdminPrefixesAddComponent implements OnInit {
       prefix.name = this.actualPrefixName;
       requestResult = await this.restService.add(URLS.prefixes.addOne, prefix);
       this.responseService.checkRespone(requestResult, this.showMessageResultTrigger, this.responseMessages);
+      this.clearActualPrefixName(requestResult.responseCode);
     }
     else {
       this.validationMessage = "Nazwa prefiksu posiada nieprawidłowy format.";
     }
 
+  }
+
+  clearActualPrefixName(code) {
+    if (code == 200) {
+      this.actualPrefixName = "";
+    }
   }
 
   wrapPrefixesNamesToClasses(): Array<Prefix>  {

@@ -11,7 +11,7 @@ export class Constants {
     
     public static SCH_PREFIX_PREFIX_URL: string = Constants.SERVER_PROXY + "/class-prefixex";
 
-    public static REQUEST_SUCCESS_MESSAGE = "Czynność zakończona powodzieniem.";
+    public static REQUEST_SUCCESS_MESSAGE = "Czynność zakończona powodzeniem.";
     public static MESSAGE_ERROR_PREFIX = "Czynność zakończona niepowodzieniem."; 
     public static MESSAGE_ERROR_SUFIX = " Proszę spróbować ponownie.";
 

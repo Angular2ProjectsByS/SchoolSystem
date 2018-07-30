@@ -73,7 +73,6 @@ export class AdminPrefixesComponent implements OnInit {
       }
       else {
         this.noPrefixes = false;
-        this.banerInfo = null;
       }
   }
 
@@ -108,6 +107,7 @@ export class AdminPrefixesComponent implements OnInit {
     console.log("deletePrfixRequest()");
     let url = URLS.prefixes.deleteOne + "/" + this.prefixes[this.prefixToDeletePosition].id;
     let response = await this.restService.delete(url);
+    console.log("Sprawdzam kod błędu " + response.responseCode);
     this.setProperMessageBanerContent(response, Constants.DELETING_PREFIX_FAILURE_MESSAGE, true);
     if (response.responseCode == 200) {
       this.loadAllPrefixes(); 
@@ -115,9 +115,11 @@ export class AdminPrefixesComponent implements OnInit {
   }
 
   private setProperMessageBanerContent(requestResult : ResultRequest, errorString: string, showSuccess : boolean) {
+    console.log("admin-prefix: setProperMessage");
     let banerInfo = new BannerMessageInfo();
-    if (showSuccess) {
-      if (requestResult.responseCode == 200) {
+    if (requestResult.responseCode == 200) {
+      if (showSuccess) {
+        console.log("kod 200");
         banerInfo = new BannerMessageInfo();
         banerInfo
           .setAll(
@@ -129,6 +131,7 @@ export class AdminPrefixesComponent implements OnInit {
       }
     }
     else if (requestResult.responseCode >= 400 && requestResult.responseCode < 500) {
+      console.log("Błąd 400");
       banerInfo = new BannerMessageInfo();
 
       banerInfo
