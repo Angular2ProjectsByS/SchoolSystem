@@ -31,9 +31,9 @@ export class AdminPrefixesAddComponent implements OnInit {
 
   setResponseMessages() {
     this.responseMessages = new ResponseMessages();
-    this.responseMessages.code200 = Constants.SCH_PREFIXES_ADD_SET_SUCCESS_MESSAGE;
-    this.responseMessages.code400 = Constants.SCH_PREFIXES_ADD_SET_FAILURE_MESSAGE + " " + Constants.MESSAGE_ERROR_400;
-    this.responseMessages.code500 = Constants.SCH_PREFIXES_ADD_SET_FAILURE_MESSAGE + " " + Constants.MESSAGE_ERROR_500;
+    this.responseMessages.code200 = Constants.prefixes.add.success;
+    this.responseMessages.code400 = Constants.prefixes.add.failure + " " + Constants.MESSAGE_ERROR_400;
+    this.responseMessages.code500 = Constants.prefixes.add.failure + " " + Constants.MESSAGE_ERROR_500;
   }
 
   addPrefixToSet() {
@@ -59,11 +59,11 @@ export class AdminPrefixesAddComponent implements OnInit {
 
     if (this.prefixesToSend.indexOf(name) != -1) {
       isValidName = false;
-      this.validationMessage = Constants.SCH_PREFIX_EXISTS_MESSAGE;
+      this.validationMessage = Constants.prefixes.validation.prefixExists;
     }
     else if (!this.validatePrefixName(name)){
       isValidName = false;
-      this.validationMessage = Constants.SCH_PREFIX_VALIDATION_ERROR_MESSAGE;
+      this.validationMessage = Constants.prefixes.validation.prefixExists;
     }
 
     return isValidName;

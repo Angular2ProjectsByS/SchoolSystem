@@ -28,7 +28,7 @@ export class MessageBannerService {
     else if (requestResult.responseCode >= 400 && requestResult.responseCode < 500) {
       message = messages.code400 + " " + Constants.MESSAGE_ERROR_400;
       if (requestResult.responseCode == 409) {
-        message += " " + requestResult.result;  
+        message += " " + requestResult.result;
       }
     }
     else if (requestResult.responseCode >= 500) {
@@ -39,5 +39,26 @@ export class MessageBannerService {
     banerInfo.message = message;
 
     eventEmitter.emit(banerInfo);
+  }
+
+  getResponseMessage(requestResult, messages : ResponseMessages) : string {
+
+    let message : string = "";
+    
+    if (requestResult.responseCode == 200) {
+      message = messages.code200;
+    }
+    else if (requestResult.responseCode >= 400 && requestResult.responseCode < 500) {
+      message = messages.code400 + " " + Constants.MESSAGE_ERROR_400;
+      if (requestResult.responseCode == 409) {
+        message += " " + requestResult.result;  
+      }
+    }
+    else if (requestResult.responseCode >= 500) {
+      console.log("Błąd 500");
+      message = messages.code500 + " " + Constants.MESSAGE_ERROR_500;
+    }
+
+    return message;
   }
 }

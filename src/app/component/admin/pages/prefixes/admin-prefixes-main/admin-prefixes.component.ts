@@ -69,7 +69,7 @@ export class AdminPrefixesComponent implements OnInit {
         console.log("checkResponseCode: Mamy błąd powyżej 400");
         console.log("Code: " + requestResult.responseCode);
         this.noPrefixes = true;
-        this.setProperMessageBanerContent(requestResult, Constants.LOADING_SCH_PREFIXES_ERROR, false);
+        this.setProperMessageBanerContent(requestResult, Constants.prefixes.loading.failure, false);
       }
       else {
         this.noPrefixes = false;
@@ -87,7 +87,7 @@ export class AdminPrefixesComponent implements OnInit {
 
         this.banerInfo
           .setAll(
-            Constants.NO_SCH_PREFIXES_MESSAGE,
+            Constants.prefixes.loading.noPrefixes,
             Constants.ALERT_STYLES.ALERT_WARNING
           );
       }
@@ -108,7 +108,7 @@ export class AdminPrefixesComponent implements OnInit {
     let url = URLS.prefixes.deleteOne + "/" + this.prefixes[this.prefixToDeletePosition].id;
     let response = await this.restService.delete(url);
     console.log("Sprawdzam kod błędu " + response.responseCode);
-    this.setProperMessageBanerContent(response, Constants.DELETING_PREFIX_FAILURE_MESSAGE, true);
+    this.setProperMessageBanerContent(response, Constants.prefixes.delete.failure, true);
     if (response.responseCode == 200) {
       this.loadAllPrefixes(); 
     }
@@ -185,7 +185,4 @@ export class AdminPrefixesComponent implements OnInit {
     }
 
   }
-
-
-
 }

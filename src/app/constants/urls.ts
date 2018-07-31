@@ -6,6 +6,7 @@ export class URLS {
         getAll : Constants.SCH_PREFIX_PREFIX_URL + "/get/all",
         deleteOne : Constants.SCH_PREFIX_PREFIX_URL + "/delete",
         addSet : Constants.SCH_PREFIX_PREFIX_URL + "/add-set",
-        addOne: Constants.SCH_PREFIX_PREFIX_URL + "/add"
+        addOne: Constants.SCH_PREFIX_PREFIX_URL + "/add",
+        update: Constants.SCH_PREFIX_PREFIX_URL + "/update"
     }
 }
