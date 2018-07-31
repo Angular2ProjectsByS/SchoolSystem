@@ -162,27 +162,15 @@ export class AdminPrefixesComponent implements OnInit {
     this.banerInfo = banerInfo;
   }
 
-  editSection(i) {
-    console.log("editSection(i)");
+  editSectionNew(i) {
     if (this.editingPrefixIndex < 0) {
-      $("#editPrefixSection" + i).attr("hidden", false);
       this.editingPrefixIndex = i;
     }
     else if (this.editingPrefixIndex == i) {
-      let hidden = $("#editPrefixSection" + i).attr("hidden");
-
-      if (hidden === undefined) {
-        $("#editPrefixSection" + i).attr("hidden", true);
-      }
-      else {
-        $("#editPrefixSection" + i).attr("hidden", false);
-      }
+      this.editingPrefixIndex = -1;
     }
     else {
-      $("#editPrefixSection" + this.editingPrefixIndex).attr("hidden", true);
-      $("#editPrefixSection" + i).attr("hidden", false);
       this.editingPrefixIndex = i;
     }
-
   }
 }
