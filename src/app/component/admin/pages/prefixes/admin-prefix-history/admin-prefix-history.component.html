@@ -1,0 +1,19 @@
+<p>Historia</p>
+<table class="table">
+  <thead class="thead-dark">
+      <tr>
+          <th>Lp.</th>
+          <th>Opis</th>
+          <th>Data zmiany</th>
+          <th>Autor</th>
+      </tr>
+  </thead>
+  <tbody *ngFor="let registry of prefixHistory; let i = index">
+      <tr>
+          <td> {{ i + 1 }} </td>
+          <td>{{ registry?.description }}</td>
+          <td>{{ registry?.date }}</td>
+          <td>{{ registry?.userBasicInfoFirstName }} {{ registry?.userBasicInfoLastName }}</td>
+      </tr>
+  </tbody> 
+</table>

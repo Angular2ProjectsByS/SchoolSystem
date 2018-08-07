@@ -11,6 +11,7 @@ export class Constants {
     public static Roles = "Roles";
     
     public static SCH_PREFIX_PREFIX_URL: string = Constants.SERVER_PROXY + "/class-prefixex";
+    public static SCH_PREFIX_REGISTRY_PREFIX_URL: string = Constants.SERVER_PROXY + "/class-prefix-registry";
 
     public static ALERT_STYLES = {
         ALERT_DANGER : "alert-danger",

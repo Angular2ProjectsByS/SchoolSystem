@@ -7,7 +7,6 @@ import { TwoButtonsModalComponent } from '@app/component/common/two-buttons-moda
 import { ResultRequest } from '@app/model/request/result-request';
 import { Constants } from '@app/constants/constants';
 import { BannerMessageInfo } from '@app/model/view/banner-message-info';
-
 declare var $ : any;
 
 @Component({
@@ -25,6 +24,7 @@ export class AdminPrefixesComponent implements OnInit {
   showAddForm : boolean = false;
   private editingPrefixIndex : number = -1;
   @ViewChild("twoButtonsModal") twoButtonsModal: TwoButtonsModalComponent;
+  isHistoryPrefixViewActive : boolean[] = [];
 
   constructor(private restService : RestService) {
     this.initModalData();
@@ -43,12 +43,15 @@ export class AdminPrefixesComponent implements OnInit {
 
   private async loadAllPrefixes() {
 
+    console.log("ładuję wszystkie prefiksy");
+
     let url = URLS.prefixes.getAll;
     let resultRequestSet = await this.restService.get<Prefix>(url);
     
 
     if (resultRequestSet.responseCode == 200) {
       this.prefixes = resultRequestSet.result;
+      this.setUpHistoryViewData();
     }
 
     console.log("loadAllPrefixes: Sprawdzam kod odpowiedzi.");
@@ -171,6 +174,36 @@ export class AdminPrefixesComponent implements OnInit {
     }
     else {
       this.editingPrefixIndex = i;
+    }
+  }
+
+  setUpHistoryViewData() {
+    for (let i = 0; i < this.prefixes.length; i++) {
+      this.isHistoryPrefixViewActive.push(false);                               
+    }
+  }
+
+  showPrefixHistory(index) {
+    if  (this.isHistoryPrefixViewActive[index] === true) {
+      this.isHistoryPrefixViewActive[index] = false;
+    } 
+    else {
+      this.isHistoryPrefixViewActive[index] = true;
+      this.loadHistory(index);
+    }
+  }
+
+  async loadHistory(index) {
+
+    this.prefixes[index].prefixHistory = [];
+    let requestResult = await this.restService.get(URLS.prefixes.registry.getAll  + "/" + this.prefixes[index].id);
+
+    if (requestResult.responseCode == 200) {
+      this.prefixes[index].prefixHistory = requestResult.result; 
+      console.log(this.prefixes[index].prefixHistory);
+    } 
+    else {
+      
     }
   }
 }

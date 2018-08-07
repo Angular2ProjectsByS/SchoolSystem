@@ -37,6 +37,14 @@ export class AdminPrefixEditComponent implements OnInit {
       let requestResult = await this.restService.update(URLS.prefixes.update, this.newPrefixVersion);
       this.actionResultMsg = this.responseService.getResponseMessage(requestResult, new PrefixUpdateMessage());
       this.updateLocalPrefixRepresentation(requestResult.responseCode);
+
+      if (requestResult.responseCode != 200) {
+        this.actionResultMsg = Constants.prefixes.update.failure;
+      } 
+      else {
+        this.actionResultMsg = Constants.prefixes.update.success;
+      }
+      
     }
     else {
       this.actionResultMsg = Constants.prefixes.validation.failure;

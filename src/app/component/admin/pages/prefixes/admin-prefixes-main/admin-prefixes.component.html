@@ -20,12 +20,18 @@
                 <td class="align-middle">{{ prefix?.creationTime }}</td>
                 <td class="d-flex justify-content-center">
                     <button title="Edytuj" class="btn btn-warning" (click)="editSectionNew(i)"><i class="far fa-edit"></i></button>
-                    <button (click)="showDeleteModal(i)" title="Usuń" class="btn btn-danger"><i class="far fa-trash-alt"></i></button>
+                    <button title="Historia" class="btn btn-info" (click)="showPrefixHistory(i)"><i class="fas fa-history"></i></button>
+                    <button title="Usuń" (click)="showDeleteModal(i)" title="Usuń" class="btn btn-danger"><i class="far fa-trash-alt"></i></button>
                 </td>
             </tr>
             <tr id="editPrefixSection{{i}}" *ngIf="editingPrefixIndex == i"> 
                 <td colspan="4" class="align-middle">
                     <app-admin-prefix-edit [prefix]="prefix"></app-admin-prefix-edit>
+                </td>
+            </tr>
+            <tr *ngIf="isHistoryPrefixViewActive[i]">
+                <td colspan="4" class="align-middle">
+                    <app-admin-prefix-history [prefixHistory]="prefixes[i].prefixHistory" #(historyPrefixSection{{i}})></app-admin-prefix-history>
                 </td>
             </tr>
         </tbody> 

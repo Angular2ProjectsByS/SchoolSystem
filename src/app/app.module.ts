@@ -21,6 +21,7 @@ import { MessageBannerComponent } from '@app/component/common/message-banner/mes
 import { TwoButtonsModalComponent } from '@app/component/common/two-buttons-modal/two-buttons-modal.component';
 import { AdminPrefixesAddComponent } from '@app/component/admin/pages/prefixes/admin-prefixes-add/admin-prefixes-add.component';
 import { AdminPrefixEditComponent } from '@app/component/admin/pages/prefixes/admin-prefix-edit/admin-prefix-edit.component';
+import { AdminPrefixHistoryComponent } from '@app/component/admin/pages/prefixes/admin-prefix-history/admin-prefix-history.component';
 
 
 
@@ -37,7 +38,8 @@ import { AdminPrefixEditComponent } from '@app/component/admin/pages/prefixes/ad
     MessageBannerComponent,
     TwoButtonsModalComponent,
     AdminPrefixesAddComponent,
-    AdminPrefixEditComponent
+    AdminPrefixEditComponent,
+    AdminPrefixHistoryComponent
   ],
   imports: [
     BrowserModule,
