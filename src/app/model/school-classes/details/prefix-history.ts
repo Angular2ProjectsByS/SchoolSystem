@@ -1,7 +1,6 @@
+import { PrefixRegistry } from "@app/model/school-classes/details/prefix-registry";
+
 export class PrefixHistory {
-    date: Date;
-    description: string;
-    userBasicInfoFirstName: string;
-    userBasicInfoLastName: string;
-    userId: number;
+    loadErrorMsg: string;
+    public registries: PrefixRegistry[];
 }

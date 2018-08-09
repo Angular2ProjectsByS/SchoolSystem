@@ -4,5 +4,6 @@ export class Prefix {
     id: number;
     name: string;
     creationDate: Date;
-    prefixHistory: PrefixHistory[];
+    prefixHistory: PrefixHistory;
+    historyLoadError: string;
 }

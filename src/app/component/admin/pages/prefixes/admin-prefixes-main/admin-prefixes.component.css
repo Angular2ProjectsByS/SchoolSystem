@@ -1,14 +1,18 @@
-
 table {
     font-size: 14px;
     background: #fff;
+ 
     margin: 16px 0;
+}
+
+table tr.container-fluid {
+    padding: 0;
 }
 
 table td, table th {
     text-align: center;
+    border: none;
 }
-
 
 table tbody tr td button {
     margin-right: 5px;
@@ -17,10 +21,6 @@ table tbody tr td button {
 
 table tbody tr td button:hover {
     transform: scale(1.2);
-}
-
-button-margins {
-    margin: 0;
 }
 
 tbody tr div {
@@ -38,4 +38,10 @@ table tbody:nth-child(even) {
 
 table tbody:nth-child(odd) {
     background: rgba(255, 255, 255, 1);
+}
+
+@media only screen and (min-width: 767px) and (max-width: 772px) {
+    table tbody tr td button {
+        width: 40px;
+    }
 }

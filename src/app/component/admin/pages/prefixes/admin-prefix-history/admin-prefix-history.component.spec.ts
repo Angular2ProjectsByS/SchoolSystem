@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AdminPrefixHistoryComponent } from './admin-prefix-history.component';
+import { AdminPrefixHistoryComponent } from '@app/component/admin/pages/prefixes/admin-prefix-history/admin-prefix-history.component';
 
 describe('AdminPrefixHistoryComponent', () => {
   let component: AdminPrefixHistoryComponent;

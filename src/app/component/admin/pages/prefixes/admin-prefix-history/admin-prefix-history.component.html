@@ -1,5 +1,6 @@
 <p>Historia</p>
-<table class="table">
+<p *ngIf="prefixHistory?.loadErrorMsg"><i class="fas fa-exclamation-triangle"></i> {{ prefixHistory.loadErrorMsg }} </p>
+<table *ngIf="prefixHistory?.registries" class="table">
   <thead class="thead-dark">
       <tr>
           <th>Lp.</th>
@@ -8,7 +9,7 @@
           <th>Autor</th>
       </tr>
   </thead>
-  <tbody *ngFor="let registry of prefixHistory; let i = index">
+  <tbody *ngFor="let registry of prefixHistory.registries; let i = index">
       <tr>
           <td> {{ i + 1 }} </td>
           <td>{{ registry?.description }}</td>

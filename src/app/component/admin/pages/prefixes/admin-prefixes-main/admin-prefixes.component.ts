@@ -7,6 +7,11 @@ import { TwoButtonsModalComponent } from '@app/component/common/two-buttons-moda
 import { ResultRequest } from '@app/model/request/result-request';
 import { Constants } from '@app/constants/constants';
 import { BannerMessageInfo } from '@app/model/view/banner-message-info';
+import { PrefixHistory } from '@app/model/school-classes/details/prefix-history';
+import { MessageBannerService } from '@app/service/global/request/message-banner.service';
+import { PerfixHistoryLoadMsg } from '@app/messages/prefix-history-load-msg';
+import { PrefixRegistry } from "@app/model/school-classes/details/prefix-registry";
+
 declare var $ : any;
 
 @Component({
@@ -25,8 +30,9 @@ export class AdminPrefixesComponent implements OnInit {
   private editingPrefixIndex : number = -1;
   @ViewChild("twoButtonsModal") twoButtonsModal: TwoButtonsModalComponent;
   isHistoryPrefixViewActive : boolean[] = [];
+  loadHistoryErrorMsg: string;
 
-  constructor(private restService : RestService) {
+  constructor(private restService : RestService, private bannerService : MessageBannerService) {
     this.initModalData();
     this.loadAllPrefixes();
   }
@@ -177,6 +183,11 @@ export class AdminPrefixesComponent implements OnInit {
     }
   }
 
+  showOperationSection(i) {
+    let display = $(".operations-section-" + i).css('display');
+    console.log("Pobieram wartość.");
+  }
+
   setUpHistoryViewData() {
     for (let i = 0; i < this.prefixes.length; i++) {
       this.isHistoryPrefixViewActive.push(false);                               
@@ -195,15 +206,18 @@ export class AdminPrefixesComponent implements OnInit {
 
   async loadHistory(index) {
 
-    this.prefixes[index].prefixHistory = [];
-    let requestResult = await this.restService.get(URLS.prefixes.registry.getAll  + "/" + this.prefixes[index].id);
+    this.prefixes[index].prefixHistory = new PrefixHistory(); 
+    this.prefixes[index].prefixHistory.registries = [];
+    let requestResult = await this.restService.get<PrefixRegistry>(URLS.prefixes.registry.getAll  + "/" + this.prefixes[index].id);
 
     if (requestResult.responseCode == 200) {
-      this.prefixes[index].prefixHistory = requestResult.result; 
+      this.prefixes[index].prefixHistory.registries = requestResult.result;
       console.log(this.prefixes[index].prefixHistory);
     } 
     else {
-      
+      this.prefixes[index].prefixHistory.loadErrorMsg = 
+        this.bannerService.getResponseMessage(requestResult, new PerfixHistoryLoadMsg());  
     }
   }
+
 }
