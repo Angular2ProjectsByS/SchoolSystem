@@ -2,13 +2,32 @@ p {
     margin: 0;
 }
 
-.vcenter {
-    display: inline-block;
-    vertical-align: middle;
-    float: none;
-}
 
 #validation-error p {
     text-align: left;
     margin-bottom: 5px;
+}
+
+input {
+    text-align: center;
+}
+
+@media screen and (max-width: 576px) {
+    
+    span {
+        text-align: center;
+        width: 100%;
+        margin-top: 5px;
+    }
+
+    input {
+        font-size: 1.4em;
+        height: 3em;
+    }
+    
+    button {
+        width: 100%;
+        margin-top: 10px;
+        height: 3em;
+    }
 }

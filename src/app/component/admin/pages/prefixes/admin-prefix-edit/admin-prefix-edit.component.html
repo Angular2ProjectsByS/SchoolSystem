@@ -5,13 +5,13 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-sm-2  d-flex justify-content-end align-self-center">
+    <div class="col-12 col-sm-4 col-md-3 d-flex justify-content-md-end align-self-center">
       <span>Nowa nazwa:</span>
     </div>
-    <div class="col-sm-3 align-middle">
+    <div class="col-12 col-sm-4 col-md-3 align-middle">
       <input type="text" [(ngModel)]="newPrefixVersion.name" class="form-control" [ngModelOptions]="{standalone: true}"/> 
     </div>
-    <div class="col-sm-3 d-flex justify-content-right">
+    <div class="col-12 col-sm-4 col-md-3 d-flex justify-content-right">
         <button class="btn btn-secondary" (click)="updatePrefix()">Zatwierdź</button>
     </div>
   </div>
