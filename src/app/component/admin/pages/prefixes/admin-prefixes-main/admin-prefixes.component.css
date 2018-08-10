@@ -9,6 +9,15 @@ table tr.container-fluid {
     padding: 0;
 }
 
+table tbody:nth-child(odd) {
+    background: rgba(255, 255, 255, 1);
+}
+
+ 
+table tbody:nth-child(even) {
+    background: rgba(244, 244, 244, 1);
+}
+
 table td, table th {
     text-align: center;
     border: none;
@@ -31,13 +40,9 @@ tbody tr div {
 .operation-cell {
     border: 0;
 }
- 
-table tbody:nth-child(even) {
-    background: rgba(244, 244, 244, 1);
-}
 
-table tbody:nth-child(odd) {
-    background: rgba(255, 255, 255, 1);
+i[id*=btn-op-section-] {
+    transition: all .2s;
 }
 
 @media only screen and (min-width: 767px) and (max-width: 772px) {

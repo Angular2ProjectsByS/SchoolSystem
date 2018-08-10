@@ -19,7 +19,9 @@
                     <td class="col-3 col-md-3 d-block justify-content-center align-self-center">{{ i + 1 }}</td>
                     <td class="col-3 col-md-3 d-block justify-content-center align-self-center"><span class="align-middle h-100">{{ prefix?.name }}</span></td>
                     <td class="col-3 col-md-3 d-block justify-content-center align-self-center">{{ prefix?.creationTime }}</td>
-                    <td click="showOperationSection(i)" class="col-3 d-md-none d-block justify-content-center align-self-center"><i class="fas fa-angle-right"></i></td> 
+                    <td (click)="showOperationSection(i)" class="col-3 d-md-none d-block justify-content-center align-self-center">
+                        <i id="btn-op-section-{{i}}" class="fas fa-angle-right transition"></i>
+                    </td> 
                     <td id="operations-section-{{i}}" class="col-12 col-md-3 d-none d-md-block justify-content-center align-self-center">
                         <button title="Edytuj" class="btn btn-warning" (click)="editSectionNew(i)"><i class="far fa-edit"></i></button>
                         <button title="Historia" class="btn btn-info" (click)="showPrefixHistory(i)"><i class="fas fa-history"></i></button>

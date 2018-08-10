@@ -184,8 +184,16 @@ export class AdminPrefixesComponent implements OnInit {
   }
 
   showOperationSection(i) {
-    let display = $(".operations-section-" + i).css('display');
-    console.log("Pobieram wartość.");
+    let display = $("#operations-section-" + i).css('display');
+  
+    if (display == "none") {
+      $("#btn-op-section-" + i).css("transform", "rotate(90deg)");
+      $("#operations-section-" + i).removeClass("d-none");
+    }
+    else {
+      $("#btn-op-section-" + i).css("transform", "rotate(0deg)");
+      $("#operations-section-" + i).addClass("d-none");
+    }
   }
 
   setUpHistoryViewData() {
