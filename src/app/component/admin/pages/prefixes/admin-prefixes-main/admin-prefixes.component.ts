@@ -193,6 +193,11 @@ export class AdminPrefixesComponent implements OnInit {
     else {
       $("#btn-op-section-" + i).css("transform", "rotate(0deg)");
       $("#operations-section-" + i).addClass("d-none");
+      this.isHistoryPrefixViewActive[i] = false;
+      if (this.editingPrefixIndex == i) {
+        this.editingPrefixIndex = -1;
+      }
+      
     }
   }
 
@@ -204,7 +209,7 @@ export class AdminPrefixesComponent implements OnInit {
 
   showPrefixHistory(index) {
     if  (this.isHistoryPrefixViewActive[index] === true) {
-      this.isHistoryPrefixViewActive[index] = false;
+       this.isHistoryPrefixViewActive[index] = false;
     } 
     else {
       this.isHistoryPrefixViewActive[index] = true;
