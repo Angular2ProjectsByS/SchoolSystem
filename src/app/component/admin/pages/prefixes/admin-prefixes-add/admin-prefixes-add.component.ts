@@ -6,7 +6,7 @@ import { Constants } from '@app/constants/constants';
 import { BannerMessageInfo } from '@app/model/view/banner-message-info';
 import { ResponseMessages } from '@app/model/view/response-messages';
 import { MessageBannerService } from '@app/service/global/request/message-banner.service';
-
+import { ResultRequestSet } from  '@app/model/request/result-request-set';
 
 @Component({
   selector: 'app-admin-prefixes-add',
@@ -20,7 +20,7 @@ export class AdminPrefixesAddComponent implements OnInit {
   validationMessage : string;
   responseMessages : ResponseMessages;
   @Output() showMessageResultTrigger: EventEmitter<BannerMessageInfo> = new EventEmitter<BannerMessageInfo>();
-
+  @Output() addPrefixesToLocalTrigger : EventEmitter<Prefix[]> = new EventEmitter<Prefix[]>();
 
   constructor(private restService: RestService, private responseService: MessageBannerService) { 
     this.setResponseMessages();
@@ -84,38 +84,50 @@ export class AdminPrefixesAddComponent implements OnInit {
 
   async sendPrefixes() {
     let requestResult = null;
+
     if (this.prefixesToSend.length > 0) {
-      this.sendPrefixCollection();
+      requestResult = await this.sendPrefixCollection();
     }
     else {
-      this.sendOnePrefix();
+      requestResult = await this.sendOnePrefix();
+    }
+
+    if (requestResult != null) {
+      let banerInfo = this.responseService.checkRespone(requestResult, this.responseMessages);
+      this.showMessageResultTrigger.emit(banerInfo);
+      this.addPrefixesToLocal(requestResult);
     }
   }
 
-  async sendPrefixCollection() {
+  async sendPrefixCollection(): Promise<BannerMessageInfo> {
     let prefixes = this.wrapPrefixesNamesToClasses();
     let requestResult = await this.restService.add(URLS.prefixes.addSet, prefixes);
     console.log("requestResult: ");
     console.log(requestResult);
-    this.responseService.checkRespone(requestResult, this.showMessageResultTrigger, this.responseMessages);
+    let banerInfo = this.responseService.checkRespone(requestResult, this.responseMessages);
 
     if (requestResult.responseCode == 200) {
       this.prefixesToSend = [];
     }
+
+    return banerInfo;
   }
 
-  async sendOnePrefix() {
+  async sendOnePrefix(): Promise<ResultRequestSet<Prefix>> {
     let requestResult= null;
     if (this.validatePrefixName(this.actualPrefixName)) {
       let prefix = new Prefix();
       prefix.name = this.actualPrefixName;
+
       requestResult = await this.restService.add(URLS.prefixes.addOne, prefix);
-      this.responseService.checkRespone(requestResult, this.showMessageResultTrigger, this.responseMessages);
       this.clearActualPrefixName(requestResult.responseCode);
+      
     }
     else {
       this.validationMessage = "Nazwa prefiksu posiada nieprawidłowy format.";
     }
+
+    return requestResult;
 
   }
 
@@ -136,5 +148,11 @@ export class AdminPrefixesAddComponent implements OnInit {
 
     return prefixes;
   }
+
+  addPrefixesToLocal(resultRequest) {
+    if (resultRequest.responseCode == 200) {
+      this.addPrefixesToLocalTrigger.emit(resultRequest.result);  
+    }
+  } 
 
 }

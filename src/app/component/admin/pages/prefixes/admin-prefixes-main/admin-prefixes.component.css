@@ -17,6 +17,16 @@ table tbody:nth-child(even) {
     background: rgba(244, 244, 244, 1);
 }
 
+table thead {
+    background: #212529;
+}
+
+table thead tr th {
+    color: #eee;
+    font-size: 1em;
+}
+
+
 table td, table th {
     text-align: center;
     border: none;

@@ -10,7 +10,7 @@ export class MessageBannerService {
 
   constructor() { }
 
-  checkRespone(requestResult, eventEmitter, messages : ResponseMessages) {
+  checkRespone(requestResult, messages : ResponseMessages)  {
     console.log("Sprawdzam błędy");
 
     console.log(requestResult);
@@ -38,7 +38,8 @@ export class MessageBannerService {
 
     banerInfo.message = message;
 
-    eventEmitter.emit(banerInfo);
+    return banerInfo;
+
   }
 
   getResponseMessage(requestResult, messages : ResponseMessages) : string {
