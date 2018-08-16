@@ -21,7 +21,6 @@ declare var $ : any;
 })
 export class AdminPrefixesComponent implements OnInit {
 
-  noPrefixes: boolean = true;
   banerInfo: BannerMessageInfo;
   prefixes : Prefix[] = [];
   modalData : ModalData;
@@ -60,7 +59,6 @@ export class AdminPrefixesComponent implements OnInit {
       this.setUpHistoryViewData();
     }
 
-    console.log("loadAllPrefixes: Sprawdzam kod odpowiedzi.");
     this.checkResponseCode(resultRequestSet);
     this.checkPrefixesExists(resultRequestSet);
 
@@ -75,23 +73,14 @@ export class AdminPrefixesComponent implements OnInit {
 
   private checkResponseCode(requestResult : ResultRequest) {
       if (requestResult.responseCode >= 400) {
-        console.log("checkResponseCode: Mamy błąd powyżej 400");
-        console.log("Code: " + requestResult.responseCode);
-        this.noPrefixes = true;
         this.setProperMessageBanerContent(requestResult, Constants.prefixes.loading.failure, false);
-      }
-      else {
-        this.noPrefixes = false;
       }
   }
 
   private checkPrefixesExists(resultRequest) {
-    console.log("checkPrefixesExists");
     if (resultRequest.responseCode == 200) {
-      console.log("checkPrefixesExists: kod 200");
       if (resultRequest.result.length == 0) {
         
-        this.noPrefixes = true;
         this.banerInfo = new BannerMessageInfo();
 
         this.banerInfo
@@ -104,7 +93,6 @@ export class AdminPrefixesComponent implements OnInit {
   }
 
   private setupModalData(index) {
-    console.log("setupModalData");
     this.modalData.body = "Czy napewno chcesz usunąć prefix \"" 
       + this.prefixes[index].name
       + "\"? ";
@@ -113,10 +101,8 @@ export class AdminPrefixesComponent implements OnInit {
   }
 
   async deletePrfixRequest() {
-    console.log("deletePrfixRequest()");
     let url = URLS.prefixes.deleteOne + "/" + this.prefixes[this.prefixToDeletePosition].id;
     let response = await this.restService.delete(url);
-    console.log("Sprawdzam kod błędu " + response.responseCode);
     this.setProperMessageBanerContent(response, Constants.prefixes.delete.failure, true);
     if (response.responseCode == 200) {
       this.loadAllPrefixes(); 
@@ -124,7 +110,6 @@ export class AdminPrefixesComponent implements OnInit {
   }
 
   private setProperMessageBanerContent(requestResult : ResultRequest, errorString: string, showSuccess : boolean) {
-    console.log("admin-prefix: setProperMessage");
     let banerInfo = new BannerMessageInfo();
     if (requestResult.responseCode == 200) {
       if (showSuccess) {
@@ -140,7 +125,7 @@ export class AdminPrefixesComponent implements OnInit {
       }
     }
     else if (requestResult.responseCode >= 400 && requestResult.responseCode < 500) {
-      console.log("Błąd 400");
+
       banerInfo = new BannerMessageInfo();
 
       banerInfo
@@ -151,9 +136,6 @@ export class AdminPrefixesComponent implements OnInit {
       this.banerInfo = banerInfo;
     }
     else if (requestResult.responseCode >= 500) {
-      console.log("setProperMessageBannerContent: ustawiam bannerInfo na błąd dla 500");
-      console.log("No prefixes: " + this.noPrefixes);
-      console.log(this.prefixes);
       banerInfo = new BannerMessageInfo();
       banerInfo
         .setAll(
@@ -164,10 +146,7 @@ export class AdminPrefixesComponent implements OnInit {
     }
   }
 
-  showAddSetMessageResult(banerInfo) {
-    console.log("Rezultat zbioru: ");
-    console.log(banerInfo);
-    
+  showAddSetMessageResult(banerInfo) {    
     this.banerInfo = banerInfo;
   }
 
@@ -225,12 +204,24 @@ export class AdminPrefixesComponent implements OnInit {
 
     if (requestResult.responseCode == 200) {
       this.prefixes[index].prefixHistory.registries = requestResult.result;
-      console.log(this.prefixes[index].prefixHistory);
     } 
     else {
       this.prefixes[index].prefixHistory.loadErrorMsg = 
         this.bannerService.getResponseMessage(requestResult, new PerfixHistoryLoadMsg());  
     }
+  }
+
+  addRegisteredPrefixes(prefixes) {
+
+    if (prefixes instanceof Array) {
+      for (let prefix of prefixes) {
+        this.prefixes.push(prefix);
+      }
+    }
+    else {
+      this.prefixes.push(prefixes);
+    }
+
   }
 
 }

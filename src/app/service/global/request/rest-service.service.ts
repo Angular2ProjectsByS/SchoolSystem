@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@app/service/global/request/http-client';
 import { ResultRequestSet } from '@app/model/request/result-request-set';
 import { ResultRequest } from '@app/model/request/result-request';
+import { AddResultResponse } from '@app/model/request/add-result-response';
 
 @Injectable()
 export class RestService {
@@ -40,11 +41,13 @@ export class RestService {
     return requestResult;
   }
 
-  async add(url, body) : Promise<ResultRequestSet<string>> {
-    let requestResultSet = new ResultRequestSet<string>();
+  async add<T>(url, body) : Promise<AddResultResponse<T>> {
+    let requestResultSet = new AddResultResponse<T>();
 
     await this.httpClient.post(url, body).toPromise().then(
       res => {
+        console.log("RestService: add");
+        console.log(res);
         requestResultSet.setAll(res, true);
       },
       err => {

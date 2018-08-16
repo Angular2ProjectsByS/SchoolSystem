@@ -18,15 +18,11 @@ export class MessageBannerComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges() {
-    console.log("Wykryto zmiany w ErrorBannerComponent");
     if (this.banerInfo) {
-      console.log("Ustawiam display na true");
       this.display = true;
-      console.log("message: " + this.banerInfo.message);
       this.changeStyle();
     }
     else {
-      console.log("Ustawiam display na false");
       this.display = false;
     }
   }

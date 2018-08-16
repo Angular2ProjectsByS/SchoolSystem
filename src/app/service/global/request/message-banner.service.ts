@@ -11,14 +11,10 @@ export class MessageBannerService {
   constructor() { }
 
   checkRespone(requestResult, messages : ResponseMessages)  {
-    console.log("Sprawdzam błędy");
-
-    console.log(requestResult);
 
     let banerInfo = new BannerMessageInfo();
     banerInfo.alertStyle = Constants.ALERT_STYLES.ALERT_DANGER;
 
-    console.log(requestResult.responseCode);
     let message = "";
 
     if (requestResult.responseCode == 200) {
@@ -28,18 +24,16 @@ export class MessageBannerService {
     else if (requestResult.responseCode >= 400 && requestResult.responseCode < 500) {
       message = messages.code400 + " " + Constants.MESSAGE_ERROR_400;
       if (requestResult.responseCode == 409) {
-        message += " " + requestResult.result;
+        message += " " + requestResult.message;
       }
     }
     else if (requestResult.responseCode >= 500) {
-      console.log("Błąd 500");
       message = messages.code500 + " " + Constants.MESSAGE_ERROR_500;
     }
 
     banerInfo.message = message;
 
     return banerInfo;
-
   }
 
   getResponseMessage(requestResult, messages : ResponseMessages) : string {
@@ -56,7 +50,6 @@ export class MessageBannerService {
       }
     }
     else if (requestResult.responseCode >= 500) {
-      console.log("Błąd 500");
       message = messages.code500 + " " + Constants.MESSAGE_ERROR_500;
     }
 

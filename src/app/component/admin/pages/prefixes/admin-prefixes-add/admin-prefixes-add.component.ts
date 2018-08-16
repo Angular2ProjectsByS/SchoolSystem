@@ -7,6 +7,7 @@ import { BannerMessageInfo } from '@app/model/view/banner-message-info';
 import { ResponseMessages } from '@app/model/view/response-messages';
 import { MessageBannerService } from '@app/service/global/request/message-banner.service';
 import { ResultRequestSet } from  '@app/model/request/result-request-set';
+import { AddResultResponse } from '@app/model/request/add-result-response';
 
 @Component({
   selector: 'app-admin-prefixes-add',
@@ -92,6 +93,9 @@ export class AdminPrefixesAddComponent implements OnInit {
       requestResult = await this.sendOnePrefix();
     }
 
+    console.log("sendPrefixes: ");
+    console.log(requestResult);
+
     if (requestResult != null) {
       let banerInfo = this.responseService.checkRespone(requestResult, this.responseMessages);
       this.showMessageResultTrigger.emit(banerInfo);
@@ -99,27 +103,27 @@ export class AdminPrefixesAddComponent implements OnInit {
     }
   }
 
-  async sendPrefixCollection(): Promise<BannerMessageInfo> {
+  async sendPrefixCollection(): Promise<AddResultResponse<Prefix>> {
+
     let prefixes = this.wrapPrefixesNamesToClasses();
-    let requestResult = await this.restService.add(URLS.prefixes.addSet, prefixes);
+    let requestResult = await this.restService.add<Prefix>(URLS.prefixes.addSet, prefixes);
     console.log("requestResult: ");
     console.log(requestResult);
-    let banerInfo = this.responseService.checkRespone(requestResult, this.responseMessages);
 
     if (requestResult.responseCode == 200) {
       this.prefixesToSend = [];
     }
 
-    return banerInfo;
+    return requestResult;
   }
 
-  async sendOnePrefix(): Promise<ResultRequestSet<Prefix>> {
+  async sendOnePrefix(): Promise<AddResultResponse<Prefix>> {
     let requestResult= null;
     if (this.validatePrefixName(this.actualPrefixName)) {
       let prefix = new Prefix();
       prefix.name = this.actualPrefixName;
 
-      requestResult = await this.restService.add(URLS.prefixes.addOne, prefix);
+      requestResult = await this.restService.add<Prefix>(URLS.prefixes.addOne, prefix);
       this.clearActualPrefixName(requestResult.responseCode);
       
     }
@@ -150,9 +154,40 @@ export class AdminPrefixesAddComponent implements OnInit {
   }
 
   addPrefixesToLocal(resultRequest) {
-    if (resultRequest.responseCode == 200) {
-      this.addPrefixesToLocalTrigger.emit(resultRequest.result);  
-    }
+    console.log("addPrefixesToLocal.kod odpowiedzi");
+    console.log(resultRequest.responseCode);
+    if (resultRequest.responseCode < 500) {
+      
+      this.addPrefixesToLocalTrigger.emit(resultRequest.addedElements);
+      this.removeRegisterPrefixesFromToAdd(resultRequest.addedElements);
+    }      
   } 
+  
+  removeRegisterPrefixesFromToAdd(prefixes) {
+    if (prefixes instanceof Array) {
+      let prefixesToRemoveNames : number[] = [];
+  
+      for (let prefix of prefixes) {
+        let position = 0;
+        for (let prefixToAdd of this.prefixesToSend) {
+          console.log(prefix.name + " " + prefixToAdd);
+          if (prefix.name == prefixToAdd) {
+            
+            console.log("To jest sobie równe: " + prefix.name + " " + position);
+            break;
+            
+          }
+          position++;
+        }
+        if (position == this.prefixesToSend.length - 1) {
+          prefixesToRemoveNames.push(position);
+        }
+      } 
+      
+      for (let prefixPos of prefixesToRemoveNames) {
+        this.removePrefixFromSet(prefixPos);
+      }
+    }
+  }
 
 }

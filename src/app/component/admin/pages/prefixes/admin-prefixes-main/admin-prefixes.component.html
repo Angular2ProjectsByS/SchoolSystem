@@ -2,10 +2,12 @@
     <h4>Prefiksy</h4>
     <app-search-bar (showAddFormTrigger)="showAddForm = !showAddForm"></app-search-bar>
     <app-message-banner [banerInfo]="banerInfo"></app-message-banner>
-    <app-admin-prefixes-add [hidden]="!showAddForm" (showMessageResultTrigger)="showAddSetMessageResult($event)"></app-admin-prefixes-add>
+    <app-admin-prefixes-add [hidden]="!showAddForm" (showMessageResultTrigger)="showAddSetMessageResult($event)" (addPrefixesToLocalTrigger)="addRegisteredPrefixes($event)">
+
+    </app-admin-prefixes-add>
 
     
-        <table *ngIf="(prefixes)?.length > 0" [hidden]="noPrefixes" class="table table-hover">
+        <table *ngIf="(prefixes)?.length > 0"  class="table table-hover">
             <thead>
                 <tr class="container-fluid row-eq-height d-flex align-items-center">
                     <th class="col-3 d-block">Lp.</th>
