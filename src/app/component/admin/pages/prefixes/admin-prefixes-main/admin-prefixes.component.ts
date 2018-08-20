@@ -47,10 +47,11 @@ export class AdminPrefixesComponent implements OnInit {
     this.modalData.url = "";
   }
 
-
-
   private async loadPrefixes(paginParam : PaginParam) {
+    console.log("ładuje prefixy");
     let url = URLS.prefixes.getOne + "?" + "limit=" + paginParam.limit + "&offset=" + paginParam.offset;
+    console.log("url do wysłania: " + url);
+    console.log("limit: " + paginParam.limit + ", offset: " + paginParam.offset); 
     let resultRequestSet = await this.restService.get<Prefix>(url);
   
     if (resultRequestSet.responseCode == 200) {
@@ -67,7 +68,6 @@ export class AdminPrefixesComponent implements OnInit {
     this.prefixToDeletePosition = index;
     this.twoButtonsModal.showModal();
   }
-
 
   private checkResponseCode(requestResult : ResultRequest) {
       if (requestResult.responseCode >= 400) {

@@ -9,7 +9,7 @@ declare var $ : any;
   templateUrl: './app-admin-pagin.component.html',
   styleUrls: ['./app-admin-pagin.component.css']
 })
-export class AppAdminPaginComponent implements OnInit {
+export class AppAdminPaginComponent {
 
   numberPages: number = 0;
   numberForPage: number = 10;
@@ -43,15 +43,17 @@ export class AppAdminPaginComponent implements OnInit {
   }
 
   passPaginationParamToRequest(i) {
-    let offset = i * this.numberPages;
-    let paginParam = new PaginParam(this.numberPages, offset);
+    let offset = i * this.numberForPage;
+    let paginParam = new PaginParam(this.numberForPage, offset);
+    console.log("Wysyłam emitter");
     this.paginationRequestTrigger.emit(paginParam);
   }
 
   setPageItemActive(i) {
-    console.log("ustawiami na " + i);
-    $("li.active").removeClass("active");
-    $("#page-item-" + i).addClass("active"); 
+    $( document ).ready(function() {
+      $("li.active").removeClass("active");
+      $("#page-item-" + i).addClass("active");
+    }); 
   } 
 
 }
