@@ -22,6 +22,8 @@ import { TwoButtonsModalComponent } from '@app/component/common/two-buttons-moda
 import { AdminPrefixesAddComponent } from '@app/component/admin/pages/prefixes/admin-prefixes-add/admin-prefixes-add.component';
 import { AdminPrefixEditComponent } from '@app/component/admin/pages/prefixes/admin-prefix-edit/admin-prefix-edit.component';
 import { AdminPrefixHistoryComponent } from '@app/component/admin/pages/prefixes/admin-prefix-history/admin-prefix-history.component';
+import { AppAdminPaginComponent } from './component/admin/pages/app-admin-pagin/app-admin-pagin.component';
+import { NumberToArrayPipe } from './pipe/number-to-array.pipe';
 
 
 
@@ -39,7 +41,9 @@ import { AdminPrefixHistoryComponent } from '@app/component/admin/pages/prefixes
     TwoButtonsModalComponent,
     AdminPrefixesAddComponent,
     AdminPrefixEditComponent,
-    AdminPrefixHistoryComponent
+    AdminPrefixHistoryComponent,
+    AppAdminPaginComponent,
+    NumberToArrayPipe
   ],
   imports: [
     BrowserModule,

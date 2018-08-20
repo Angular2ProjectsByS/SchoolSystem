@@ -11,6 +11,7 @@ import { PrefixHistory } from '@app/model/school-classes/details/prefix-history'
 import { MessageBannerService } from '@app/service/global/request/message-banner.service';
 import { PerfixHistoryLoadMsg } from '@app/messages/prefix-history-load-msg';
 import { PrefixRegistry } from "@app/model/school-classes/details/prefix-registry";
+import { PaginParam } from '@app/model/view/pagin-param';
 
 declare var $ : any;
 
@@ -33,7 +34,7 @@ export class AdminPrefixesComponent implements OnInit {
 
   constructor(private restService : RestService, private bannerService : MessageBannerService) {
     this.initModalData();
-    this.loadAllPrefixes();
+    this.loadPrefixes(new PaginParam(10, 0));
   }
 
   ngOnInit() {
@@ -46,14 +47,12 @@ export class AdminPrefixesComponent implements OnInit {
     this.modalData.url = "";
   }
 
-  private async loadAllPrefixes() {
 
-    console.log("ładuję wszystkie prefiksy");
 
-    let url = URLS.prefixes.getAll;
+  private async loadPrefixes(paginParam : PaginParam) {
+    let url = URLS.prefixes.getOne + "?" + "limit=" + paginParam.limit + "&offset=" + paginParam.offset;
     let resultRequestSet = await this.restService.get<Prefix>(url);
-    
-
+  
     if (resultRequestSet.responseCode == 200) {
       this.prefixes = resultRequestSet.result;
       this.setUpHistoryViewData();
@@ -61,7 +60,6 @@ export class AdminPrefixesComponent implements OnInit {
 
     this.checkResponseCode(resultRequestSet);
     this.checkPrefixesExists(resultRequestSet);
-
   }
 
   showDeleteModal(index) {
@@ -105,7 +103,7 @@ export class AdminPrefixesComponent implements OnInit {
     let response = await this.restService.delete(url);
     this.setProperMessageBanerContent(response, Constants.prefixes.delete.failure, true);
     if (response.responseCode == 200) {
-      this.loadAllPrefixes(); 
+      this.prefixes.splice(this.prefixToDeletePosition, 1);
     }
   }
 

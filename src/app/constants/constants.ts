@@ -48,6 +48,6 @@ export class Constants {
 
     public static MESSAGE_ERROR_400 = "Błąd aplikacji.";
     public static MESSAGE_ERROR_500 = "Błąd serwera.";
-   
+    public static PAGINATION_ERROR = "Błąd w w działaniu paginacji.";
 }
 
