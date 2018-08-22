@@ -93,4 +93,22 @@ export class RestService {
 
   }
 
+  async post<T>(url, body) : Promise<ResultRequestSet<T>> {
+    let requestResultSet = new ResultRequestSet<T>();
+
+    await this.httpClient.post(url, body).toPromise().then(
+      res => {
+        console.log("RestService: add");
+        console.log(res);
+        requestResultSet.setAll(res, true);
+      },
+      err => {
+        requestResultSet.setAll(err, false);
+      }
+    );
+
+    return requestResultSet;
+
+  }
+
 }

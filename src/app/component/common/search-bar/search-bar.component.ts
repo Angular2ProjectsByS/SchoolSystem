@@ -11,7 +11,7 @@ export class SearchBarComponent implements OnInit {
   constructor() { }
 
   @Output() showAddFormTrigger : EventEmitter<any> = new EventEmitter<any>();
-  @Output() showAddSetFormTrigger : EventEmitter<any> = new EventEmitter<any>();
+  @Output() passKeyWordsTrigger : EventEmitter<string[]> = new EventEmitter<string[]>()
 
   ngOnInit() {
     $(".search-field").focus(function() {
@@ -25,9 +25,11 @@ export class SearchBarComponent implements OnInit {
   public showAddForm() {
     this.showAddFormTrigger.emit();
   }
+ 
 
-  public showAddSetForm() {
-    this.showAddSetFormTrigger.emit();
-  } 
+  passKeyWords(keyWords) {
+    let keyWordsArray = keyWords.split(/\b(\s)/)
+    this.passKeyWordsTrigger.emit(keyWordsArray);
+  }
 
 }

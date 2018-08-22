@@ -1,6 +1,6 @@
 <div id="prefix-container">
     <h4>Prefiksy</h4>
-    <app-search-bar (showAddFormTrigger)="showAddForm = !showAddForm"></app-search-bar>
+    <app-search-bar (showAddFormTrigger)="showAddForm = !showAddForm" (passKeyWordsTrigger)="findByKeyWords($event)"></app-search-bar>
     <app-message-banner [banerInfo]="banerInfo"></app-message-banner>
     <app-admin-prefixes-add [hidden]="!showAddForm" (showMessageResultTrigger)="showAddSetMessageResult($event)" (addPrefixesToLocalTrigger)="addRegisteredPrefixes($event)">
     </app-admin-prefixes-add>

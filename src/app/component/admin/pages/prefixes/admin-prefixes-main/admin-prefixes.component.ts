@@ -222,4 +222,19 @@ export class AdminPrefixesComponent implements OnInit {
 
   }
 
+  async findByKeyWords(keyWords) {
+    console.log("findByKeyWords");
+    console.log(keyWords);
+
+    let resultRequestSet = await this.restService.post<Prefix>(URLS.prefixes.find, keyWords);
+  
+    if (resultRequestSet.responseCode == 200) {
+      this.prefixes = resultRequestSet.result;
+      //this.setUpHistoryViewData();
+    }
+
+    this.checkResponseCode(resultRequestSet);
+    this.checkPrefixesExists(resultRequestSet);
+  }
+
 }

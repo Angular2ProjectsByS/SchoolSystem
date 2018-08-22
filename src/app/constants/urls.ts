@@ -9,6 +9,7 @@ export class URLS {
         addOne: Constants.SCH_PREFIX_PREFIX_URL + "/add",
         update: Constants.SCH_PREFIX_PREFIX_URL + "/update",
         count: Constants.SCH_PREFIX_PREFIX_URL + "/count",
+        find: Constants.SCH_PREFIX_PREFIX_URL + "/find",
         registry: {
             getAll: Constants.SCH_PREFIX_REGISTRY_PREFIX_URL + "/get"
         }
