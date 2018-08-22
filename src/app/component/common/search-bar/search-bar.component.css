@@ -5,13 +5,10 @@
     margin-bottom: 5px;
 }
 
-button {
-    
-}
-
 button.search-button {
-    margin-right: -8px;
     margin-left: 0px !important;
+    border-top-left-radius: none;
+    border-bottom-left-radius: none;
 }
 
 .search-button-img {

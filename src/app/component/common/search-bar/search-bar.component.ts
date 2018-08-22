@@ -28,7 +28,7 @@ export class SearchBarComponent implements OnInit {
  
 
   passKeyWords(keyWords) {
-    let keyWordsArray = keyWords.split(/\b(\s)/)
+    let keyWordsArray = keyWords.split(/(\s+)/).filter( function(e) { return e.trim().length > 0; } );
     this.passKeyWordsTrigger.emit(keyWordsArray);
   }
 

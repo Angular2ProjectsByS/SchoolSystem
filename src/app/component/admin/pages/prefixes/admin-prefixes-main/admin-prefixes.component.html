@@ -1,6 +1,8 @@
 <div id="prefix-container">
     <h4>Prefiksy</h4>
-    <app-search-bar (showAddFormTrigger)="showAddForm = !showAddForm" (passKeyWordsTrigger)="findByKeyWords($event)"></app-search-bar>
+    <app-search-bar (showAddFormTrigger)="showAddForm = !showAddForm" (passKeyWordsTrigger)="findByKeyWords($event)">
+        
+    </app-search-bar>
     <app-message-banner [banerInfo]="banerInfo"></app-message-banner>
     <app-admin-prefixes-add [hidden]="!showAddForm" (showMessageResultTrigger)="showAddSetMessageResult($event)" (addPrefixesToLocalTrigger)="addRegisteredPrefixes($event)">
     </app-admin-prefixes-add>
@@ -41,7 +43,8 @@
         </tbody> 
     </table>
 
-    <app-admin-pagin (paginationRequestTrigger)="loadPrefixes($event)"></app-admin-pagin>
+    <app-admin-pagin (paginationRequestTrigger)="loadPrefixes($event)" [numberEntities]="foundPrefixes?.length" [isFoundPrefixes]="isPrefixesFromFindResult">
+    </app-admin-pagin>
 
     <app-two-buttons-modal #twoButtonsModal (requestTrigger)="deletePrfixRequest()" [modalData]="modalData">
     </app-two-buttons-modal>

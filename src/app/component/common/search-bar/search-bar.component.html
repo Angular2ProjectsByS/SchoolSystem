@@ -1,9 +1,9 @@
 <div class="search-bar-container">
-  <button type="button" class="btn btn-primary search-button" (click)="passKeyWords(keyWords.value)">
-    <i class="fas fa-search search-button-img">
-    </i>
-  </button>
   <input #keyWords type="text" class="search-field"/>
+  <button type="button" class="btn btn-primary search-button" (click)="passKeyWords(keyWords.value)">
+      <i class="fas fa-search search-button-img">
+      </i>
+    </button>
   <button type="button" class="btn btn-primary" (click)="showAddForm()">Dodaj</button>
   <button type="button" class="btn btn-primary">Wszystkie</button>
 </div>

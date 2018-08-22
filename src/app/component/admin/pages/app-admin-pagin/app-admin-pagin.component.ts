@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input, OnChanges } from '@angular/core';
 import { RestService } from '@app/service/global/request/rest-service.service';
 import { URLS } from '@app/constants/urls';
 import { PaginParam } from '@app/model/view/pagin-param';
@@ -9,7 +9,14 @@ declare var $ : any;
   templateUrl: './app-admin-pagin.component.html',
   styleUrls: ['./app-admin-pagin.component.css']
 })
-export class AppAdminPaginComponent {
+export class AppAdminPaginComponent implements OnChanges {
+
+
+  @Input()
+  numberEntities : number;
+
+  @Input() 
+  isFoundPrefixes : boolean;
 
   numberPages: number = 0;
   numberForPage: number = 10;
@@ -21,19 +28,32 @@ export class AppAdminPaginComponent {
   }
 
   ngAfterViewInit() {
-    this.countNumberPages();
+    this.setup();
+  }
+
+  ngOnChanges() {
+    console.log("Zamiany w AppAdminPagin");
+    if (this.isFoundPrefixes) {
+      this.countNumberPages(this.numberEntities);
+    }
   }
 
   ngAfterContentInit() {
 
   }
 
-  async countNumberPages() {
-    console.log("countNumberPages");
+  async setup() {
+    let numberEntites = await this.getNumberOfEntities(); 
+    this.countNumberPages(numberEntites);
+  }
 
+  async getNumberOfEntities() : Promise<number> {
     let result = await this.restService.count(URLS.prefixes.count);
+    return result;
+  }
 
-    console.log("result: " + result);
+  countNumberPages(result) {
+    console.log("countNumberPages");
 
     if (result != null) {
       this.numberPages = Math.ceil(result / this.numberForPage);

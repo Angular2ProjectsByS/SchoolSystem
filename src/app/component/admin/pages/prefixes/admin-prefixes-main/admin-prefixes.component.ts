@@ -32,6 +32,9 @@ export class AdminPrefixesComponent implements OnInit {
   isHistoryPrefixViewActive : boolean[] = [];
   loadHistoryErrorMsg: string;
 
+  isPrefixesFromFindResult: boolean = false;
+  foundPrefixes : Prefix[];
+
   constructor(private restService : RestService, private bannerService : MessageBannerService) {
     this.initModalData();
     this.loadPrefixes(new PaginParam(10, 0));
@@ -51,16 +54,29 @@ export class AdminPrefixesComponent implements OnInit {
     console.log("ładuje prefixy");
     let url = URLS.prefixes.getOne + "?" + "limit=" + paginParam.limit + "&offset=" + paginParam.offset;
     console.log("url do wysłania: " + url);
-    console.log("limit: " + paginParam.limit + ", offset: " + paginParam.offset); 
-    let resultRequestSet = await this.restService.get<Prefix>(url);
-  
-    if (resultRequestSet.responseCode == 200) {
-      this.prefixes = resultRequestSet.result;
-      this.setUpHistoryViewData();
-    }
+    console.log("limit: " + paginParam.limit + ", offset: " + paginParam.offset);
+    
 
-    this.checkResponseCode(resultRequestSet);
-    this.checkPrefixesExists(resultRequestSet);
+    if (this.isPrefixesFromFindResult) {
+      this.prefixes = this.foundPrefixes.slice(paginParam.offset, paginParam.offset + paginParam.limit);
+    }
+    else {
+
+      let resultRequestSet = await this.restService.get<Prefix>(url);
+      
+      if (resultRequestSet.responseCode == 200) {
+        this.prefixes = resultRequestSet.result;
+      }
+
+      this.checkResponseCode(resultRequestSet);
+      this.checkPrefixesExists(resultRequestSet);
+    }
+   
+    
+
+    
+
+    
   }
 
   showDeleteModal(index) {
@@ -178,12 +194,6 @@ export class AdminPrefixesComponent implements OnInit {
     }
   }
 
-  setUpHistoryViewData() {
-    for (let i = 0; i < this.prefixes.length; i++) {
-      this.isHistoryPrefixViewActive.push(false);                               
-    }
-  }
-
   showPrefixHistory(index) {
     if  (this.isHistoryPrefixViewActive[index] === true) {
        this.isHistoryPrefixViewActive[index] = false;
@@ -229,8 +239,9 @@ export class AdminPrefixesComponent implements OnInit {
     let resultRequestSet = await this.restService.post<Prefix>(URLS.prefixes.find, keyWords);
   
     if (resultRequestSet.responseCode == 200) {
-      this.prefixes = resultRequestSet.result;
-      //this.setUpHistoryViewData();
+      this.foundPrefixes = resultRequestSet.result;
+      this.isPrefixesFromFindResult = true;
+      this.prefixes = this.foundPrefixes.slice(0, 10);
     }
 
     this.checkResponseCode(resultRequestSet);
