@@ -25,16 +25,22 @@ export class AppAdminPaginComponent {
   }
 
   ngAfterContentInit() {
-    this.countNumberPages();
+
   }
 
   async countNumberPages() {
-    let result = await this.restService.get<number>(URLS.prefixes.count);
+    console.log("countNumberPages");
 
-    if (result.responseCode == 200) {
-      this.numberPages = Math.ceil(result.result / this.numberForPage);
+    let result = await this.restService.count(URLS.prefixes.count);
+
+    console.log("result: " + result);
+
+    if (result != null) {
+      this.numberPages = Math.ceil(result / this.numberForPage);
       this.setPageItemActive(0);
     }
+
+    console.log("numberPages" + this.numberPages);
   }
 
   paginItemClick(i) {

@@ -30,6 +30,4 @@ export class SearchBarComponent implements OnInit {
     this.showAddSetFormTrigger.emit();
   } 
 
-
-
 }

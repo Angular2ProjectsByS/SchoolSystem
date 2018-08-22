@@ -26,6 +26,24 @@ export class RestService {
     return resultRequestSet;
   }
 
+  async count(url) : Promise<number> {
+
+    let result = null;
+
+    await this.httpClient.get(url).toPromise().then(
+      res => {
+        console.log("res: ");
+        console.log(res);
+        result = res.json();
+      },
+      err => {
+        
+      }
+    );
+
+    return result;
+  }
+
   async delete(url) : Promise<ResultRequest> {
     let requestResult: ResultRequest = new ResultRequest();
 
