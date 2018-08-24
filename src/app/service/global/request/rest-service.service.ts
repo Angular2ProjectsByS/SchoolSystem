@@ -77,8 +77,8 @@ export class RestService {
 
   }
 
-  async update(url, body) : Promise<ResultRequestSet<string>> {
-    let requestResultSet = new ResultRequestSet<string>();
+  async update(url, body) : Promise<ResultRequest> {
+    let requestResultSet = new ResultRequest();
 
     await this.httpClient.post(url, body).toPromise().then(
       res => {

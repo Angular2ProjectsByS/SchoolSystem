@@ -1,9 +1,12 @@
 export class ResultRequest {
-    success: boolean;
     responseCode: number;
+    errorMessage: string;
 
-    setAll(code, success) {
-        this.responseCode = code;
-        this.success = success;
+    setAll(res, success) {
+        this.responseCode = res.status;
+
+        if (!success) {
+            this.errorMessage = res.json().message;
+        }
     }
 }

@@ -1,4 +1,4 @@
-export class PrefixRegistry {
+export class BaseDetailRegistry {
     date: Date;
     description: string;
     userBasicInfoFirstName: string;

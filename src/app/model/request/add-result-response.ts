@@ -1,5 +1,5 @@
 import { ResultRequest } from "@app/model/request/result-request";
-import { Prefix } from "@app/model/school-classes/details/prefix";
+import { BaseDetail } from "@app/model/school-classes/details/base-detail";
 
 export class AddResultResponse<T> extends ResultRequest{
     message: string;

@@ -1,0 +1,51 @@
+<div id="prefix-container">
+  <h4>Prefiksy</h4>
+  <app-search-bar (showAddFormTrigger)="showAddForm = !showAddForm" (passKeyWordsTrigger)="findByKeyWords($event)">
+      
+  </app-search-bar>
+  <app-message-banner [banerInfo]="banerInfo"></app-message-banner>
+  <app-base-detail-add [msgUrlWrapper]="msgUrlWrapper.AddModel" [hidden]="!showAddForm" (showMessageResultTrigger)="showAddSetMessageResult($event)" (addDetailsToLocalTrigger)="addRegisteredPrefixes($event)">
+  </app-base-detail-add>
+
+  <table *ngIf="(entities)?.length > 0"  class="table table-hover">
+      <thead>
+          <tr class="container-fluid row-eq-height d-flex align-items-center">
+              <th class="col-3 d-block">Lp.</th>
+              <th class="col-3 d-block">Nazwa</th>
+              <th class="col-3 d-block">Data utworzenia</th>
+              <th class="col-3 d-block">Operacje</th>
+          </tr>
+      </thead>
+      <tbody *ngFor="let entity of entities; let i = index">
+          <tr class="container-fluid d-flex flex-wrap">
+              <td class="col-3 col-md-3 d-block justify-content-center align-self-center">{{ i + 1 }}</td>
+              <td class="col-3 col-md-3 d-block justify-content-center align-self-center"><span class="align-middle h-100">{{ entity?.name }}</span></td>
+              <td class="col-3 col-md-3 d-block justify-content-center align-self-center">{{ entity?.creationTime }}</td>
+              <td (click)="showOperationSection(i)" class="col-3 d-md-none d-block justify-content-center align-self-center">
+                  <i id="btn-op-section-{{i}}" class="fas fa-angle-right transition"></i>
+              </td> 
+              <td id="operations-section-{{i}}" class="col-12 col-md-3 d-none d-md-block justify-content-center align-self-center">
+                  <button title="Edytuj" class="btn btn-warning" (click)="editSectionNew(i)"><i class="far fa-edit"></i></button>
+                  <button title="Historia" class="btn btn-info" (click)="showDetailHistory(i)"><i class="fas fa-history"></i></button>
+                  <button title="Usuń" (click)="showDeleteModal(i)" title="Usuń" class="btn btn-danger"><i class="far fa-trash-alt"></i></button>
+              </td>  
+          </tr>
+          <tr id="editDetailSection{{i}}" *ngIf="editingDetailIndex == i"> 
+              <td colspan="4" class="align-middle">
+                  <app-base-detail-edit [msgUrlWrapper]="msgUrlWrapper.EditModel"  [detail]="entity"></app-base-detail-edit>
+              </td>
+          </tr>
+          <tr *ngIf="isHistoryDetailViewActive[i]">
+              <td colspan="4" class="align-middle">
+                  <app-base-detail-history [detailHistory]="entities[i].detailHistory" #(historyDetailSection{{i}})></app-base-detail-history>
+              </td>
+          </tr>
+      </tbody> 
+  </table>
+
+  <app-admin-pagin (paginationRequestTrigger)="loadDetails($event)" [numberEntities]="foundDetails?.length" [isFoundDetails]="isDetailsFromFindResult">
+  </app-admin-pagin>
+
+  <app-two-buttons-modal #twoButtonsModal (requestTrigger)="deleteDetailRequest()" [modalData]="modalData">
+  </app-two-buttons-modal>
+</div>

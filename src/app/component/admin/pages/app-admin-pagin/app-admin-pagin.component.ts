@@ -16,7 +16,7 @@ export class AppAdminPaginComponent implements OnChanges {
   numberEntities : number;
 
   @Input() 
-  isFoundPrefixes : boolean;
+  isFoundDetails : boolean;
 
   numberPages: number = 0;
   numberForPage: number = 10;
@@ -33,7 +33,7 @@ export class AppAdminPaginComponent implements OnChanges {
 
   ngOnChanges() {
     console.log("Zamiany w AppAdminPagin");
-    if (this.isFoundPrefixes) {
+    if (this.isFoundDetails) {
       this.countNumberPages(this.numberEntities);
     }
   }

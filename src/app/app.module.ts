@@ -19,11 +19,12 @@ import { AdminPrefixesComponent } from '@app/component/admin/pages/prefixes/admi
 import { SearchBarComponent } from '@app/component/common/search-bar/search-bar.component';
 import { MessageBannerComponent } from '@app/component/common/message-banner/message-banner.component';
 import { TwoButtonsModalComponent } from '@app/component/common/two-buttons-modal/two-buttons-modal.component';
-import { AdminPrefixesAddComponent } from '@app/component/admin/pages/prefixes/admin-prefixes-add/admin-prefixes-add.component';
-import { AdminPrefixEditComponent } from '@app/component/admin/pages/prefixes/admin-prefix-edit/admin-prefix-edit.component';
-import { AdminPrefixHistoryComponent } from '@app/component/admin/pages/prefixes/admin-prefix-history/admin-prefix-history.component';
 import { AppAdminPaginComponent } from './component/admin/pages/app-admin-pagin/app-admin-pagin.component';
 import { NumberToArrayPipe } from './pipe/number-to-array.pipe';
+import { BaseDetailMainComponent } from './component/base-detail-wrapper/base-detail-main/base-detail-main.component';
+import { BaseDetailEditComponent } from './component/base-detail-wrapper/base-detail-edit/base-detail-edit.component';
+import { BaseDetailHistoryComponent } from './component/base-detail-wrapper/base-detail-history/base-detail-history.component';
+import { BaseDetailAddComponent } from './component/base-detail-wrapper/base-detail-add/base-detail-add.component';
 
 
 
@@ -39,11 +40,12 @@ import { NumberToArrayPipe } from './pipe/number-to-array.pipe';
     SearchBarComponent,
     MessageBannerComponent,
     TwoButtonsModalComponent,
-    AdminPrefixesAddComponent,
-    AdminPrefixEditComponent,
-    AdminPrefixHistoryComponent,
     AppAdminPaginComponent,
-    NumberToArrayPipe
+    NumberToArrayPipe,
+    BaseDetailMainComponent,
+    BaseDetailEditComponent,
+    BaseDetailHistoryComponent,
+    BaseDetailAddComponent
   ],
   imports: [
     BrowserModule,
