@@ -8,7 +8,7 @@ export class AddResultResponse<T> extends ResultRequest{
     setAll(body, success) {
 
         this.responseCode = body.status;
-        this.success = success;
+    
 
         let result = JSON.parse(body._body);
 

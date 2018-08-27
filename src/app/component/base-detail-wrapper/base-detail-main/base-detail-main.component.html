@@ -1,10 +1,10 @@
 <div id="prefix-container">
-  <h4>Prefiksy</h4>
+  <h4>{{ msgUrlWrapper.MainModel.Title }}</h4>
   <app-search-bar (showAddFormTrigger)="showAddForm = !showAddForm" (passKeyWordsTrigger)="findByKeyWords($event)">
       
   </app-search-bar>
   <app-message-banner [banerInfo]="banerInfo"></app-message-banner>
-  <app-base-detail-add [msgUrlWrapper]="msgUrlWrapper.AddModel" [hidden]="!showAddForm" (showMessageResultTrigger)="showAddSetMessageResult($event)" (addDetailsToLocalTrigger)="addRegisteredPrefixes($event)">
+  <app-base-detail-add [msgUrlWrapper]="msgUrlWrapper.AddModel" [hidden]="!showAddForm" (showMessageResultTrigger)="showAddSetMessageResult($event)" (addDetailsToLocalTrigger)="addRegisteredDetails($event)">
   </app-base-detail-add>
 
   <table *ngIf="(entities)?.length > 0"  class="table table-hover">

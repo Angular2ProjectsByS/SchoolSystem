@@ -14,8 +14,10 @@ export class RestService {
   
     let resultRequestSet = new ResultRequestSet<T>();
 
+    console.log("RestService.get");
     await this.httpClient.get(url).toPromise().then(
       res => {
+        console.log(res);
         resultRequestSet.setAll(res, true);
       },
       err => {
@@ -49,10 +51,10 @@ export class RestService {
 
     await this.httpClient.delete(url).toPromise().then(
       res => {
-        requestResult.setAll(res.status, true);
+        requestResult.setAll(res, true);
       },
       err => {
-        requestResult.setAll(err.status, false);
+        requestResult.setAll(err, false);
       }
     );
 

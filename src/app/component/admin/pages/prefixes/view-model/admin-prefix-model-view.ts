@@ -17,6 +17,7 @@ export class AdminPrefixModelView extends BaseDetailWrapperModel {
 
     setUpMainModel() {
         console.log("setUpMainModel")
+        this.MainModel.Title = "Prefiksy";
         this.MainModel.DeleteMessageBody = "Czy napewno chcesz usunąć prefix";
         this.MainModel.DeleteOneUrl = URLS.prefixes.deleteOne;
         this.MainModel.DeleteTitleModal = "Usuwanie prefiksu";

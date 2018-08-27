@@ -1,4 +1,5 @@
 export class BaseDetailMainModel {
+    Title : string;
     GetOneUrl : string;
     NoDetailsMsg : string;
     DeleteMessageBody : string;
