@@ -14,4 +14,5 @@ export class URLS {
             getAll: Constants.SCH_PREFIX_REGISTRY_PREFIX_URL + "/get"
         }
     }
+
 }

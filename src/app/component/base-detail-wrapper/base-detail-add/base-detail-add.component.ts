@@ -80,7 +80,8 @@ export class BaseDetailAddComponent implements OnInit {
   }
 
   validateDetailName(name) {
-    var pattern = /^[a-z]+$/g;
+    var pattern = /^[\s\p{L}]+$/u;
+    // var pattern = /^[a-z]+$/g;
     return pattern.test(name);
   }
 

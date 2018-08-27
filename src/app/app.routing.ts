@@ -7,6 +7,7 @@ import { AdminMainPageComponent } from '@app/component/admin/main-page/admin-mai
 import { AdminOptionsComponent } from "@app/component/admin/pages/admin-options/admin-options.component";
 import { AdminClassesComponent } from "@app/component/admin/pages/admin-nav-cards/admin-classes/admin-classes.component";
 import { AdminPrefixesComponent } from '@app/component/admin/pages/prefixes/admin-prefixes-main/admin-prefixes.component';
+import { AdminClassTypeComponent } from "@app/component/admin/pages/class-types/admin-class-type/admin-class-type.component";
 
 const appRoutes: Routes = [
     {
@@ -38,6 +39,10 @@ const appRoutes: Routes = [
             {
                 path: 'prefixes-class',
                 component: AdminPrefixesComponent
+            },
+            {
+                path: 'class-type',
+                component: AdminClassTypeComponent
             }
         ]
     }

@@ -25,6 +25,8 @@ import { BaseDetailMainComponent } from './component/base-detail-wrapper/base-de
 import { BaseDetailEditComponent } from './component/base-detail-wrapper/base-detail-edit/base-detail-edit.component';
 import { BaseDetailHistoryComponent } from './component/base-detail-wrapper/base-detail-history/base-detail-history.component';
 import { BaseDetailAddComponent } from './component/base-detail-wrapper/base-detail-add/base-detail-add.component';
+import { AdminClassTypeComponent } from './component/admin/pages/class-types/admin-class-type/admin-class-type.component';
+
 
 
 
@@ -45,7 +47,8 @@ import { BaseDetailAddComponent } from './component/base-detail-wrapper/base-det
     BaseDetailMainComponent,
     BaseDetailEditComponent,
     BaseDetailHistoryComponent,
-    BaseDetailAddComponent
+    BaseDetailAddComponent,
+    AdminClassTypeComponent
   ],
   imports: [
     BrowserModule,
