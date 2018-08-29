@@ -8,6 +8,7 @@ import { AdminOptionsComponent } from "@app/component/admin/pages/admin-options/
 import { AdminClassesComponent } from "@app/component/admin/pages/admin-nav-cards/admin-classes/admin-classes.component";
 import { AdminPrefixesComponent } from '@app/component/admin/pages/prefixes/admin-prefixes-main/admin-prefixes.component';
 import { AdminClassTypeComponent } from "@app/component/admin/pages/class-types/admin-class-type/admin-class-type.component";
+import { AdminManageUserComponent } from "@app/component/admin/user/admin-manage-user/admin-manage-user.component";
 
 const appRoutes: Routes = [
     {
@@ -43,6 +44,10 @@ const appRoutes: Routes = [
             {
                 path: 'class-type',
                 component: AdminClassTypeComponent
+            },
+            {
+                path: 'user',
+                component: AdminManageUserComponent
             }
         ]
     }

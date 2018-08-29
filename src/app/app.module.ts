@@ -26,7 +26,10 @@ import { BaseDetailEditComponent } from './component/base-detail-wrapper/base-de
 import { BaseDetailHistoryComponent } from './component/base-detail-wrapper/base-detail-history/base-detail-history.component';
 import { BaseDetailAddComponent } from './component/base-detail-wrapper/base-detail-add/base-detail-add.component';
 import { AdminClassTypeComponent } from './component/admin/pages/class-types/admin-class-type/admin-class-type.component';
-
+import { AdminManageUserComponent } from './component/admin/user/admin-manage-user/admin-manage-user.component';
+import { AdminUserAddComponent } from './component/admin/user/admin-user-add/admin-user-add.component';
+import { AdminUserEditComponent } from './component/admin/user/admin-user-edit/admin-user-edit.component';
+import { AdminUserListComponent } from './component/admin/user/admin-user-list/admin-user-list.component';
 
 
 
@@ -48,7 +51,11 @@ import { AdminClassTypeComponent } from './component/admin/pages/class-types/adm
     BaseDetailEditComponent,
     BaseDetailHistoryComponent,
     BaseDetailAddComponent,
-    AdminClassTypeComponent
+    AdminClassTypeComponent,
+    AdminManageUserComponent,
+    AdminUserAddComponent,
+    AdminUserEditComponent,
+    AdminUserListComponent
   ],
   imports: [
     BrowserModule,
