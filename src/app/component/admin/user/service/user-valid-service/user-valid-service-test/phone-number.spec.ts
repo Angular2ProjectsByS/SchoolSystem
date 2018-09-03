@@ -1,7 +1,7 @@
 import { UserValidService } from "@app/component/admin/user/service/user-valid-service/user-valid-service";
 import { UserValidationPattern } from "@app/component/admin/user/service/model/user-validation-pattern";
 
-fdescribe("UserValidation - phoneNumber", () => {
+describe("UserValidation - phoneNumber", () => {
 
     let uvService : UserValidService;
 

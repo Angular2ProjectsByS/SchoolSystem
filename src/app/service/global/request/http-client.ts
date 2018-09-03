@@ -1,6 +1,7 @@
-import { Injectable } from '@angular/core';
+import { Injectable, NgModule } from '@angular/core';
 import { Http, Headers, Jsonp } from '@angular/http';
 import { Constants } from '@app/constants/constants';
+import { NgModel } from '@angular/forms';
 
 @Injectable()
 export class HttpClient {

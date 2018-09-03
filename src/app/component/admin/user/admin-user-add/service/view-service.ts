@@ -2,7 +2,8 @@ import { UserValidService } from "@app/component/admin/user/service/user-valid-s
 
 export class ViewService {
     
-    constructor( private validervice : UserValidService ) {}
+    constructor() {}
+
 
 
     changeDisplay(tagName) {

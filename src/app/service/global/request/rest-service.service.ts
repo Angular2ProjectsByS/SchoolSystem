@@ -3,8 +3,11 @@ import { HttpClient } from '@app/service/global/request/http-client';
 import { ResultRequestSet } from '@app/model/request/result-request-set';
 import { ResultRequest } from '@app/model/request/result-request';
 import { AddResultResponse } from '@app/model/request/add-result-response';
+import { NgModule } from '@angular/core';
 
-@Injectable()
+@NgModule({
+  providers: [HttpClient]
+})
 export class RestService {
 
   constructor(private httpClient : HttpClient) {  }

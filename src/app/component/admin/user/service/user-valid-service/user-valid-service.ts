@@ -1,6 +1,10 @@
+import { NgModule } from '@angular/core';
 import { ValidationService } from "@app/service/validation/edit-add-user-valid-service";
 import { UserValidationPattern } from "@app/component/admin/user/service/model/user-validation-pattern";
 
+@NgModule({
+    providers: [UserValidationPattern]
+  })
 export class UserValidService extends ValidationService {
 
     constructor(private validPattern : UserValidationPattern) {
