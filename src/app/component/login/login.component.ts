@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
 
   constructor(private loginService: LoginService, private pageNavigator : PageNavigator) {
         this.checkAdminIsLogged();
-        this.checkLoginError();  
+        this.checkLoginError();
   }
 
   checkAdminIsLogged() {

@@ -1,0 +1,57 @@
+#add-edit-user-sec {
+    width: 60%;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+#add-edit-user-sec form {
+    overflow: hidden;
+    padding: 0;
+}
+
+.sec {
+    margin-bottom: 10px;
+    background: #3498DB;
+    border-radius: 10px;
+    overflow: hidden;
+    padding-bottom: 15px;
+}
+
+.title-section {
+    background:#8AC6ED;
+    
+}
+
+.title-section p {
+    font-size: 1.2em;
+    text-align: center;
+    padding: 5px 0;
+}
+
+.form-row {
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-top: 10px;
+}
+
+input {
+    text-align: center;
+    display: block;
+    z-index: 1;
+}
+
+
+input + div.valid-err {
+    background: red;
+}
+
+.valid-err {
+    display: none;
+    color: white;
+    z-index: 2;
+}
+
+.valid-err p {
+    z-index: 2;
+}
+

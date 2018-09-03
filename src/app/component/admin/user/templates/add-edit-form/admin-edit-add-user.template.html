@@ -1,0 +1,102 @@
+<div id="add-edit-user-sec">
+    <form>
+        <div class="sec">
+            <div class="title-section">
+                <p>Główne dane</p>
+            </div>
+            <div class="form-row">
+                <div class="col">
+                    <div id="name-invalid" class="valid-err">
+                        <p>Imię jest w niewłaściywym formacie.</p>
+                    </div>
+                    <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Imię">
+                </div>
+                <div class="col">
+                    <div id="surname-invalid" class="valid-err">
+                        <p>Nazwisko jest w niewałściywym formacie.</p>
+                    </div>
+                    <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Nazwisko">
+                </div>
+                
+            </div>
+            <div class="form-row">
+                <div class="col">
+                    <div id="pesel-invalid" class="valid-err">
+                        <p>Pesel jest w niewałściywym formacie.</p>
+                    </div>
+                    <input type="text" class="form-control" data-mask="99999999999" id="formGroupExampleInput" placeholder="Pesel">
+                </div>
+            </div>
+        </div>
+        <div class="sec">
+            <div class="title-section">
+                <p>Dane Kontaktowe</p>
+            </div> 
+                
+            <div class="form-row">
+                <div class="col">
+                    <input type="text" class="form-control"  data-mask="99-999" placeholder="Kod Pocztowy">
+                </div>    
+                <div class="col">
+                    <input type="text" class="form-control"  placeholder="Miasto">
+                </div>    
+                <div class="col">
+                    <input type="text" class="form-control"  placeholder="Ulica">
+                </div>
+            </div>
+        
+            <div class="form-row">
+                <div class="col">
+                    <input type="number" class="form-control" id="formGroupExampleInput" placeholder="Nr domu">
+                </div>
+                <div class="col">
+                    <input type="number" class="form-control" id="formGroupExampleInput" placeholder="Nr lokalu">
+                </div>
+            </div>
+        
+            <div class="form-row">
+                <div class="col">
+                    <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Województwo">
+                </div>
+            </div>
+        
+            <div class="form-row">
+                <div class="col">
+                    <input type="number" class="form-control" id="formGroupExampleInput" placeholder="Nr telefonu">
+                </div>
+                <div class="col">
+                    <input type="email" class="form-control" id="formGroupExampleInput" placeholder="email">
+                </div>
+            </div>
+        </div>
+
+        <div class="sec">
+            <div class="title-section">
+                <p>Informacje o narodzinach</p>
+            </div>
+            <div class="form-row">
+                <div class="col">
+                    <div id="born-day-invalid" class="valid-err">
+                        <p>Dzień urodzenia jest w nieawłściywym formacie.</p>
+                    </div>
+                    <input type="number" min="1" max="31" title="Nieprawidłowy zakres dla dnia" class="form-control" id="formGroupExampleInput" placeholder="Dzień">
+                </div>
+                <div class="col">
+                    <input type="number" min="1" max="12" class="form-control" id="formGroupExampleInput" placeholder="Miesiąc">
+                </div>
+                <div class="col">
+                    <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Rok">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col">
+                    <input type="number" class="form-control" id="formGroupExampleInput" placeholder="Miasto">
+                </div>
+                <div class="col">
+                    <input type="number" class="form-control" id="formGroupExampleInput" placeholder="Województwo">
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+

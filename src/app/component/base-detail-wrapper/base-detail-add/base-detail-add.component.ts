@@ -1,7 +1,6 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { RestService } from '@app/service/global/request/rest-service.service';
 import { BaseDetail } from '@app/model/school-classes/details/base-detail';
-import { URLS } from '@app/constants/urls';
 import { Constants } from '@app/constants/constants';
 import { BannerMessageInfo } from '@app/model/view/banner-message-info';
 import { ResponseMessages } from '@app/model/view/response-messages';
