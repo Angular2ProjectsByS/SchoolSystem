@@ -9,13 +9,15 @@
                     <div id="name-invalid" class="valid-err">
                         <p>Imię jest w niewłaściywym formacie.</p>
                     </div>
-                    <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Imię">
+                    <input type="text" class="form-control" id="first-name" #firstName 
+                        placeholder="Imię" autofocus (focusout)="viewService.validateFirstName(firstName.value)">
                 </div>
                 <div class="col">
                     <div id="surname-invalid" class="valid-err">
                         <p>Nazwisko jest w niewałściywym formacie.</p>
                     </div>
-                    <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Nazwisko">
+                    <input type="text" class="form-control" id="second-name" #secondName
+                        placeholder="Nazwisko" (focusout)="viewService.validateSecondName(secondName.value)">
                 </div>
                 
             </div>
@@ -24,7 +26,8 @@
                     <div id="pesel-invalid" class="valid-err">
                         <p>Pesel jest w niewałściywym formacie.</p>
                     </div>
-                    <input type="text" class="form-control" data-mask="99999999999" id="formGroupExampleInput" placeholder="Pesel">
+                    <input type="text" class="form-control" data-mask="99999999999" 
+                        #pesel id="pesel" (focusout)="viewService.validatePesel(pesel.value)" placeholder="Pesel">
                 </div>
             </div>
         </div>
@@ -35,37 +38,69 @@
                 
             <div class="form-row">
                 <div class="col">
-                    <input type="text" class="form-control"  data-mask="99-999" placeholder="Kod Pocztowy">
+                    <div id="zip-code-invalid" class="valid-err">
+                        <p>Kod pocztowy jest w niewłaściywym formacie.</p>
+                    </div>
+                    <input type="text" class="form-control" id="zip-code" data-mask="99-999"
+                    #zipCode (focusout)="viewService.validateZipCode(zipCode.value)" placeholder="Kod Pocztowy">
                 </div>    
                 <div class="col">
-                    <input type="text" class="form-control"  placeholder="Miasto">
+                    <div id="city-name-invalid" class="valid-err">
+                        <p>Nazwa miasta jest w niewłaściywym formacie.</p>
+                    </div>
+                    <input type="text" class="form-control" id="city-name" 
+                        #cityName (focusout)="viewService.validateCityName(cityName.value)" placeholder="Miasto">
                 </div>    
                 <div class="col">
-                    <input type="text" class="form-control"  placeholder="Ulica">
+                    <div id="street-name-invalid" class="valid-err">
+                        <p>Ulica jest w niewłaściywym formacie.</p>
+                    </div>
+                    <input type="text" class="form-control" id="street-name"
+                    #streetName (focusout)="viewService.validateStreetName(streetName.value)" placeholder="Ulica">
                 </div>
             </div>
         
             <div class="form-row">
                 <div class="col">
-                    <input type="number" class="form-control" id="formGroupExampleInput" placeholder="Nr domu">
+                    <div id="house-number-invalid" class="valid-err">
+                        <p>Numer domu jest w niewłaściywym formacie.</p>
+                    </div>
+                    <input type="number" class="form-control" id="house-number"
+                    #houseNumber (focusout)="viewService.validateHouseNumber(houseNumber.value)" placeholder="Nr domu">
                 </div>
                 <div class="col">
-                    <input type="number" class="form-control" id="formGroupExampleInput" placeholder="Nr lokalu">
+                    <div id="apartment-number-invalid" class="valid-err">
+                        <p>Numer mieszkania jest w niewłaściywym formacie.</p>
+                    </div>
+                    <input type="number" class="form-control" id="apartment-number"
+                        #apartmentNumber (focusout)="viewService.validateApartmentNumber(apartmentNumber.value)" placeholder="Nr lokalu">
                 </div>
             </div>
         
             <div class="form-row">
                 <div class="col">
-                    <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Województwo">
+                    <div id="voivodeship-invalid" class="valid-err">
+                        <p>Nazwa województwa jest w niewłaściywym formacie.</p>
+                    </div>
+                    <input type="text" class="form-control" id="voivodeship-name"
+                    #voivodeship (focusout)="viewService.validateVoivodeshipName(voivodeship.value)" placeholder="Województwo">
                 </div>
             </div>
         
             <div class="form-row">
                 <div class="col">
-                    <input type="number" class="form-control" id="formGroupExampleInput" placeholder="Nr telefonu">
+                    <div id="phone-number-invalid" class="valid-err">
+                        <p>Numer telefonu jest w niewłaściywym formacie.</p>
+                    </div>
+                    <input type="number" class="form-control" id="phone-number"
+                        #phoneNumber (focusout)="viewService.validatePhoneNumber(phoneNumber.value)" placeholder="Nr telefonu">
                 </div>
                 <div class="col">
-                    <input type="email" class="form-control" id="formGroupExampleInput" placeholder="email">
+                    <div id="email-invalid" class="valid-err">
+                        <p>email jest w niewłaściywym formacie.</p>
+                    </div>
+                    <input type="email" class="form-control" id="email"
+                        #email (focusout)="viewService.validateEmail(email.value)" placeholder="email">
                 </div>
             </div>
         </div>
@@ -77,24 +112,42 @@
             <div class="form-row">
                 <div class="col">
                     <div id="born-day-invalid" class="valid-err">
-                        <p>Dzień urodzenia jest w nieawłściywym formacie.</p>
+                        <p>Dzień urodzenia jest w niewłaściywym formacie.</p>
                     </div>
-                    <input type="number" min="1" max="31" title="Nieprawidłowy zakres dla dnia" class="form-control" id="formGroupExampleInput" placeholder="Dzień">
+                    <input type="number" min="1" max="31" title="Nieprawidłowy zakres dla dnia" class="form-control" id="born-day" placeholder="Dzień">
                 </div>
                 <div class="col">
-                    <input type="number" min="1" max="12" class="form-control" id="formGroupExampleInput" placeholder="Miesiąc">
+                    <div id="born-month-invalid" class="valid-err">
+                        <p>Miesiąc jest w niewłaściywym formacie.</p>
+                    </div>
+                    <input type="number" min="1" max="12" class="form-control" id="born-month" placeholder="Miesiąc">
                 </div>
                 <div class="col">
-                    <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Rok">
+                    <div id="born-year-invalid" class="valid-err">
+                        <p>Rok urodzenia jest w niewłaściywym formacie.</p>
+                    </div>
+                    <input type="text" class="form-control" id="born-year" placeholder="Rok">
                 </div>
             </div>
             <div class="form-row">
                 <div class="col">
-                    <input type="number" class="form-control" id="formGroupExampleInput" placeholder="Miasto">
+                    <div id="born-city-invalid" class="valid-err">
+                        <p>Nazwa miasta jest w niewłaściywym formacie.</p>
+                    </div>
+                    <input type="number" class="form-control" id="born-city" placeholder="Miasto">
                 </div>
                 <div class="col">
-                    <input type="number" class="form-control" id="formGroupExampleInput" placeholder="Województwo">
+                    <div id="born-voivodeship-invalid" class="valid-err">
+                        <p>Nazwa województwa jest w niewłaściywym formacie.</p>
+                    </div>
+                    <input type="number" class="form-control" id="born-voivodeship" placeholder="Województwo">
                 </div>
+            </div>
+        </div>
+
+        <div id="form-button-sec" class="form-row">
+            <div class="col">
+                <button class="btn btn-primary" (click)="submitForm()">{{ titleSubmitButton }}</button>
             </div>
         </div>
     </form>

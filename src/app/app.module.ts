@@ -63,9 +63,7 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserModule,
     FormsModule,
     HttpModule,
-    routing,
-    HttpClientModule,
-    HttpClient
+    routing
   ],
   providers: [
     HttpClientModule,

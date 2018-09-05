@@ -1,10 +1,11 @@
-import { NgModule } from '@angular/core';
+import { NgModule, Injectable } from '@angular/core';
 import { ValidationService } from "@app/service/validation/edit-add-user-valid-service";
 import { UserValidationPattern } from "@app/component/admin/user/service/model/user-validation-pattern";
 
 @NgModule({
     providers: [UserValidationPattern]
   })
+  @Injectable()
 export class UserValidService extends ValidationService {
 
     constructor(private validPattern : UserValidationPattern) {
@@ -31,5 +32,7 @@ export class UserValidService extends ValidationService {
         return this.validate(number, this.validPattern.phoneNumber);
     }
 
-
+    validEmail(email) {
+        return this.validate(email, this.validPattern.email);
+    }
 }
