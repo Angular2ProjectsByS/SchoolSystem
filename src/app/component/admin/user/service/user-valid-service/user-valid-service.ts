@@ -12,9 +12,14 @@ export class UserValidService extends ValidationService {
         super();
     }
 
+    validNameStartGreat(name) {
+        return this.validate(name, this.validPattern.nameStartGreat);
+    }
+
     validName(name) {
         return this.validate(name, this.validPattern.name);
     }
+
 
     validPesel(pesel) {
         return this.validate(pesel, this.validPattern.pesel);

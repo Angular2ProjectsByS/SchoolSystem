@@ -7,4 +7,10 @@ export class User {
     basicInfo : BasicInfo;
     contactInfo : ContactInfo;
     bornInfo : BornInfo;
+
+    constructor() {
+        this.basicInfo = new BasicInfo();
+        this.contactInfo = new ContactInfo();
+        this.bornInfo = new BornInfo();
+    }
 }

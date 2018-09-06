@@ -5,11 +5,18 @@ import { Voivodeship } from "@app/component/admin/user/model/user-info/address-i
 
 export class Address {
     id : number;
-    houserNumber : string;
+    houseNumber : string;
     apartmentNumber : string;
 
     city : City;
     street : Street;
     zipCode : ZipCode;
     voivodeship : Voivodeship;
+
+    constructor() {
+        this.city = new City();
+        this.street = new Street();
+        this.zipCode = new ZipCode();
+        this.voivodeship = new Voivodeship();
+    }
 }

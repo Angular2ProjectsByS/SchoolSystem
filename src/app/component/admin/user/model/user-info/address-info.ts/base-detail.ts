@@ -1,9 +1,11 @@
 export class BaseDetail {
-    id: number;
-    name: string;
-    creationDate: Date;
+    id?: number;
+    name?: string;
+    creationDate?: Date;
 
-    constructor(name : string) {
-        this.name = name;
+    constructor(name? : string) {
+        if (name != null) {
+            this.name = name;
+        }
     }
 }

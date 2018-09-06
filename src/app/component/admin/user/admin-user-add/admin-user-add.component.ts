@@ -5,6 +5,7 @@ import { UserValidService } from '@app/component/admin/user/service/user-valid-s
 import { Constants } from '@app/constants/constants';
 import { User } from '@app/component/admin/user/model/user';
 import { UserValidationPattern } from '@app/component/admin/user/service/model/user-validation-pattern';
+import { InputMask } from '@app/component/admin/user/admin-user-add/model/input-mask';
 
 @Component({
   selector: 'app-admin-user-add',
@@ -16,21 +17,24 @@ export class AdminUserAddComponent implements OnInit {
 
   titleSubmitButton : string = "Dodaj";
   viewService : ViewService;
+  user : User;
 
   constructor(private restService : RestService, viewService : ViewService) {
-    this.viewService = viewService;  
+    this.viewService = viewService;
+    this.user = new User();
   }
 
   getUserInfoFromForm() : User {
     return null;
   }
 
-  public addUser() {
-    // if (viewService.validateForm()) {
-    //   let user = viewService.getUserInfoFromForm();
-    //   let result = await this.addUserToDb();
-    //   viewService.showMsgResultAdd(result);
-    // }
+  public async addUser() {
+    if (this.viewService.checkFormCorrection()) {
+      console.log("User:");
+      console.log(this.user);
+      let result = await this.addUserToDb(this.user);
+      console.log(result);
+    }
   }
 
   public async addUserToDb(user : User)  {

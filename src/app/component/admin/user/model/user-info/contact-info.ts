@@ -6,4 +6,8 @@ export class ContactInfo {
     email : string;
     phoneNumber : string;
     address : Address;
+
+    constructor() {
+        this.address = new Address();
+    }
 }

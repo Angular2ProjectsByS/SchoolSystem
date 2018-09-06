@@ -31,7 +31,7 @@ import { AdminUserAddComponent } from './component/admin/user/admin-user-add/adm
 import { AdminUserEditComponent } from './component/admin/user/admin-user-edit/admin-user-edit.component';
 import { AdminUserListComponent } from './component/admin/user/admin-user-list/admin-user-list.component';
 import { HttpClientModule } from '@angular/common/http';
-
+import { TextMaskModule } from 'angular2-text-mask';
 
 
 
@@ -63,6 +63,7 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserModule,
     FormsModule,
     HttpModule,
+    TextMaskModule,
     routing
   ],
   providers: [
