@@ -134,7 +134,7 @@
                         <p>Nazwa miasta jest w niewłaściywym formacie.</p>
                     </div>
                     <input type="text" class="form-control" id="born-city" placeholder="Miasto"
-                    [(ngModel)]="user.bornInfo.city" name="bornCity"
+                    [(ngModel)]="user.bornInfo.city.name" name="bornCity"
                         #bornCity (focusout)="viewService.validateBornCityName(bornCity.value)">
                 </div>
                 <div class="col">
@@ -142,7 +142,7 @@
                         <p>Nazwa województwa jest w niewłaściywym formacie.</p>
                     </div>
                     <input type="text" class="form-control" id="born-voivodeship" placeholder="Województwo"
-                        [(ngModel)]="user.bornInfo.voivodeship" name="voivodeship"
+                        [(ngModel)]="user.bornInfo.voivodeship.name" name="voivodeship"
                         #bornVoivodeship (focusout)="viewService.validateBornVoivodeshipName(bornVoivodeship.value)">
                 </div>
             </div>

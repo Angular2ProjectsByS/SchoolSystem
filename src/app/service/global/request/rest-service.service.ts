@@ -74,6 +74,7 @@ export class RestService {
         requestResultSet.setAll(res, true);
       },
       err => {
+        console.log(err);
         requestResultSet.setAll(err, false);
       }
     );

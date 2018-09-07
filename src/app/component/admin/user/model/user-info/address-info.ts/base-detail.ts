@@ -1,5 +1,5 @@
 export class BaseDetail {
-    id?: number;
+    id?: number = 0;
     name?: string;
     creationDate?: Date;
 

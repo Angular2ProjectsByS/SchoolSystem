@@ -39,7 +39,9 @@ export class AdminUserAddComponent implements OnInit {
 
   public async addUserToDb(user : User)  {
     let url = Constants.SERVER_PROXY + "/users/add";
-    let result = await this.restService.add<User>(url, user);
+    let result = null;
+    console.log(await this.restService.add<User>(url, user));
+    // let result = await this.restService.add<User>(url, user);
     return result;
   }
 

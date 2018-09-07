@@ -4,7 +4,7 @@ import { ZipCode } from "@app/component/admin/user/model/user-info/address-info.
 import { Voivodeship } from "@app/component/admin/user/model/user-info/address-info.ts/voivodeship";
 
 export class Address {
-    id : number;
+    id : number = 0;
     houseNumber : string;
     apartmentNumber : string;
 
