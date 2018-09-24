@@ -1,4 +1,4 @@
 export class Role {
-    roleId = 0;
+    id = 0;
     name = "";
 }

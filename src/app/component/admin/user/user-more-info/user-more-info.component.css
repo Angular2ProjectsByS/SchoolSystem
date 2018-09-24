@@ -1,0 +1,25 @@
+.info-section .title {
+    text-align: center;
+    margin: 10px 0;
+    padding: 2px 0;
+    background-color: #3498DB;
+    background-color: #689AD3;
+    color: white;
+}
+
+.info-section {
+    margin-bottom: 10px;
+}
+
+.info-section .row {
+    padding: 10px 0;
+}
+
+.info-section .row > div {
+    text-align: center;
+}
+
+.info-section .row div .info-entity {
+    font-weight: bolder;
+}
+

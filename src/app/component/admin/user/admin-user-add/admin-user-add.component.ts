@@ -5,7 +5,9 @@ import { UserValidService } from '@app/component/admin/user/service/user-valid-s
 import { Constants } from '@app/constants/constants';
 import { User } from '@app/component/admin/user/model/user';
 import { UserValidationPattern } from '@app/component/admin/user/service/model/user-validation-pattern';
-import { InputMask } from '@app/component/admin/user/admin-user-add/model/input-mask';
+import { Role } from "@app/model/role";
+import { AddEditUserBaseComponent } from '@app/component/admin/user/add-edit-user-base-comp/AddEditUserBaseComponent';
+
 
 @Component({
   selector: 'app-admin-user-add',
@@ -13,40 +15,17 @@ import { InputMask } from '@app/component/admin/user/admin-user-add/model/input-
   styleUrls: ['../templates/add-edit-form/admin-edit-add-user.template.css'],
   providers: [ViewService, UserValidService, UserValidationPattern]
 })
-export class AdminUserAddComponent implements OnInit {
+export class AdminUserAddComponent extends AddEditUserBaseComponent {
 
-  titleSubmitButton : string = "Dodaj";
-  viewService : ViewService;
-  user : User;
-
-  constructor(private restService : RestService, viewService : ViewService) {
-    this.viewService = viewService;
-    this.user = new User();
+  operationName : string = "Dodaj";
+  
+  constructor(restService : RestService, viewService : ViewService) {
+    super(restService, viewService);
   }
 
-  getUserInfoFromForm() : User {
-    return null;
-  }
-
-  public async addUser() {
-    if (this.viewService.checkFormCorrection()) {
-      console.log("User:");
-      console.log(this.user);
-      let result = await this.addUserToDb(this.user);
-      console.log(result);
-    }
-  }
-
-  public async addUserToDb(user : User)  {
-    let url = Constants.SERVER_PROXY + "/users/add";
-    let result = null;
-    console.log(await this.restService.add<User>(url, user));
-    // let result = await this.restService.add<User>(url, user);
-    return result;
-  }
-
-  ngOnInit() {
-    
+  async sendUser() {
+    console.log(this.user);
+    this.performUserOperation(Constants.SERVER_PROXY + "/users/add");
   }
 
 }

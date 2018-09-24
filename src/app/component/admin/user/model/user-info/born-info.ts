@@ -1,5 +1,5 @@
-import { Voivodeship } from "@app/component/admin/user/model/user-info/address-info.ts/voivodeship";
-import { City } from "@app/component/admin/user/model/user-info/address-info.ts/city";
+import { Voivodeship } from "@app/component/admin/user/model/user-info/address/voivodeship";
+import { City } from "@app/component/admin/user/model/user-info/address/city";
 
 export class BornInfo {
     id : number = 0;

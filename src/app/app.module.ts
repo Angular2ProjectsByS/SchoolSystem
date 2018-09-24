@@ -32,6 +32,7 @@ import { AdminUserEditComponent } from './component/admin/user/admin-user-edit/a
 import { AdminUserListComponent } from './component/admin/user/admin-user-list/admin-user-list.component';
 import { HttpClientModule } from '@angular/common/http';
 import { TextMaskModule } from 'angular2-text-mask';
+import { UserMoreInfoComponent } from './component/admin/user/user-more-info/user-more-info.component';
 
 
 
@@ -57,7 +58,8 @@ import { TextMaskModule } from 'angular2-text-mask';
     AdminManageUserComponent,
     AdminUserAddComponent,
     AdminUserEditComponent,
-    AdminUserListComponent
+    AdminUserListComponent,
+    UserMoreInfoComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,39 @@
+<div class="user-info-extended">
+    <div class="info-section">
+        <div class="title">Informacje podstawowe</div>
+        <div class="row info">
+          <div class="col"> Imię: <span class="info-entity">{{ user?.basicInfo?.firstName }}</span></div>
+          <div class="col"> Nazwisko:  <span class="info-entity">{{ user?.basicInfo?.lastName }}</span></div>
+          <div class="col"> Pesel: <span class="info-entity">{{ user?.basicInfo?.pesel }}</span></div>
+          <div class="col"> Data utworzenia: <span class="info-entity">{{ user?.basicInfo?.startDate | date:'dd.MM.yyyy' }}</span></div>
+        </div>
+    </div>
+    
+    <div class="info-section">
+        <div class="title">Informacje kontaktowe</div>
+        <div class="row info">
+          <div class="col"> Miasto: <span class="info-entity">{{ user?.contactInfo?.address?.city?.name }}</span></div>
+          <div class="col"> Ulica:  <span class="info-entity">{{ user?.contactInfo?.address?.street?.name }}</span></div>
+          <div class="col"> Numer domu: <span class="info-entity">{{ user?.contactInfo?.address?.houseNamber }}</span></div>
+          <div class="col"> Numer lokalu: <span class="info-entity">{{ user?.contactInfo?.address?.apartmentNumber }}</span></div>
+          <div class="col"> Kod pocztowy: <span class="info-entity">{{ user?.contactInfo?.address?.zipCode?.name }}</span></div>
+          <div class="col"> Województwo: <span class="info-entity">{{ user?.contactInfo?.address?.voivodeship?.name }}</span></div> 
+        </div>
+    </div>
+    
+    <div class="info-section">
+        <div class="title">Informacje o narodzinach</div>
+        <div class="row info">
+          <div class="col"> Rok urodzenia: <span class="info-entity">{{ user?.bornInfo?.bornDate | date:'dd.MM.yyyy' }}</span></div>
+          <div class="col"> Miasto: <span class="info-entity">{{ user?.bornInfo?.city?.name }}</span></div>
+          <div class="col"> Województwo: <span class="info-entity">{{ user?.bornInfo?.voivodeship?.name }}</span></div>
+        </div>
+    </div>
+
+    <div class="info-section">
+        <div class="title">Informacje systemowe</div>
+        <div class="row info">
+          <div class="col"> Prawa użytkownika: <span class="info-entity">{{ user?.loginInfo?.role?.name }}</span></div>
+        </div>
+    </div>
+</div>

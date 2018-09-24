@@ -1,3 +1,5 @@
+import { AdminUserEditComponent } from './component/admin/user/admin-user-edit/admin-user-edit.component';
+import { AdminUserListComponent } from './component/admin/user/admin-user-list/admin-user-list.component';
 import { ModuleWithProviders } from "@angular/core";
 import { Routes, RouterModule } from '@angular/router';
 
@@ -9,6 +11,7 @@ import { AdminClassesComponent } from "@app/component/admin/pages/admin-nav-card
 import { AdminPrefixesComponent } from '@app/component/admin/pages/prefixes/admin-prefixes-main/admin-prefixes.component';
 import { AdminClassTypeComponent } from "@app/component/admin/pages/class-types/admin-class-type/admin-class-type.component";
 import { AdminManageUserComponent } from "@app/component/admin/user/admin-manage-user/admin-manage-user.component";
+import { AdminUserAddComponent } from "@app/component/admin/user/admin-user-add/admin-user-add.component";
 
 const appRoutes: Routes = [
     {
@@ -47,7 +50,19 @@ const appRoutes: Routes = [
             },
             {
                 path: 'user',
-                component: AdminManageUserComponent
+                component: AdminManageUserComponent,
+            },
+            {
+                path: 'user/add',
+                component: AdminUserAddComponent
+            },
+            {
+                path: 'user/list',
+                component: AdminUserListComponent
+            },
+            {
+                path: 'user/edit',
+                component: AdminUserEditComponent
             }
         ]
     }

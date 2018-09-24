@@ -9,15 +9,18 @@ export class AddResultResponse<T> extends ResultRequest{
 
         this.responseCode = body.status;
     
-
-        let result = JSON.parse(body._body);
-
-        if (this.responseCode == 409) {
-            this.message = result.message;
-            this.addedElements = result.addedElements;
-        }
-        else {
+        let result;
+        if (success) {
+            // result = JSON.parse(body._body);
             this.addedElements = result;
-        }        
+        }   
+        else {
+            if (this.responseCode == 409) {
+                result = JSON.parse(body._body);
+                this.message = result.message;
+                this.addedElements = result.addedElements;
+            }
+        } 
+                           
     }
 }

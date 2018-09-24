@@ -1,3 +1,32 @@
-<p>
-  admin-user-list works!
-</p>
+<h4>Użytkownicy</h4>
+<table *ngIf="users?.length > 0" class="table table-hover">
+  <thead>
+      <tr class="container-fluid row-eq-height d-flex align-items-center">
+          <th class="col d-block">Lp.</th>
+          <th class="col d-block">Imię i Nazwisko</th>
+          <th class="col d-block">Prawa</th>
+          <th class="col d-block">Operacje</th>
+      </tr>
+  </thead>
+  <p  id="hot-head">Witamy w niebie</p>
+  <tbody *ngFor="let user of users; let i = index">
+      <tr class="container-fluid d-flex flex-wrap">
+          <td class="col-3 col-md-3 d-block justify-content-center align-self-center">{{ i + 1 }}</td>
+          <td class="col-3 col-md-3 d-block justify-content-center align-self-center">
+            <span class="align-middle h-100">{{ user?.basicInfo?.firstName }} {{ user?.basicInfo?.lastName }}</span>
+          </td>
+          <td class="col-3 col-md-3 d-block justify-content-center align-self-center">
+            <span class="alert alert-secondary role-info">{{ user?.loginInfo?.role?.name }}</span>
+          </td>
+          <td (click)="viewService.showOperationSection(i)" class="col-3 d-md-none d-block justify-content-center align-self-center">
+              <i id="btn-op-section-{{i}}" class="fas fa-angle-right transition"></i>
+          </td> 
+          <td id="operations-section-{{i}}" class="col-12 col-md-3 d-none d-md-block justify-content-center align-self-center">
+              <button title="Edytuj" class="btn btn-warning" (click)="modifyUser(i)"><i class="far fa-edit"></i></button>
+              <button title="Usuń" (click)="showDeleteModal(i)" class="btn btn-danger"><i class="far fa-trash-alt"></i></button>
+              <button title="Więcej" (click)="viewService.showUserMoreInfoSection(i)" class="btn grey-blue"><i class="fas fa-expand-arrows-alt"></i></button>
+          </td>  
+      </tr>
+      <app-user-more-info id="user-more-info-sec-{{i}}" [user]="user"></app-user-more-info>
+  </tbody> 
+</table>

@@ -1,7 +1,12 @@
 import { NgModule, Injectable } from "@angular/core";
 import { UserValidService } from "@app/component/admin/user/service/user-valid-service/user-valid-service";
-import { User } from "@app/component/admin/user/model/user";
 import { InputMask } from "@app/component/admin/user/admin-user-add/model/input-mask";
+import { UserWithRole } from "@app/component/admin/user/admin-user-add/model/user-with-role";
+import { BannerMessageInfo } from "@app/model/view/banner-message-info";
+import { MessageBannerService } from "@app/service/global/request/message-banner.service";
+import { UserAddResultMsg } from "@app/component/admin/user/admin-user-add/message/user-add-result-msg";
+import { User } from "@app/component/admin/user/model/user";
+
 declare var $ : any;
 
 @Injectable()
@@ -12,17 +17,19 @@ export class ViewService {
 
     isFormInputOk : boolean[] = [];
     mask : InputMask;
-    
-    constructor(private validService : UserValidService) {
+    bannerInfo : BannerMessageInfo;
+        
+    constructor(private validService : UserValidService, private messageBannerService : MessageBannerService) {
         this.mask = new InputMask();
         this.setUpFormInputOk();
     }
 
     setUpFormInputOk() {
-        for (let i = 0; i < 14; i++) {
+        for (let i = 0; i < 15; i++) {
             this.isFormInputOk.push(false);
         }
     }
+
 
     checkFormCorrection() : boolean {
         let isFormOk = true;
@@ -35,13 +42,44 @@ export class ViewService {
         return isFormOk;
     }
 
+    showOperationResultMsg(result) {
+        console.log("view-service");
+        console.log(result);
+        this.bannerInfo = this.messageBannerService.checkRespone(result, new UserAddResultMsg());
+        console.log("banner-info");
+        console.log(this.bannerInfo);
+    }
+
+    showValidationMsgs(user : User) {
+
+        this.validateFirstName(user.basicInfo.firstName);
+        this.validateLastName(user.basicInfo.lastName);
+        this.validatePesel(user.basicInfo.pesel);
+
+        this.validateEmail(user.contactInfo.email);
+        this.validatePhoneNumber(user.contactInfo.phoneNumber);
+
+        this.validateHouseNumber(user.contactInfo.address.houseNamber);
+        this.validateApartmentNumber(user.contactInfo.address.apartmentNumber);
+        this.validateZipCode(user.contactInfo.address.zipCode.name);
+        this.validateCityName(user.contactInfo.address.city.name);
+        this.validateStreetName(user.contactInfo.address.street.name)
+        this.validateVoivodeshipName(user.contactInfo.address.voivodeship.name);
+    
+        this.validateBornDate(user.bornInfo.bornDate);
+        this.validateBornCityName(user.bornInfo.city.name);
+        this.validateBornVoivodeshipName(user.bornInfo.voivodeship.name);
+
+        this.validateRoles(user.loginInfo.role);
+    }
+
     validateFirstName(firstName : string) {
         let isValidOk = this.validService.validNameStartGreat(firstName);
         this.isFormInputOk[0] = isValidOk;
         this.changeValidErrorDivDisplay(isValidOk, "name-invalid");
      }
 
-    validateSecondName(secondName : string) {
+    validateLastName(secondName : string) {
         let isValidOk = this.validService.validNameStartGreat(secondName);
         this.isFormInputOk[1] = isValidOk;
         this.changeValidErrorDivDisplay(isValidOk, "surname-invalid");
@@ -105,7 +143,8 @@ export class ViewService {
 
 
     validateBornDate(bornDate) {
-        if (bornDate == "") {
+        console.log(bornDate);
+        if (bornDate === undefined) {
             this.changeValidErrorDivDisplay(false, "born-date-invalid");
             this.isFormInputOk[11] = false;
         }
@@ -125,6 +164,14 @@ export class ViewService {
         let isValidOk = this.validService.validName(name);
         this.isFormInputOk[13] = isValidOk;
         this.changeValidErrorDivDisplay(isValidOk, "born-voivodeship-invalid"); 
+    }
+
+    validateRoles(role) {
+        console.log(role);
+        let isValidOk = (role.id != 0);
+
+        this.isFormInputOk[14] = isValidOk;
+        this.changeValidErrorDivDisplay(isValidOk, "user-role-invalid");
     }
 
     changeValidErrorDivDisplay(isValidOk : boolean, divName : string) {

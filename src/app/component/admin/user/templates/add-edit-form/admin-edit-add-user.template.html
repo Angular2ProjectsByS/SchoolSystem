@@ -1,4 +1,6 @@
 <div id="add-edit-user-sec">
+    <h3 class="text-center">{{ operationName }} użytkownika</h3>
+    <app-message-banner [banerInfo]="viewService.bannerInfo"></app-message-banner>
     <form>
         <div class="sec">
             <div class="title-section">
@@ -19,7 +21,7 @@
                     </div>
                     <input type="text" class="form-control" id="second-name" #secondName
                         [(ngModel)]="user.basicInfo.lastName" name="lastName"
-                        placeholder="Nazwisko" (focusout)="viewService.validateSecondName(secondName.value)">
+                        placeholder="Nazwisko" (focusout)="viewService.validateLastName(secondName.value)">
                 </div>
                 
             </div>
@@ -72,7 +74,7 @@
                         <p><i class="fas fa-exclamation-triangle"></i> Numer domu jest w niewłaściywym formacie.</p>
                     </div>
                     <input type="number" class="form-control" id="house-number"
-                    [(ngModel)]="user.contactInfo.address.houseNumber" name="houseNumber"
+                    [(ngModel)]="user.contactInfo.address.houseNamber" name="houseNumber"
                     #houseNumber (focusout)="viewService.validateHouseNumber(houseNumber.value)" placeholder="Nr domu">
                 </div>
                 <div class="col">
@@ -148,9 +150,26 @@
             </div>
         </div>
 
+        <div class="sec">
+            <div class="title-section">
+                <p>Informacje systemowe</p>
+            </div>
+            <div class="form-row">
+                <div id="user-role-invalid" class="valid-err">
+                    <p>Proszę wybrać rolę dla użytkownika.</p>
+                </div>
+                <label class="text-center w-100" for="userRoles">Wybierz rolę: </label>
+                <select class="form-control" id="userRoles"
+                    [(ngModel)]="user.loginInfo.role" name="user-role" 
+                    #userRole (focusout)="viewService.validateRoles(userRole.value)">
+                    <option *ngFor="let role of roles?.slice().reverse()" [ngValue]="role"> {{ role.name }}</option>
+                </select>
+            </div>
+        </div>
+
         <div id="form-button-sec" class="form-row">
             <div class="col">
-                <button class="btn btn-primary" (click)="addUser()">{{ titleSubmitButton }}</button>
+                <button class="btn btn-primary" (click)="sendUser()">{{ operationName }}</button>
             </div>
         </div>
     </form>

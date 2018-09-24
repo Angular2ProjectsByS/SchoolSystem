@@ -13,7 +13,13 @@ export class ResultRequestSet<T> extends ResultRequest {
         }
         else {
             this.result = response._body;
-            this.errorMessage = response.json().message;
+            
+            try {
+                this.errorMessage = response.json().message;
+            }
+            catch(e) {
+
+            }
         }
 
         this.responseCode = response.status;

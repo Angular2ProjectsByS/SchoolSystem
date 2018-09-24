@@ -1,4 +1,4 @@
-import { Address } from "@app/component/admin/user/model/user-info/address";
+import { Address } from "@app/component/admin/user/model/user-info/address-info";
 
 
 export class ContactInfo {
