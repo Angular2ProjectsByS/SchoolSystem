@@ -1,3 +1,4 @@
+import { ClassSpecializationMainComponent } from './component/admin/school-class/specialization/class-specialization-main/class-specialization-main.component';
 import { AdminUserEditComponent } from './component/admin/user/admin-user-edit/admin-user-edit.component';
 import { AdminUserListComponent } from './component/admin/user/admin-user-list/admin-user-list.component';
 import { ModuleWithProviders } from "@angular/core";
@@ -51,6 +52,10 @@ const appRoutes: Routes = [
             {
                 path: 'user',
                 component: AdminManageUserComponent,
+            },
+            {
+                path: 'class-specialization',
+                component: ClassSpecializationMainComponent
             },
             {
                 path: 'user/add',

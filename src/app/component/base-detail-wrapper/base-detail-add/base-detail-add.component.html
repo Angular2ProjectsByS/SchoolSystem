@@ -18,7 +18,7 @@
         <div class="col col-12 col-sm-10">
             <div id="prefixes-panel" class="h-100"d>
                 <span>Do wysłania:</span>
-                <span *ngFor="let detail of detailsToSend; let i = index" class="prefix-item">{{ detail }}<i class="fas fa-times prefix-item-delete" (click)="removePrefixFromSet(i)"></i></span>
+                <span *ngFor="let detail of detailsToSend; let i = index" class="prefix-item">{{ detail }}<i class="fas fa-times prefix-item-delete" (click)="removeDetailFromSet(i)"></i></span>
             </div>
         </div>
         <div class="col col-12 col-sm-2">

@@ -1,19 +1,22 @@
 export class ViewMessageModel {
+    title = "";
     loading = {
         failure : "",
-        noPrefixes: "",
+        noEntities: ""
     };
     delete = {
-        failure : ""
+        failure : "",
+        title : "",
+        messageBody: ""
     };
     add = {
         success: "",
         failure: "",
-        
     };
     validation = {
-        prefixExists: "",
-        failure: ""
+        entityExists: "",
+        failure: "",
+        wrongFormating : ""
     };
     update = {
         success: "",

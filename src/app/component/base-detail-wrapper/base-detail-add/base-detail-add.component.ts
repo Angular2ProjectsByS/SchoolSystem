@@ -53,7 +53,7 @@ export class BaseDetailAddComponent implements OnInit {
       }
     }
     else {
-      this.removeLastSpaceFromPrefix();
+      this.removeLastSpaceFromName();
     }
   }
 
@@ -74,7 +74,7 @@ export class BaseDetailAddComponent implements OnInit {
     return isValidName;
   }
 
-  private removeLastSpaceFromPrefix() {
+  private removeLastSpaceFromName() {
     this.actualDetailName = this.actualDetailName.substring(0, this.actualDetailName.length - 1);
   }
 

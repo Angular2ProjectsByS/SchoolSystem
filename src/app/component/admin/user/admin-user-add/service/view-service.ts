@@ -63,7 +63,7 @@ export class ViewService {
         this.validateApartmentNumber(user.contactInfo.address.apartmentNumber);
         this.validateZipCode(user.contactInfo.address.zipCode.name);
         this.validateCityName(user.contactInfo.address.city.name);
-        this.validateStreetName(user.contactInfo.address.street.name)
+        this.validateStreetName(user.contactInfo.address.street.name);
         this.validateVoivodeshipName(user.contactInfo.address.voivodeship.name);
     
         this.validateBornDate(user.bornInfo.bornDate);

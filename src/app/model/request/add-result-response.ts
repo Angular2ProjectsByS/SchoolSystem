@@ -11,8 +11,14 @@ export class AddResultResponse<T> extends ResultRequest{
     
         let result;
         if (success) {
-            // result = JSON.parse(body._body);
-            this.addedElements = result;
+            try {
+                result = JSON.parse(body._body);
+                this.addedElements = result;
+            }
+            catch (Exception) {
+                
+            }
+            
         }   
         else {
             if (this.responseCode == 409) {

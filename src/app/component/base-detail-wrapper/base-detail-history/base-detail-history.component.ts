@@ -12,8 +12,6 @@ export class BaseDetailHistoryComponent implements OnInit {
   @Input()
   detailHistory: BaseDetailHistory[];
 
-  constructor() { }
-
   ngOnInit() {
   }
 
