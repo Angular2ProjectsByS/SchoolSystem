@@ -1,0 +1,120 @@
+<div id="add-edit-user-sec">
+    <h3 class="text-center">{{ operationName }} klasę szkolną</h3>
+    <app-message-banner [banerInfo]="viewService.bannerInfo"></app-message-banner>
+    <form>
+        <div class="sec">
+            <div class="title-section">
+                <p>Podstawowe informacje</p>
+            </div>
+            <div class="form-row">
+                <div class="col">
+                    <div id="start-date-invalid" class="valid-err">
+                        <p>Data urodzenia ma niewłaściywy format.</p>
+                    </div>
+                    <input type="date" class="form-control" placeholder="Data rozpoczęcia"
+                     name="startDate" [(ngModel)]="schoolClass.startDate"
+                    #startDate (focusout)="viewService.validateStartDate(startDate.value)">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col">
+                    <p class="title">Wybierz typ:</p>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col">
+                    <div id="class-type-invalid" class="valid-err">
+                        <p>Proszę wybrać typ.</p>
+                    </div>
+                    <select class="form-control" id="classTypes"
+                        name="school-class" [(ngModel)]="schoolClass.type" 
+                        #type (focusout)="viewService.validateRoles(type.value)">
+                        <option *ngFor="let type of types" [ngValue]="type"> {{ type?.name }} </option>
+                    </select>
+                </div>
+            </div>
+            <div id="specialization-sec">
+                <p class="title">Wybierz specjalizacje: </p>
+                <div class="form-row">
+                    <div class="col col-12 col-sm-10">
+                        <div id="specializations-invalid" class="valid-err">
+                            <p><i class="fas fa-exclamation-triangle"></i>Jedna ze specjalizacji jest w nieprawidłowym formacie.</p>
+                        </div>
+                        <select class="form-control" id="class-spec" #classSpec 
+                        [(ngModel)]="chosenSpecialization" name="chosenSpecialization">
+                            <option *ngFor="let spec of specializations" [ngValue]="spec"> {{ spec.name }}</option>
+                        </select>
+                    </div>
+                    <div class="col col-12 col-sm-2">
+                        <div class="form-group d-flex h-100 align-items-center add-spec-sec-btn">
+                            <button class="form-control btn btn-primary" (click)="addSpecializationToGroupOfChosen()">Dodaj</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col">
+                        <div id="specialization-panel" class="h-100"d>
+                            <span>Do wysłania:</span>
+                            <span *ngFor="let spec of schoolClass.classSpecializationList" class="specialization-item">{{ spec.name }} <i class="fas fa-times specialization-item-delete" (click)="removeDetailFromSet(i)"></i></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col">
+                        <p class="title">Wybierz prefiks:</p>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col">
+                        <div id="class-prefix-invalid" class="valid-err">
+                            <p>Proszę wybrać prefix.</p>
+                        </div>
+                        <select class="form-control" id="classTypes"
+                                name="school-class" [(ngModel)]="schoolClass.prefix" 
+                            #type (focusout)="viewService.validateRoles(type.value)">
+                            <option *ngFor="let prefix of prefixes" [ngValue]="prefix"> {{ prefix?.name }} </option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="sec">
+            <div class="title-section">
+                <p>Wychowawca</p>
+            </div>
+            <div class="chosen-tutor-sec">
+                <p class="title">Wybrany nauczyciel: 
+                    {{ schoolClass?.tutor?.basicInfo?.firstName }} {{ schoolClass?.tutor?.basicInfo?.lastName }}  
+                </p>
+            </div>
+            <div class="search-section">
+                <p class="title">Wyszukaj nauczyciela: </p>
+                <app-user-search [params]="'TEACHER'" (sendFoundUsers)="getFoundTutors($event)" class="search-component"></app-user-search>
+                <app-found-user-list [isSearchResultForm]="true"  (chosenUser)="setFormTutor($event)" 
+                [users]="tutorList"></app-found-user-list>
+            </div>
+        </div>
+        <div class="sec">
+            <div class="title-section">
+                <p>Uczniowie</p>
+            </div>
+            <div class="search-section">
+                <p class="title">Wyszukaj uczniów: </p>
+                <app-user-search [params]="'STUDENT'" (sendFoundUsers)="getFoundStudents($event)" class="search-component"></app-user-search>
+                <app-found-user-list [isSearchResultForm]="true" (chosenUser)="addUserToStudents($event)" 
+                [users]="foundStudents"></app-found-user-list>
+            </div>
+            <div class="chosen-tutor-sec">
+                <p class="title">Wybrani uczniowie: </p>
+                <app-found-user-list [isSearchResultForm]="false" 
+                [users]="schoolClass.students"></app-found-user-list>
+            </div>
+        </div>
+        <div id="form-button-sec" class="form-row">
+            <div class="col">
+                <button class="btn btn-primary" (click)="acceptForm()">{{ operationName }}</button>
+            </div>
+        </div>
+    </form>
+</div>
+

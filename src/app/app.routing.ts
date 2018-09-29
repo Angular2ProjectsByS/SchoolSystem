@@ -1,3 +1,4 @@
+import { UserSearchComponent } from './component/admin/user/user-search/user-search.component';
 import { ClassSpecializationMainComponent } from './component/admin/school-class/specialization/class-specialization-main/class-specialization-main.component';
 import { AdminUserEditComponent } from './component/admin/user/admin-user-edit/admin-user-edit.component';
 import { AdminUserListComponent } from './component/admin/user/admin-user-list/admin-user-list.component';
@@ -13,6 +14,7 @@ import { AdminPrefixesComponent } from '@app/component/admin/pages/prefixes/admi
 import { AdminClassTypeComponent } from "@app/component/admin/pages/class-types/admin-class-type/admin-class-type.component";
 import { AdminManageUserComponent } from "@app/component/admin/user/admin-manage-user/admin-manage-user.component";
 import { AdminUserAddComponent } from "@app/component/admin/user/admin-user-add/admin-user-add.component";
+import { SchoolClassAddComponent } from '@app/component/admin/school-class/main/school-class-add/school-class-add.component';
 
 const appRoutes: Routes = [
     {
@@ -50,6 +52,10 @@ const appRoutes: Routes = [
                 component: AdminClassTypeComponent
             },
             {
+                path: 'school-class/add',
+                component: SchoolClassAddComponent
+            },
+            {
                 path: 'user',
                 component: AdminManageUserComponent,
             },
@@ -68,6 +74,10 @@ const appRoutes: Routes = [
             {
                 path: 'user/edit',
                 component: AdminUserEditComponent
+            },
+            {
+                path: 'user/search',
+                component: UserSearchComponent
             }
         ]
     }

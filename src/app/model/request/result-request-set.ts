@@ -6,8 +6,6 @@ export class ResultRequestSet<T> extends ResultRequest {
 
 
     setAll(response, success) {
-        console.log(response);
-
         if (success) {
             this.result = <T[]> response.json();
         }

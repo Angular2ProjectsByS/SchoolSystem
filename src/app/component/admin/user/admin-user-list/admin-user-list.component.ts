@@ -17,6 +17,7 @@ export class AdminUserListComponent implements OnInit {
 
   users : User[];
   viewService : ViewService;
+  title : string = "Uzytkownicy";
 
   constructor(private restService: RestService, viewService: ViewService, private router : Router) { 
     this.viewService = viewService;
@@ -41,7 +42,6 @@ export class AdminUserListComponent implements OnInit {
 
   async ngOnInit() {
     await this.getAllUsers();
-    this.viewService.changeColorForRoles();
   }
 
 }

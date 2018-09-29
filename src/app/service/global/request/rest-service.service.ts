@@ -17,10 +17,8 @@ export class RestService {
   
     let resultRequestSet = new ResultRequestSet<T>();
 
-    console.log("RestService.get");
     await this.httpClient.get(url).toPromise().then(
       res => {
-        console.log(res);
         resultRequestSet.setAll(res, true);
       },
       err => {
@@ -37,8 +35,6 @@ export class RestService {
 
     await this.httpClient.get(url).toPromise().then(
       res => {
-        console.log("res: ");
-        console.log(res);
         result = res.json();
       },
       err => {
@@ -69,12 +65,9 @@ export class RestService {
 
     await this.httpClient.post(url, body).toPromise().then(
       res => {
-        console.log("RestService: add");
-        console.log(res);
         requestResultSet.setAll(res, true);
       },
       err => {
-        console.log(err);
         requestResultSet.setAll(err, false);
       }
     );
@@ -104,8 +97,6 @@ export class RestService {
 
     await this.httpClient.post(url, body).toPromise().then(
       res => {
-        console.log("RestService: add");
-        console.log(res);
         requestResultSet.setAll(res, true);
       },
       err => {

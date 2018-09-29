@@ -33,11 +33,14 @@ import { AdminUserListComponent } from './component/admin/user/admin-user-list/a
 import { HttpClientModule } from '@angular/common/http';
 import { TextMaskModule } from 'angular2-text-mask';
 import { UserMoreInfoComponent } from './component/admin/user/user-more-info/user-more-info.component';
-import { SchoolClassEditComponent } from './component/admin/school-class/edit/school-class-edit/school-class-edit.component';
 import { ClassSpecializationAddComponent } from './component/admin/school-class/specialization/class-specialization-add/class-specialization-add.component';
 import { ClassSpecializationEditComponent } from './component/admin/school-class/specialization/class-specialization-edit/class-specialization-edit.component';
 import { ClassSpecializationMainComponent } from './component/admin/school-class/specialization/class-specialization-main/class-specialization-main.component';
-import { SchoolClassComponent } from './component/admin/pages/school-class/school-class.component';
+import { SchoolClassAddComponent } from './component/admin/school-class/main/school-class-add/school-class-add.component';
+import { SchoolClassEditComponent } from './component/admin/school-class/main/school-class-edit/school-class-edit.component';
+import { SchoolClassListComponent } from './component/admin/school-class/main/school-class-list/school-class-list.component';
+import { UserSearchComponent } from './component/admin/user/user-search/user-search.component';
+import { FoundUserListComponent } from './component/admin/user/found-user-list/found-user-list.component';
 
 
 
@@ -65,11 +68,14 @@ import { SchoolClassComponent } from './component/admin/pages/school-class/schoo
     AdminUserEditComponent,
     AdminUserListComponent,
     UserMoreInfoComponent,
-    SchoolClassEditComponent,
     ClassSpecializationAddComponent,
     ClassSpecializationEditComponent,
     ClassSpecializationMainComponent,
-    SchoolClassComponent
+    SchoolClassAddComponent,
+    SchoolClassEditComponent,
+    SchoolClassListComponent,
+    UserSearchComponent,
+    FoundUserListComponent
   ],
   imports: [
     BrowserModule,
