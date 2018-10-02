@@ -97,6 +97,7 @@ export class RestService {
 
     await this.httpClient.post(url, body).toPromise().then(
       res => {
+        console.log(res);
         requestResultSet.setAll(res, true);
       },
       err => {

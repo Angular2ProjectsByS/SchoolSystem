@@ -8,8 +8,8 @@
           <th class="col d-block">Operacje</th>
       </tr>
   </thead>
-    <tbody *ngFor="let user of users; let i = index">
-      <tr class="container-fluid d-flex flex-wrap">
+    <tbody>
+      <tr *ngFor="let user of users; let i = index" class="container-fluid d-flex flex-wrap">
           <td class="col-3 col-md-3 d-block justify-content-center align-self-center">{{ i + 1 }}</td>
           <td class="col-3 col-md-3 d-block justify-content-center align-self-center">
             <span class="align-middle h-100">{{ user?.basicInfo?.firstName }} {{ user?.basicInfo?.lastName }}</span>
@@ -21,11 +21,20 @@
               <i id="btn-op-section-{{i}}" class="fas fa-angle-right transition"></i>
           </td> 
           <td id="operations-section-{{i}}" class="col-12 col-md-3 d-none d-md-block justify-content-center align-self-center">
-              <button title="Wybierz" [hidden]="!isSearchResultForm" class="btn btn-warning" (click)="chooseUser(i)"><i class="far fa-check-circle"></i></button>
-              <button title="Usuń" [hidden]="isSearchResultForm" (click)="deleteUser(i)" class="btn btn-danger"><i class="far fa-trash-alt"></i></button>
+              <button title="Wybierz" [hidden]="!isSearchResultForm || infoOnly" class="btn btn-warning" (click)="chooseUser(i)"><i class="far fa-check-circle"></i></button>
+              <button title="Usuń" [hidden]="isSearchResultForm || infoOnly" (click)="deleteUser(i)" class="btn btn-danger"><i class="far fa-trash-alt"></i></button>
               <button title="Więcej" (click)="viewService.showUserMoreInfoSection(i)" class="btn grey-blue"><i class="fas fa-expand-arrows-alt"></i></button>
-          </td>  
+          </td>
+          <app-user-more-info id="user-more-info-sec-{{i}}" [user]="user"></app-user-more-info>  
       </tr>
-      <app-user-more-info id="user-more-info-sec-{{i}}" [user]="user"></app-user-more-info>
   </tbody> 
+  <tfoot hidden="infoOnly">
+      <tr>
+        <td collspan="4">
+            <button title="Usuń" (click)="deleteAllUsers()" class="btn btn-danger">
+                <i class="far fa-trash-alt"></i><span>Wyczyść listę</span>
+            </button>
+        </td>
+      </tr>
+  </tfoot>
 </table>

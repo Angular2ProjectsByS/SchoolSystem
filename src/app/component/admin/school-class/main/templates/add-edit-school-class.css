@@ -153,6 +153,9 @@ p.title {
 }
 
 .search-section {
-    padding: 0 10px;
+    padding: 0 0px;
 }
 
+.search-form {
+    padding: 0 10px;
+}

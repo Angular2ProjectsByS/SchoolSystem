@@ -20,18 +20,28 @@ export class UserSearchComponent implements OnInit {
   userParams : UserParams = new UserParams();
   @Input() params : string = "";
   @Output() sendFoundUsers: EventEmitter<User[]> = new EventEmitter<User[]>();
+  @Output() deleteFoundUsers : EventEmitter<null> = new EventEmitter();
 
   constructor(private viewService : ViewService, private restService : RestService) { }
 
   ngOnInit() {}
 
-  async onSearchButtonClick() {
+
+  onSearchButtonClick() {
+    console.log("onSerachButtonClick");
     let isValidOk =  this.viewService.validateUserParamsSearch(this.userParams);
-    
+
+    console.log("walidacja: " + isValidOk);
+
     if (isValidOk) {
+      this.getUsersByRestAndPass();
+    } 
+  }
+
+
+  async getUsersByRestAndPass() {
       let foundUsers = await this.searchUsers();
       this.sendFoundUsers.emit(foundUsers);
-    } 
   }
 
   async searchUsers() {

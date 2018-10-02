@@ -7,7 +7,12 @@ export class ResultRequestSet<T> extends ResultRequest {
 
     setAll(response, success) {
         if (success) {
-            this.result = <T[]> response.json();
+            try {
+                this.result = <T[]> response.json();
+            }
+            catch (exception) {
+
+            }
         }
         else {
             this.result = response._body;

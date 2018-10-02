@@ -29,7 +29,7 @@
                     <select class="form-control" id="classTypes"
                         name="school-class" [(ngModel)]="schoolClass.type" 
                         #type (focusout)="viewService.validateRoles(type.value)">
-                        <option *ngFor="let type of types" [ngValue]="type"> {{ type?.name }} </option>
+                        <option *ngFor="let type of infoToChoose.types" [ngValue]="type"> {{ type?.name }} </option>
                     </select>
                 </div>
             </div>
@@ -41,8 +41,8 @@
                             <p><i class="fas fa-exclamation-triangle"></i>Jedna ze specjalizacji jest w nieprawidłowym formacie.</p>
                         </div>
                         <select class="form-control" id="class-spec" #classSpec 
-                        [(ngModel)]="chosenSpecialization" name="chosenSpecialization">
-                            <option *ngFor="let spec of specializations" [ngValue]="spec"> {{ spec.name }}</option>
+                        [(ngModel)]="chosenInfo.specialization" name="chosenSpecialization">
+                            <option *ngFor="let spec of infoToChoose.specializations" [ngValue]="spec"> {{ spec.name }}</option>
                         </select>
                     </div>
                     <div class="col col-12 col-sm-2">
@@ -72,7 +72,7 @@
                         <select class="form-control" id="classTypes"
                                 name="school-class" [(ngModel)]="schoolClass.prefix" 
                             #type (focusout)="viewService.validateRoles(type.value)">
-                            <option *ngFor="let prefix of prefixes" [ngValue]="prefix"> {{ prefix?.name }} </option>
+                            <option *ngFor="let prefix of infoToChoose.prefixes" [ngValue]="prefix"> {{ prefix?.name }} </option>
                         </select>
                     </div>
                 </div>
@@ -89,9 +89,11 @@
             </div>
             <div class="search-section">
                 <p class="title">Wyszukaj nauczyciela: </p>
-                <app-user-search [params]="'TEACHER'" (sendFoundUsers)="getFoundTutors($event)" class="search-component"></app-user-search>
+                <div class="search-form">
+                    <app-user-search  [params]="'TEACHER'" (sendFoundUsers)="getFoundTutors($event)" class="search-component"></app-user-search>
+                </div>                
                 <app-found-user-list [isSearchResultForm]="true"  (chosenUser)="setFormTutor($event)" 
-                [users]="tutorList"></app-found-user-list>
+                [users]="searchResult.tutorList"></app-found-user-list>
             </div>
         </div>
         <div class="sec">
@@ -100,9 +102,11 @@
             </div>
             <div class="search-section">
                 <p class="title">Wyszukaj uczniów: </p>
-                <app-user-search [params]="'STUDENT'" (sendFoundUsers)="getFoundStudents($event)" class="search-component"></app-user-search>
+                <div class="search-form">
+                    <app-user-search class="search-form" [params]="'STUDENT'" (sendFoundUsers)="getFoundStudents($event)" class="search-component"></app-user-search>
+                </div>
                 <app-found-user-list [isSearchResultForm]="true" (chosenUser)="addUserToStudents($event)" 
-                [users]="foundStudents"></app-found-user-list>
+                [users]="searchResult.students"></app-found-user-list>
             </div>
             <div class="chosen-tutor-sec">
                 <p class="title">Wybrani uczniowie: </p>

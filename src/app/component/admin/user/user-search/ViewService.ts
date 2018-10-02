@@ -38,6 +38,8 @@ export class ViewService {
     }
 
     validateUserParamsSearch(userParams : UserParams) {
+
+
         let isOk = true;
         let message = "Nieprawidłowy format dla: ";
 
@@ -60,6 +62,9 @@ export class ViewService {
                 isOk = false;
             }
         }
+        else {
+            isOk = false;
+        }
 
         if (isOk) {
             this.message = null;
@@ -76,8 +81,8 @@ export class ViewService {
     }
 
     checkResponseResult(response) {
-        if (response.result == null) {
-            this.message = "Brak użytkowników o podanych parametrach";
+        if (response.result.length == 0) {
+            this.message = "Brak użytkowników o podanych parametrach.";
         }
     }
 

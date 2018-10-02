@@ -18,6 +18,7 @@ export class FoundUserListComponent implements OnInit {
   viewService : ViewService;
   @Output() chosenUser : EventEmitter<User> = new EventEmitter<User>();
   @Input() isSearchResultForm : boolean;
+  @Input() infoOnly : boolean = false;
 
 
   constructor(private restService: RestService, viewService: ViewService) { 
@@ -34,8 +35,9 @@ export class FoundUserListComponent implements OnInit {
     this.users.splice(i, 1);
   }
 
-  async ngOnInit() {
-    
+  ngOnInit() {
+    console.log("Użytkownicy w found-user-component");
+    console.log(this.users); 
   }
 
 }

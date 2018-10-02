@@ -41,6 +41,8 @@ import { SchoolClassEditComponent } from './component/admin/school-class/main/sc
 import { SchoolClassListComponent } from './component/admin/school-class/main/school-class-list/school-class-list.component';
 import { UserSearchComponent } from './component/admin/user/user-search/user-search.component';
 import { FoundUserListComponent } from './component/admin/user/found-user-list/found-user-list.component';
+import { YearToNumberPipe } from './component/admin/school-class/main/school-class-list/pipe/year-to-number.pipe';
+import { SchoolClassMoreInfoComponent } from './component/admin/school-class/school-class-more-info/school-class-more-info.component';
 
 
 
@@ -75,7 +77,9 @@ import { FoundUserListComponent } from './component/admin/user/found-user-list/f
     SchoolClassEditComponent,
     SchoolClassListComponent,
     UserSearchComponent,
-    FoundUserListComponent
+    FoundUserListComponent,
+    YearToNumberPipe,
+    SchoolClassMoreInfoComponent
   ],
   imports: [
     BrowserModule,

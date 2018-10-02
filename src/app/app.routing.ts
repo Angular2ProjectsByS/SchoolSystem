@@ -1,3 +1,4 @@
+import { SchoolClassListComponent } from './component/admin/school-class/main/school-class-list/school-class-list.component';
 import { UserSearchComponent } from './component/admin/user/user-search/user-search.component';
 import { ClassSpecializationMainComponent } from './component/admin/school-class/specialization/class-specialization-main/class-specialization-main.component';
 import { AdminUserEditComponent } from './component/admin/user/admin-user-edit/admin-user-edit.component';
@@ -54,6 +55,10 @@ const appRoutes: Routes = [
             {
                 path: 'school-class/add',
                 component: SchoolClassAddComponent
+            },
+            {
+                path: 'school-class/list',
+                component: SchoolClassListComponent
             },
             {
                 path: 'user',
