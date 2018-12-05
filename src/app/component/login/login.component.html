@@ -5,8 +5,7 @@
       <div class="col col-md-4 col-10 col-sm-8 col-xs-10 flex-child" [hidden]="loggedIn">
         <div class="jumbotron">
             <h2 class="clean-font text-center">Logowanie</h2>
-            <p class="clean-font text-center red-alert" [hidden]="!isLoginError">{{loginErrorMsg}}</p>
-            <br [hidden]="isLoginError"/>
+            <p class="clean-font text-center red-alert" [hidden]="loginErrorMsg == ''">{{loginErrorMsg}}</p>
     
     
             <form class="form-signin" (ngSubmit)="onSubmit()">

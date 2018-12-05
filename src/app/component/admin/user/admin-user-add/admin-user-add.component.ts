@@ -3,9 +3,7 @@ import { RestService } from '@app/service/global/request/rest-service.service';
 import { ViewService } from '@app/component/admin/user/admin-user-add/service/view-service';
 import { UserValidService } from '@app/component/admin/user/service/user-valid-service/user-valid-service';
 import { Constants } from '@app/constants/constants';
-import { User } from '@app/component/admin/user/model/user';
 import { UserValidationPattern } from '@app/component/admin/user/service/model/user-validation-pattern';
-import { Role } from "@app/model/role";
 import { AddEditUserBaseComponent } from '@app/component/admin/user/add-edit-user-base-comp/AddEditUserBaseComponent';
 
 

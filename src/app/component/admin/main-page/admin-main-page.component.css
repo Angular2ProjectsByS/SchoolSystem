@@ -107,6 +107,30 @@ h2 {
     background: #e74c3c;
 }
 
+.notifi-sec {
+  color: #1abc9c;
+  font-size: 1.5rem;
+}
+
+.notifi-sec .mail-sec {
+  position: relative;
+}
+
+.notifi-sec .mail-sec .unread-number-msg {
+  position: absolute;
+  top: 6px;
+  right: -3px;
+  font-size: 0.5rem;
+  font-weight: bold;
+  padding: .1rem .3rem;
+  border-radius: 50%;
+  background: red;
+  color: white;
+  font-weight: bold;
+}
+
+
+
 @media only screen and (max-width: 380px) {
     main {
         margin-left:  5px;
@@ -121,3 +145,5 @@ h2 {
         font-size: 30px;
     }
 }
+
+

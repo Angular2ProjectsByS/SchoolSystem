@@ -43,6 +43,11 @@ import { UserSearchComponent } from './component/admin/user/user-search/user-sea
 import { FoundUserListComponent } from './component/admin/user/found-user-list/found-user-list.component';
 import { YearToNumberPipe } from './component/admin/school-class/main/school-class-list/pipe/year-to-number.pipe';
 import { SchoolClassMoreInfoComponent } from './component/admin/school-class/school-class-more-info/school-class-more-info.component';
+import { OccupationalGroupAddComponent } from '@app/component/admin/occupational-group/occupational-group-add/occupational-group-add.component';
+import { OccupationalGroupEditComponent } from '@app/component/admin/occupational-group/occupational-group-edit/occupational-group-edit.component';
+import { OccupationalGroupListComponent } from '@app/component/admin/occupational-group/occupational-group-list/occupational-group-list.component';
+import { EmailComponent } from './component/email/email.component';
+
 
 
 
@@ -79,7 +84,11 @@ import { SchoolClassMoreInfoComponent } from './component/admin/school-class/sch
     UserSearchComponent,
     FoundUserListComponent,
     YearToNumberPipe,
-    SchoolClassMoreInfoComponent
+    SchoolClassMoreInfoComponent,
+    OccupationalGroupAddComponent,
+    OccupationalGroupEditComponent,
+    OccupationalGroupListComponent,
+    EmailComponent
   ],
   imports: [
     BrowserModule,

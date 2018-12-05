@@ -16,6 +16,9 @@ import { AdminClassTypeComponent } from "@app/component/admin/pages/class-types/
 import { AdminManageUserComponent } from "@app/component/admin/user/admin-manage-user/admin-manage-user.component";
 import { AdminUserAddComponent } from "@app/component/admin/user/admin-user-add/admin-user-add.component";
 import { SchoolClassAddComponent } from '@app/component/admin/school-class/main/school-class-add/school-class-add.component';
+import { OccupationalGroupEditComponent } from '@app/component/admin/occupational-group/occupational-group-edit/occupational-group-edit.component';
+import { OccupationalGroupAddComponent } from '@app/component/admin/occupational-group/occupational-group-add/occupational-group-add.component';
+import {EmailComponent} from '@app/component/email/email.component';
 
 const appRoutes: Routes = [
     {
@@ -35,6 +38,10 @@ const appRoutes: Routes = [
                 path: '',
                 redirectTo: '/admin/options',
                 pathMatch: 'full'
+            },
+            {
+              path: 'email',
+              component: EmailComponent
             },
             {
                 path: 'options',
@@ -83,6 +90,14 @@ const appRoutes: Routes = [
             {
                 path: 'user/search',
                 component: UserSearchComponent
+            },
+            {
+                path: 'occupational-group/list',
+                component: OccupationalGroupEditComponent
+            },
+            {
+                path: 'occupational-group/add',
+                component: OccupationalGroupAddComponent
             }
         ]
     }

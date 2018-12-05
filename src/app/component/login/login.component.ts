@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
 import 'rxjs/Rx';
 import {LoginService } from '@app/service/login.service';
 import { Constants } from '@app/constants/constants';
-import * as JwtDecode from "jwt-decode";
+import * as JwtDecode from 'jwt-decode';
 import { UserType } from '@app/constants/UserType';
-import { PageNavigator } from "@app/service/PageNavigator";
+import { PageNavigator } from '@app/service/PageNavigator';
 
 @Component({
   selector: 'app-login',
@@ -15,82 +14,67 @@ import { PageNavigator } from "@app/service/PageNavigator";
 })
 export class LoginComponent implements OnInit {
 
-    private credentials = {'username':'', 'password':''};
-    private loggedIn: boolean;
-    private isLoginError : boolean;
-    private loginErrorMsg : string;
+    private credentials = {'username': '', 'password': ''};
+    private loginErrorMsg = '';
 
   constructor(private loginService: LoginService, private pageNavigator : PageNavigator) {
-        this.checkAdminIsLogged();
-        this.checkLoginError();
+        this.checkUserIsLogged();
   }
 
-  checkAdminIsLogged() {
-      console.log("check admin is logged");
-        if (localStorage.getItem(Constants.IsUserLogged) == null) {
-            this.loggedIn = false;
-            console.log("Ustawiam użytkownika na zalogowanego");
-        }    
-        else {
-            this.loggedIn = true;
-            console.log("Witamy użytkownika");
-        }
-  }
-
-  checkLoginError() {
-        console.log("check login errors");
-        if (localStorage.getItem(Constants.LogginErrorMsg) == null || localStorage.getItem(Constants.LogginErrorMsg) == '') {
-            this.isLoginError = false;    
-        }
-        else {
-            console.log("Wystąpiły błędy logowania");
-            this.isLoginError = true;
-            this.loginErrorMsg = localStorage.getItem(Constants.LogginErrorMsg);
-        }
+  checkUserIsLogged() {
+      console.log('checkUserIsLogged');
+      console.log(localStorage.getItem(Constants.IsUserLogged));
+      if (localStorage.getItem(Constants.IsUserLogged) !== null) {
+        console.log('user should be redirect');
+        this.pageNavigator.navigateToUserPanel(
+          JSON.parse(localStorage.getItem(Constants.Roles))
+        )
+      }
   }
 
   onSubmit() {
-      console.log("Wysyłam żądanie logowania.");
       this.loginService.login(this.credentials).toPromise().then(
             res => {
-                //console.log(res);
+                console.log('otrzymałem odpowiedź');
                 let body = JSON.parse(JSON.parse((JSON.stringify(res['_body']))));
-                
 
                 let decodedToken = JwtDecode(body.token);
-                console.log("Decoded token: ");
-                console.log(decodedToken["scopes"]);    
-                let userTypes: UserType[] = this.parseRoles(decodedToken["scopes"]);
+                console.log('Decoded token: ');
+                console.log(decodedToken['scopes']);
+                let userTypes: UserType[] = this.parseRoles(decodedToken['scopes']);
 
-                console.log("UserTypes: ");
+                console.log('UserTypes: ');
                 for (let userType of userTypes) {
                     console.log(userType);
                 }
 
-                localStorage.setItem(Constants.Token, body.token); 
+                localStorage.setItem(Constants.Token, body.token);
                 localStorage.setItem(Constants.RefreshToken, body.refreshToken);
-                localStorage.setItem(Constants.Roles, JSON.stringify(userTypes))
+                localStorage.setItem(Constants.Roles, JSON.stringify(userTypes));
+                console.log('ustawiam isUserLogged');
+                localStorage.setItem(Constants.IsUserLogged, String(true));
 
                 this.pageNavigator.navigateToUserPanel(userTypes)
             },
             err => {
+                console.log('Mamy error');
 
-                let message = "";
+                let message = '';
 
-                if (err.status == 401) {
+                if (err.status === 401) {
 
-                    console.log("Request Logowania zakończony niepowodzeniem");
-                    message = "Logowanie nieudane. Błędne dane logowania.";
+                    console.log('Request Logowania zakończony niepowodzeniem');
+                    message = 'Logowanie nieudane. Błędne dane logowania.';
                     console.log(message);
-                    
-                } 
+
+                }
                 else if (err.status < 200 || err.status >= 300) {
 
-                    console.log("Request Logowania zakończony niepowodzeniem");
-                    message = "Błąd serwera. Spróbuj jeszcze raz.";
+                    console.log('Request Logowania zakończony niepowodzeniem');
+                    message = 'Błąd serwera. Spróbuj jeszcze raz.';
                     console.log(message);
-                    
-                }  
+
+                }
 
                 localStorage.setItem(Constants.LogginErrorMsg, message);
 
@@ -98,7 +82,9 @@ export class LoginComponent implements OnInit {
                     localStorage.removeItem(Constants.IsUserLogged);
                 }
 
-                location.reload();
+                this.loginErrorMsg = message;
+
+                // location.reload();
             }
       );
   }
@@ -113,6 +99,7 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
+
   }
 
 }
