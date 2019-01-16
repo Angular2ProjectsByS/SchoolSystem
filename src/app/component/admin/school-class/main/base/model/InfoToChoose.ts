@@ -21,21 +21,21 @@ export class InfoToChoose {
 
     async loadPrefixes() {
         let url = Constants.SERVER_PROXY + "/class-prefixex/get/all";
-        let response =  await this.restService.get<BaseDetail>(url);
+        let response =  await this.restService.get<BaseDetail[]>(url);
         this.prefixes = response.result;
         console.log("Prefiksy załadowane");
     }
 
     async loadSpecializations() {
         let url = Constants.SERVER_PROXY + "/class-specialization/get/all";
-        let response =  await this.restService.get<BaseDetail>(url);
+        let response =  await this.restService.get<BaseDetail[]>(url);
         this.specializations = response.result;
         console.log("Specjalizacje załadowane");
     }
 
     async loadTypes() {
         let url = Constants.SERVER_PROXY + "/class-type/get/all";
-        let response =  await this.restService.get<BaseDetail>(url);
+        let response =  await this.restService.get<BaseDetail[]>(url);
         this.types = response.result;
         console.log("Typy załadowane");
     }

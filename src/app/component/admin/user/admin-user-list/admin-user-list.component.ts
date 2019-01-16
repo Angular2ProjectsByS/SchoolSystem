@@ -6,7 +6,6 @@ import { Constants } from '@app/constants/constants';
 import { Route, Router, NavigationExtras } from '@angular/router';
 import { ViewService } from '@app/component/admin/user/admin-user-list/view-service';
 
-
 @Component({
   selector: 'app-admin-user-list',
   templateUrl: './admin-user-list.component.html',
@@ -15,29 +14,30 @@ import { ViewService } from '@app/component/admin/user/admin-user-list/view-serv
 })
 export class AdminUserListComponent implements OnInit {
 
-  users : User[];
-  viewService : ViewService;
-  title : string = "Uzytkownicy";
+  users: User[];
+  viewService: ViewService;
+  title = 'Uzytkownicy';
 
-  constructor(private restService: RestService, viewService: ViewService, private router : Router) { 
+  constructor(private restService: RestService, viewService: ViewService, private router: Router) {
     this.viewService = viewService;
   }
 
   async getAllUsers() {
-    let response = await this.restService.get<User>(Constants.SERVER_PROXY + "/users/get/all");
-    this.users = response.result;
+    const response = await this.restService.get<User[]>(Constants.SERVER_PROXY + '/users/get/all');
+    console.log('getAllUsers');
     console.log(response);
+    this.users = response.result;
   }
 
   modifyUser(i) {
 
-    let navigationExtras: NavigationExtras = {
+    const navigationExtras: NavigationExtras = {
       queryParams: {
-          "user": JSON.stringify(this.users[i])
+          'user': JSON.stringify(this.users[i])
       }
     };
 
-    this.router.navigate(["admin/user/edit"],  navigationExtras);
+    this.router.navigate(['admin/user/edit'],  navigationExtras);
   }
 
   async ngOnInit() {

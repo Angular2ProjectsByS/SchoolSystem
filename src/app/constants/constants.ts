@@ -9,6 +9,7 @@ export class Constants {
     public static Token = 'Token';
     public static RefreshToken = 'RefreshToken';
     public static Roles = 'Roles';
+    public static UserId = 'UserId';
 
     public static SCH_PREFIX_PREFIX_URL: string = Constants.SERVER_PROXY + '/class-prefixex';
     public static SCH_PREFIX_REGISTRY_PREFIX_URL: string = Constants.SERVER_PROXY + '/class-prefix-registry';

@@ -3,22 +3,24 @@ import { UserSearchComponent } from './component/admin/user/user-search/user-sea
 import { ClassSpecializationMainComponent } from './component/admin/school-class/specialization/class-specialization-main/class-specialization-main.component';
 import { AdminUserEditComponent } from './component/admin/user/admin-user-edit/admin-user-edit.component';
 import { AdminUserListComponent } from './component/admin/user/admin-user-list/admin-user-list.component';
-import { ModuleWithProviders } from "@angular/core";
+import { ModuleWithProviders } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { LoginComponent } from '@app/component/login/login.component';
 
 import { AdminMainPageComponent } from '@app/component/admin/main-page/admin-main-page.component';
-import { AdminOptionsComponent } from "@app/component/admin/pages/admin-options/admin-options.component";
-import { AdminClassesComponent } from "@app/component/admin/pages/admin-nav-cards/admin-classes/admin-classes.component";
+import { AdminOptionsComponent } from '@app/component/admin/pages/admin-options/admin-options.component';
+import { AdminClassesComponent } from '@app/component/admin/pages/admin-nav-cards/admin-classes/admin-classes.component';
 import { AdminPrefixesComponent } from '@app/component/admin/pages/prefixes/admin-prefixes-main/admin-prefixes.component';
-import { AdminClassTypeComponent } from "@app/component/admin/pages/class-types/admin-class-type/admin-class-type.component";
-import { AdminManageUserComponent } from "@app/component/admin/user/admin-manage-user/admin-manage-user.component";
-import { AdminUserAddComponent } from "@app/component/admin/user/admin-user-add/admin-user-add.component";
+import { AdminClassTypeComponent } from '@app/component/admin/pages/class-types/admin-class-type/admin-class-type.component';
+import { AdminManageUserComponent } from '@app/component/admin/user/admin-manage-user/admin-manage-user.component';
+import { AdminUserAddComponent } from '@app/component/admin/user/admin-user-add/admin-user-add.component';
 import { SchoolClassAddComponent } from '@app/component/admin/school-class/main/school-class-add/school-class-add.component';
 import { OccupationalGroupEditComponent } from '@app/component/admin/occupational-group/occupational-group-edit/occupational-group-edit.component';
 import { OccupationalGroupAddComponent } from '@app/component/admin/occupational-group/occupational-group-add/occupational-group-add.component';
 import {EmailComponent} from '@app/component/email/email.component';
+import {EmailSendComponent} from '@app/component/email/email-send/email-send.component';
+import {EmailOneComponent} from '@app/component/email/email-one/email-one.component';
 
 const appRoutes: Routes = [
     {
@@ -31,8 +33,8 @@ const appRoutes: Routes = [
         component: LoginComponent
     },
     {
-        path: "admin",
-        component: AdminMainPageComponent, 
+        path: 'admin',
+        component: AdminMainPageComponent,
         children: [
             {
                 path: '',
@@ -42,6 +44,14 @@ const appRoutes: Routes = [
             {
               path: 'email',
               component: EmailComponent
+            },
+            {
+              path: 'email/new',
+              component: EmailSendComponent
+            },
+            {
+              path: 'email/show',
+              component: EmailOneComponent
             },
             {
                 path: 'options',
@@ -101,6 +111,6 @@ const appRoutes: Routes = [
             }
         ]
     }
-]; 
+];
 
 export const routing: ModuleWithProviders = RouterModule.forRoot(appRoutes);

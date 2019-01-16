@@ -17,7 +17,7 @@ export class LoginComponent implements OnInit {
     private credentials = {'username': '', 'password': ''};
     private loginErrorMsg = '';
 
-  constructor(private loginService: LoginService, private pageNavigator : PageNavigator) {
+  constructor(private loginService: LoginService, private pageNavigator: PageNavigator) {
         this.checkUserIsLogged();
   }
 
@@ -36,23 +36,24 @@ export class LoginComponent implements OnInit {
       this.loginService.login(this.credentials).toPromise().then(
             res => {
                 console.log('otrzymałem odpowiedź');
-                let body = JSON.parse(JSON.parse((JSON.stringify(res['_body']))));
+                const body = JSON.parse(JSON.parse((JSON.stringify(res['_body']))));
 
-                let decodedToken = JwtDecode(body.token);
+                const decodedToken = JwtDecode(body.token);
                 console.log('Decoded token: ');
-                console.log(decodedToken['scopes']);
-                let userTypes: UserType[] = this.parseRoles(decodedToken['scopes']);
+                console.log(decodedToken);
+                const userTypes: UserType[] = this.parseRoles(decodedToken['scopes']);
 
                 console.log('UserTypes: ');
-                for (let userType of userTypes) {
+                for (const userType of userTypes) {
                     console.log(userType);
-                }
+            }
 
+              localStorage.setItem(Constants.RefreshToken, body.refreshToken);
                 localStorage.setItem(Constants.Token, body.token);
-                localStorage.setItem(Constants.RefreshToken, body.refreshToken);
                 localStorage.setItem(Constants.Roles, JSON.stringify(userTypes));
                 console.log('ustawiam isUserLogged');
                 localStorage.setItem(Constants.IsUserLogged, String(true));
+                localStorage.setItem(Constants.UserId, decodedToken['iss']);
 
                 this.pageNavigator.navigateToUserPanel(userTypes)
             },
@@ -67,8 +68,7 @@ export class LoginComponent implements OnInit {
                     message = 'Logowanie nieudane. Błędne dane logowania.';
                     console.log(message);
 
-                }
-                else if (err.status < 200 || err.status >= 300) {
+                } else if (err.status < 200 || err.status >= 300) {
 
                     console.log('Request Logowania zakończony niepowodzeniem');
                     message = 'Błąd serwera. Spróbuj jeszcze raz.';
@@ -83,16 +83,14 @@ export class LoginComponent implements OnInit {
                 }
 
                 this.loginErrorMsg = message;
-
-                // location.reload();
             }
       );
   }
 
   parseRoles(roles): UserType[] {
-    let userTypes: UserType[] = [];
-     for (let role of roles) {
-        userTypes.push(UserType["" + role]);
+    const userTypes: UserType[] = [];
+     for (const role of roles) {
+        userTypes.push(UserType['' + role]);
     }
 
     return userTypes;

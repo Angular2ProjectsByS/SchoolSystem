@@ -21,7 +21,7 @@ export abstract class AddEditUserBaseComponent implements OnInit {
 
     async attachRolesToView() {
         let url = Constants.SERVER_PROXY + "/roles/get/all";
-        let result = await this.restService.get<Role>(url);
+        let result = await this.restService.get<Role[]>(url);
         this.roles = result.result;
         console.log(this.roles);
     }

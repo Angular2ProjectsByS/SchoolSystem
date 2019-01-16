@@ -10,15 +10,17 @@ import { NgModule } from '@angular/core';
 })
 export class RestService {
 
-  constructor(private httpClient : HttpClient) {  }
+  constructor(private httpClient: HttpClient) {  }
 
 
-  async get<T>(url:string) : Promise<ResultRequestSet<T>> {
-  
-    let resultRequestSet = new ResultRequestSet<T>();
+  async get<T>(url: string): Promise<ResultRequestSet<T>> {
 
+    const resultRequestSet = new ResultRequestSet<T>();
+    console.log(url);
     await this.httpClient.get(url).toPromise().then(
       res => {
+        // console.log('res from restService');
+        // console.log(res['_body']);
         resultRequestSet.setAll(res, true);
       },
       err => {
@@ -29,7 +31,7 @@ export class RestService {
     return resultRequestSet;
   }
 
-  async count(url) : Promise<number> {
+  async count(url): Promise<number> {
 
     let result = null;
 
@@ -38,15 +40,15 @@ export class RestService {
         result = res.json();
       },
       err => {
-        
+
       }
     );
 
     return result;
   }
 
-  async delete(url) : Promise<ResultRequest> {
-    let requestResult: ResultRequest = new ResultRequest();
+  async delete(url): Promise<ResultRequest> {
+    const requestResult: ResultRequest = new ResultRequest();
 
     await this.httpClient.delete(url).toPromise().then(
       res => {
@@ -60,8 +62,8 @@ export class RestService {
     return requestResult;
   }
 
-  async add<T>(url, body) : Promise<AddResultResponse<T>> {
-    let requestResultSet = new AddResultResponse<T>();
+  async add<T>(url, body): Promise<AddResultResponse<T>> {
+    const requestResultSet = new AddResultResponse<T>();
 
     await this.httpClient.post(url, body).toPromise().then(
       res => {
@@ -76,8 +78,8 @@ export class RestService {
 
   }
 
-  async update(url, body) : Promise<ResultRequest> {
-    let requestResultSet = new ResultRequest();
+  async update(url, body): Promise<ResultRequest> {
+    const requestResultSet = new ResultRequest();
 
     await this.httpClient.post(url, body).toPromise().then(
       res => {
@@ -92,8 +94,8 @@ export class RestService {
 
   }
 
-  async post<T>(url, body) : Promise<ResultRequestSet<T>> {
-    let requestResultSet = new ResultRequestSet<T>();
+  async post<T>(url, body): Promise<ResultRequestSet<T>> {
+    const requestResultSet = new ResultRequestSet<T>();
 
     await this.httpClient.post(url, body).toPromise().then(
       res => {

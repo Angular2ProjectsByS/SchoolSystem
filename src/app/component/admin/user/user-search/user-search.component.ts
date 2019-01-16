@@ -52,7 +52,7 @@ export class UserSearchComponent implements OnInit {
       url += this.params;
     }
     console.log("search element");
-    let response = await this.restService.post<User>(url, this.userParams);
+    let response = await this.restService.post<User[]>(url, this.userParams);
     console.log(response.result);
     this.viewService.checkResponseCode(response);
     this.viewService.checkResponseResult(response);

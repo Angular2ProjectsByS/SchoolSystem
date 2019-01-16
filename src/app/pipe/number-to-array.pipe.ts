@@ -6,7 +6,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class NumberToArrayPipe implements PipeTransform {
 
   transform(value: any, args?: any): any {
-    let res = [];
+    const res = [];
 
     for (let i = 0; i < value; i++) {
       res.push(i);

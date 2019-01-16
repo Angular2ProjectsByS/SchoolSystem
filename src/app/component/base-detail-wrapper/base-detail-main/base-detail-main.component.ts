@@ -9,10 +9,10 @@ import { BannerMessageInfo } from '@app/model/view/banner-message-info';
 import { BaseDetailHistory } from '@app/model/school-classes/details/base-datail-history';
 import { MessageBannerService } from '@app/service/global/request/message-banner.service';
 import { DetailHistoryLoadMsg } from '@app/messages/prefix-history-load-msg';
-import { BaseDetailRegistry } from "@app/model/school-classes/details/base-detail-registry";
+import { BaseDetailRegistry } from '@app/model/school-classes/details/base-detail-registry';
 import { PaginParam } from '@app/model/view/pagin-param';
 import { BaseDetailWrapperModel } from '@app/component/base-detail-wrapper/model/base-detail-wrapper-model';
-declare var $ : any;
+declare var $: any;
 
 @Component({
   selector: 'app-base-detail-main',
@@ -21,23 +21,23 @@ declare var $ : any;
 })
 export class BaseDetailMainComponent implements OnInit {
 
-  @Input() msgUrlWrapper : BaseDetailWrapperModel;
+  @Input() msgUrlWrapper: BaseDetailWrapperModel;
 
   banerInfo: BannerMessageInfo;
-  entities : BaseDetail[] = [];
-  modalData : ModalData;
-  detailToDeletePosition : number;
-  showAddForm : boolean = false;
-  private editingDetailIndex : number = -1;
-  @ViewChild("twoButtonsModal") twoButtonsModal: TwoButtonsModalComponent;
-  isHistoryDetailViewActive : boolean[] = [];
+  entities: BaseDetail[] = [];
+  modalData: ModalData;
+  detailToDeletePosition: number;
+  showAddForm = false;
+  private editingDetailIndex = -1;
+  @ViewChild('twoButtonsModal') twoButtonsModal: TwoButtonsModalComponent;
+  isHistoryDetailViewActive: boolean[] = [];
   loadHistoryErrorMsg: string;
 
-  isDetailFromFindResult: boolean = false;
-  foundDetails : BaseDetail[];
+  isDetailFromFindResult = false;
+  foundDetails: BaseDetail[];
 
-  constructor(private restService : RestService, private bannerService : MessageBannerService) {
-    
+  constructor(private restService: RestService, private bannerService: MessageBannerService) {
+
   }
 
   ngOnInit() {
@@ -45,34 +45,28 @@ export class BaseDetailMainComponent implements OnInit {
     this.loadDetails(new PaginParam(10, 0));
   }
 
-  private initModalData():void {
+  private initModalData(): void {
     this.modalData = new ModalData();
-    this.modalData.title = "";
-    this.modalData.body = "";
-    this.modalData.url = "";
+    this.modalData.title = '';
+    this.modalData.body = '';
+    this.modalData.url = '';
   }
 
-  private async loadDetails(paginParam : PaginParam) {
-    console.log("ładuje elementy");
-    let url = this.msgUrlWrapper.MainModel.GetOneUrl + "?" + "limit=" + paginParam.limit + "&offset=" + paginParam.offset;
-    console.log("url do wysłania: " + url);
-    console.log("limit: " + paginParam.limit + ", offset: " + paginParam.offset);
-    
+  private async loadDetails(paginParam: PaginParam) {
+    const url = this.msgUrlWrapper.MainModel.GetOneUrl + '?' + 'limit=' + paginParam.limit + '&offset=' + paginParam.offset;
 
     if (this.isDetailFromFindResult) {
       this.entities = this.foundDetails.slice(paginParam.offset, paginParam.offset + paginParam.limit);
-    }
-    else {
+    } else {
 
-      let resultRequestSet = await this.restService.get<BaseDetail>(url);
-      
-      if (resultRequestSet.responseCode == 200) {
+      const resultRequestSet = await this.restService.get<BaseDetail[]>(url);
+      if (resultRequestSet.responseCode === 200) {
         this.entities = resultRequestSet.result;
       }
 
       this.checkResponseCode(resultRequestSet);
       this.checkDetailsExists(resultRequestSet);
-    }  
+    }
   }
 
   showDeleteModal(index) {
@@ -81,7 +75,7 @@ export class BaseDetailMainComponent implements OnInit {
     this.twoButtonsModal.showModal();
   }
 
-  private checkResponseCode(requestResult : ResultRequest) {
+  private checkResponseCode(requestResult: ResultRequest) {
       if (requestResult.responseCode >= 400) {
         this.setProperMessageBanerContent(requestResult, this.msgUrlWrapper.MainModel.LoadingFailureMsg, false);
       }
@@ -90,7 +84,7 @@ export class BaseDetailMainComponent implements OnInit {
   private checkDetailsExists(resultRequest) {
     if (resultRequest.responseCode == 200) {
       if (resultRequest.result.length == 0) {
-        
+
         this.banerInfo = new BannerMessageInfo();
 
         this.banerInfo
@@ -103,32 +97,31 @@ export class BaseDetailMainComponent implements OnInit {
   }
 
   private setupModalData(index) {
-    
-    this.modalData.body = this.msgUrlWrapper.MainModel.DeleteMessageBody + "\"" 
-      + this.entities[index].name
-      + "\"? ";
 
-      
-    this.modalData.title = this.msgUrlWrapper.MainModel.DeleteTitleModal + "\"" + this.entities[index].name + "\""; 
+    this.modalData.body = this.msgUrlWrapper.MainModel.DeleteMessageBody + '"'
+      + this.entities[index].name
+      + '"? ';
+
+
+    this.modalData.title = this.msgUrlWrapper.MainModel.DeleteTitleModal + '"' + this.entities[index].name + '"';
   }
 
   async deleteDetailRequest() {
     this.msgUrlWrapper.MainModel.DeleteOneUrl;
-    let url = this.msgUrlWrapper.MainModel.DeleteOneUrl + "/" + this.entities[this.detailToDeletePosition].id;
-    let response = await this.restService.delete(url);
-    
+    const url = this.msgUrlWrapper.MainModel.DeleteOneUrl + '/' + this.entities[this.detailToDeletePosition].id;
+    const response = await this.restService.delete(url);
+
     this.setProperMessageBanerContent(response, this.msgUrlWrapper.MainModel.DeleteFailureMsg, true);
     this.banerInfo = this.bannerService.setProperMessageBanerContent(response, this.msgUrlWrapper.MainModel.DeleteFailureMsg, true);
-    if (response.responseCode == 200) {
+    if (response.responseCode === 200) {
       this.entities.splice(this.detailToDeletePosition, 1);
     }
   }
 
-  private setProperMessageBanerContent(requestResult : ResultRequest, errorString: string, showSuccess : boolean) {
+  private setProperMessageBanerContent(requestResult: ResultRequest, errorString: string, showSuccess: boolean) {
     let banerInfo = new BannerMessageInfo();
-    if (requestResult.responseCode == 200) {
+    if (requestResult.responseCode === 200) {
       if (showSuccess) {
-        console.log("kod 200");
         banerInfo = new BannerMessageInfo();
         banerInfo
           .setAll(
@@ -138,8 +131,7 @@ export class BaseDetailMainComponent implements OnInit {
 
           this.banerInfo = banerInfo;
       }
-    }
-    else if (requestResult.responseCode >= 400 && requestResult.responseCode < 500) {
+    } else if (requestResult.responseCode >= 400 && requestResult.responseCode < 500) {
 
       banerInfo = new BannerMessageInfo();
 
@@ -149,8 +141,7 @@ export class BaseDetailMainComponent implements OnInit {
           Constants.ALERT_STYLES.ALERT_DANGER);
 
       this.banerInfo = banerInfo;
-    }
-    else if (requestResult.responseCode >= 500) {
+    } else if (requestResult.responseCode >= 500) {
       banerInfo = new BannerMessageInfo();
       banerInfo
         .setAll(
@@ -161,45 +152,41 @@ export class BaseDetailMainComponent implements OnInit {
     }
   }
 
-  showAddSetMessageResult(banerInfo) {    
+  showAddSetMessageResult(banerInfo) {
     this.banerInfo = banerInfo;
   }
 
   editSectionNew(i) {
     if (this.editingDetailIndex < 0) {
       this.editingDetailIndex = i;
-    }
-    else if (this.editingDetailIndex == i) {
+    } else if (this.editingDetailIndex === i) {
       this.editingDetailIndex = -1;
-    }
-    else {
+    } else {
       this.editingDetailIndex = i;
     }
   }
 
   showOperationSection(i) {
-    let display = $("#operations-section-" + i).css('display');
-  
-    if (display == "none") {
-      $("#btn-op-section-" + i).css("transform", "rotate(90deg)");
-      $("#operations-section-" + i).removeClass("d-none");
-    }
-    else {
-      $("#btn-op-section-" + i).css("transform", "rotate(0deg)");
-      $("#operations-section-" + i).addClass("d-none");
+    const display = $('#operations-section-' + i).css('display');
+
+    if (display === 'none') {
+      $('#btn-op-section-' + i).css('transform', 'rotate(90deg)');
+      $('#operations-section-' + i).removeClass('d-none');
+    } else {
+      $('#btn-op-section-' + i).css('transform', 'rotate(0deg)');
+      $('#operations-section-' + i).addClass('d-none');
       this.isHistoryDetailViewActive[i] = false;
-      if (this.editingDetailIndex == i) {
+      if (this.editingDetailIndex === i) {
         this.editingDetailIndex = -1;
       }
-      
+
     }
   }
 
   showDetailHistory(index) {
     if  (this.isHistoryDetailViewActive[index] === true) {
        this.isHistoryDetailViewActive[index] = false;
-    } 
-    else {
+    } else {
       this.isHistoryDetailViewActive[index] = true;
       this.loadHistory(index);
     }
@@ -207,40 +194,34 @@ export class BaseDetailMainComponent implements OnInit {
 
   async loadHistory(index) {
 
-    this.entities[index].detailHistory = new BaseDetailHistory(); 
+    this.entities[index].detailHistory = new BaseDetailHistory();
     this.entities[index].detailHistory.registries = [];
-    
-    let requestResult = await this.restService.get<BaseDetailRegistry>(this.msgUrlWrapper.MainModel.RegistryGetAll  + "/" + this.entities[index].id);
+    const requestResult = await this.restService.get<BaseDetailRegistry[]>(this.msgUrlWrapper.MainModel.RegistryGetAll  + '/' + this.entities[index].id);
 
-    if (requestResult.responseCode == 200) {
+    if (requestResult.responseCode === 200) {
       this.entities[index].detailHistory.registries = requestResult.result;
-    } 
-    else {
-      this.entities[index].detailHistory.loadErrorMsg = 
-        this.bannerService.getResponseMessage(requestResult, new DetailHistoryLoadMsg());  
+    } else {
+      this.entities[index].detailHistory.loadErrorMsg =
+        this.bannerService.getResponseMessage(requestResult, new DetailHistoryLoadMsg());
     }
   }
 
   addRegisteredDetails(details) {
 
     if (details instanceof Array) {
-      for (let detail of details) {
+      for (const detail of details) {
         this.entities.push(detail);
       }
-    }
-    else {
+    } else {
       this.entities.push(details);
     }
 
   }
 
   async findByKeyWords(keyWords) {
-    console.log("findByKeyWords");
-    console.log(keyWords);
+    const resultRequestSet = await this.restService.post<BaseDetail[]>(this.msgUrlWrapper.MainModel.FindUrl, keyWords);
 
-    let resultRequestSet = await this.restService.post<BaseDetail>(this.msgUrlWrapper.MainModel.FindUrl, keyWords);
-  
-    if (resultRequestSet.responseCode == 200) {
+    if (resultRequestSet.responseCode === 200) {
       this.foundDetails = resultRequestSet.result;
       this.isDetailFromFindResult = true;
       this.entities = this.foundDetails.slice(0, 10);

@@ -1,4 +1,4 @@
-*
+
 <div class="container-fluid">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="#">eStudent</a>
@@ -43,7 +43,7 @@
               </div>
               <div class="mail-sec">
                 <a routerLinkActive="active" [routerLink]="['email']"><i class="fas fa-envelope"></i></a>
-                <span class="unread-number-msg"><i class="fas fa-exclamation"></i></span>
+                <span [hidden]="!isUnreadMsg" class="unread-number-msg"><i class="fas fa-exclamation"></i></span>
               </div>
             </div>
         </div>

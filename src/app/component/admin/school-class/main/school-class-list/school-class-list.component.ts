@@ -21,7 +21,7 @@ export class SchoolClassListComponent implements OnInit {
 
   async getAllClass() {
     let url = Constants.SERVER_PROXY + "/schoolclass/get/all";
-    let response = await this.restService.get<SchoolClass>(url);
+    let response = await this.restService.get<SchoolClass[]>(url);
     console.log(response.result);
     this.schoolClasses = response.result;
     console.log(this.schoolClasses);

@@ -47,6 +47,8 @@ import { OccupationalGroupAddComponent } from '@app/component/admin/occupational
 import { OccupationalGroupEditComponent } from '@app/component/admin/occupational-group/occupational-group-edit/occupational-group-edit.component';
 import { OccupationalGroupListComponent } from '@app/component/admin/occupational-group/occupational-group-list/occupational-group-list.component';
 import { EmailComponent } from './component/email/email.component';
+import { EmailSendComponent } from './component/email/email-send/email-send.component';
+import { EmailOneComponent } from './component/email/email-one/email-one.component';
 
 
 
@@ -88,7 +90,9 @@ import { EmailComponent } from './component/email/email.component';
     OccupationalGroupAddComponent,
     OccupationalGroupEditComponent,
     OccupationalGroupListComponent,
-    EmailComponent
+    EmailComponent,
+    EmailSendComponent,
+    EmailOneComponent
   ],
   imports: [
     BrowserModule,
