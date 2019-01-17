@@ -1,0 +1,37 @@
+<div id="prefix-container">
+  <a class="btn btn-primary" routerLinkActive="active" [routerLink]="['new']"role="button">
+    <i class="far fa-envelope mr-1"></i>Napisz
+  </a>
+  <table *ngIf="(emails)?.length > 0"  class="table table-hover">
+    <thead>
+    <tr class="container-fluid row-eq-height d-flex align-items-center">
+      <th class="col-1 d-block">Lp.</th>
+      <th class="col-2 d-block">Nadawca</th>
+      <th class="col-7 d-block text-left">Temat - Treść</th>
+      <th class="col-2 d-block">Data utworzenia</th>
+    </tr>
+    </thead>
+    <tbody *ngFor="let email of emails; let i = index" [ngClass]="{'unread': !email?.isRead }"
+      (click)="goToEmail(i)">
+    <tr class="container-fluid d-flex flex-wrap">
+      <td class="col-1 col-md-1 d-block align-self-center">{{ i + 1 }}</td>
+      <td class="col-2 col-md-2 d-block align-self-center text-left">
+        {{ email?.sender?.basicInfo?.firstName + ' ' + email?.sender?.basicInfo?.lastName }}
+      </td>
+      <td class="col-7 col-md-7 d-block align-self-center text-left"><span class="h-100">
+        <b>{{ email?.topic === null ? 'Brak tematu': email?.topic }}</b> - {{ email?.content }}...
+      </span></td>
+      <td class="col-2 col-md-2 d-block justify-content-center align-self-center">{{ email?.creationTime }}</td>
+    </tr>
+    </tbody>
+  </table>
+
+  <div>
+    <ul class="pagination justify-content-center">
+      <li *ngFor="let i of (numberEmails / 10)| numberToArray" id="page-item-{{i}}" class="page-item">
+        <a class="page-link" (click)="getShortMessages(i + 1)"> {{ i + 1 }} </a>
+      </li>
+    </ul>
+  </div>
+
+</div>

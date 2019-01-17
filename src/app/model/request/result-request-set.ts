@@ -7,7 +7,6 @@ export class ResultRequestSet<T> extends ResultRequest {
     setAll(response, success) {
         if (success) {
           try {
-            console.log(response['_body']);
             this.result = <T> response.json();
           } catch (err) {
             console.log('zgłaszam wyjatek');
