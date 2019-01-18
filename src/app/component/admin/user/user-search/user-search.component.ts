@@ -29,9 +29,7 @@ export class UserSearchComponent implements OnInit {
   onSearchButtonClick() {
     console.log('onSerachButtonClick');
     const isValidOk =  this.viewService.validateUserParamsSearch(this.userParams);
-
     console.log('walidacja: ' + isValidOk);
-
     if (isValidOk) {
       this.getUsersByRestAndPass();
     }

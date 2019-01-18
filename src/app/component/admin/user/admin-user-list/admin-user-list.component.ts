@@ -73,6 +73,11 @@ export class AdminUserListComponent implements OnInit {
     return response.responseCode;
   }
 
+  getFoundUser(data) {
+    this.users = data;
+    this.userNumber = this.users.length;
+  }
+
   async ngOnInit() {
     await this.getNumberOfUser();
     if (this.userNumber !== 0) {

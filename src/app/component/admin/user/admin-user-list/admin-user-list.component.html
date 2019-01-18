@@ -1,6 +1,6 @@
 <h4>{{ title }}</h4>
 <div class="d-flex justify-content-center align-items-end">
-  <app-user-search></app-user-search>
+  <app-user-search (sendFoundUsers)="getFoundUser($event)"></app-user-search>
   <button class="btn btn-primary h-50" [routerLink]="['/admin/user/add']">Dodaj</button>
 </div>
 <table *ngIf="users?.length > 0" class="table table-hover">
