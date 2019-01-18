@@ -16,7 +16,8 @@ export class AdminUserListComponent implements OnInit {
 
   users: User[];
   viewService: ViewService;
-  title = 'Uzytkownicy';
+  title = 'Użytkownicy';
+  userNumber = 0;
 
   constructor(private restService: RestService, viewService: ViewService, private router: Router) {
     this.viewService = viewService;
@@ -27,6 +28,21 @@ export class AdminUserListComponent implements OnInit {
     console.log('getAllUsers');
     console.log(response);
     this.users = response.result;
+  }
+
+  async getUsersByPagination(pageNr) {
+    const url = Constants.SERVER_PROXY + '/users/get?limit=10' +
+      '&offset=' + pageNr;
+    const response = await this.restService.get<User[]>(url);
+    this.users = response.result;
+    console.log(response);
+  }
+
+  async getNumberOfUser() {
+    const url = Constants.SERVER_PROXY + '/users/number';
+    const response = await this.restService.get<number>(url);
+    this.userNumber = response.result;
+    console.log(this.userNumber);
   }
 
   modifyUser(i) {
@@ -40,8 +56,28 @@ export class AdminUserListComponent implements OnInit {
     this.router.navigate(['admin/user/edit'],  navigationExtras);
   }
 
+  async showDeleteModal(index) {
+    if (confirm('Czy na pewno chcesz usunąć użytkownika?')) {
+      const code = await this.deleteUser(index);
+      if (code === 200) {
+        this.users.splice(index, 1);
+      } else {
+        alert('Nie udało się usunąć użytkownika');
+      }
+    }
+  }
+
+  async deleteUser(index) {
+    const url = Constants.SERVER_PROXY + '/users/delete/' + this.users[index].id;
+    const response = await this.restService.delete(url);
+    return response.responseCode;
+  }
+
   async ngOnInit() {
-    await this.getAllUsers();
+    await this.getNumberOfUser();
+    if (this.userNumber !== 0) {
+      await this.getUsersByPagination(0);
+    }
   }
 
 }

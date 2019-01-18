@@ -1,4 +1,4 @@
-declare var $ : any;
+declare var $: any;
 
 export class EditAddUserViewService {
 
@@ -8,13 +8,13 @@ export class EditAddUserViewService {
                 changeYear: true,
                 showButtonPanel: true,
                 dateFormat: 'yy',
-                onClose: function(dateText, inst) { 
-                    var year = $("#ui-datepicker-div .ui-datepicker-year :selected").val();
+                onClose: function(dateText, inst) {
+                    const year = $('#ui-datepicker-div .ui-datepicker-year :selected').val();
                     $(this).datepicker('setDate', new Date(year, 1));
                 }
             });
-         $(".date-picker-year").focus(function () {
-                $(".ui-datepicker-month").hide();
+         $('.date-picker-year').focus(function () {
+                $('.ui-datepicker-month').hide();
             });
         });
     }

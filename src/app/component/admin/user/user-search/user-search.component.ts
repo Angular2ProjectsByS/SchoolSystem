@@ -17,46 +17,45 @@ import { User } from '@app/component/admin/user/model/user';
 })
 export class UserSearchComponent implements OnInit {
 
-  userParams : UserParams = new UserParams();
-  @Input() params : string = "";
+  userParams: UserParams = new UserParams();
+  @Input() params = '';
   @Output() sendFoundUsers: EventEmitter<User[]> = new EventEmitter<User[]>();
-  @Output() deleteFoundUsers : EventEmitter<null> = new EventEmitter();
+  @Output() deleteFoundUsers: EventEmitter<null> = new EventEmitter();
 
-  constructor(private viewService : ViewService, private restService : RestService) { }
+  constructor(private viewService: ViewService, private restService: RestService) { }
 
   ngOnInit() {}
 
-
   onSearchButtonClick() {
-    console.log("onSerachButtonClick");
-    let isValidOk =  this.viewService.validateUserParamsSearch(this.userParams);
+    console.log('onSerachButtonClick');
+    const isValidOk =  this.viewService.validateUserParamsSearch(this.userParams);
 
-    console.log("walidacja: " + isValidOk);
+    console.log('walidacja: ' + isValidOk);
 
     if (isValidOk) {
       this.getUsersByRestAndPass();
-    } 
+    }
   }
 
 
   async getUsersByRestAndPass() {
-      let foundUsers = await this.searchUsers();
+      const foundUsers = await this.searchUsers();
       this.sendFoundUsers.emit(foundUsers);
   }
 
   async searchUsers() {
-    let url = Constants.SERVER_PROXY + "/users/find?role=";
-    console.log("Params: ");
+    let url = Constants.SERVER_PROXY + '/users/find?role=';
+    console.log('Params: ');
     console.log(this.params);
     if (this.params != null) {
       url += this.params;
     }
-    console.log("search element");
-    let response = await this.restService.post<User[]>(url, this.userParams);
+    console.log('search element');
+    const response = await this.restService.post<User[]>(url, this.userParams);
     console.log(response.result);
     this.viewService.checkResponseCode(response);
     this.viewService.checkResponseResult(response);
-    
+
     return response.result;
   }
 

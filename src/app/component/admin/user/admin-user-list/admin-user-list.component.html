@@ -1,4 +1,8 @@
 <h4>{{ title }}</h4>
+<div class="d-flex justify-content-center align-items-end">
+  <app-user-search></app-user-search>
+  <button class="btn btn-primary h-50" [routerLink]="['/admin/user/add']">Dodaj</button>
+</div>
 <table *ngIf="users?.length > 0" class="table table-hover">
   <thead>
       <tr class="container-fluid row-eq-height d-flex align-items-center">
@@ -29,3 +33,10 @@
       <app-user-more-info id="user-more-info-sec-{{i}}" [user]="user"></app-user-more-info>
   </tbody> 
 </table>
+<div>
+  <ul class="pagination justify-content-center">
+    <li *ngFor="let i of (userNumber / 10)| numberToArray" id="page-item-{{i}}" class="page-item">
+      <a class="page-link" (click)="getUsersByPagination(i + 1)"> {{ i + 1 }} </a>
+    </li>
+  </ul>
+</div>

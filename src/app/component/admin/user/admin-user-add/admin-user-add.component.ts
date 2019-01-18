@@ -15,15 +15,15 @@ import { AddEditUserBaseComponent } from '@app/component/admin/user/add-edit-use
 })
 export class AdminUserAddComponent extends AddEditUserBaseComponent {
 
-  operationName : string = "Dodaj";
-  
-  constructor(restService : RestService, viewService : ViewService) {
+  operationName = 'Dodaj';
+
+  constructor(restService: RestService, viewService: ViewService) {
     super(restService, viewService);
   }
 
   async sendUser() {
     console.log(this.user);
-    this.performUserOperation(Constants.SERVER_PROXY + "/users/add");
+    this.performUserOperation(Constants.SERVER_PROXY + '/users/add');
   }
 
 }

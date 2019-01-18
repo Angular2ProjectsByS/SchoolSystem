@@ -13,24 +13,17 @@ import { UserSearchResult } from '@app/component/admin/school-class/main/base/mo
 
 @Injectable()
 export class AddEditBaseComponent implements OnInit {
-   
-    infoToChoose : InfoToChoose;
-    // prefixes : BaseDetail[] = [];
-    // specializations : BaseDetail[] = [];
-    // types : BaseDetail[] = [];
 
-    chosenInfo : ChosenInfo = new ChosenInfo();
-    // chosenSpecializations : BaseDetail[] = [];
-    // chosenSpecialization : BaseDetail = new BaseDetail();
-    schoolClass : SchoolClass = new SchoolClass();
-    operationName : string;
-    
-    searchResult : UserSearchResult = new UserSearchResult();
-    // tutorList : User[];
-    // foundStudents : User[];
-    
+    infoToChoose: InfoToChoose;
 
-    constructor(protected restService : RestService, protected viewService : ViewService, protected banerService : MessageBannerService) {
+    chosenInfo: ChosenInfo = new ChosenInfo();
+
+    schoolClass: SchoolClass = new SchoolClass();
+    operationName: string;
+
+    searchResult: UserSearchResult = new UserSearchResult();
+
+    constructor(protected restService: RestService, protected viewService: ViewService, protected banerService: MessageBannerService) {
         this.infoToChoose  = new InfoToChoose(this.restService)
     }
 
@@ -38,11 +31,11 @@ export class AddEditBaseComponent implements OnInit {
         this.infoToChoose.loadInfoToChose();
     }
 
-    setFormTutor(formTutor : User) {
+    setFormTutor(formTutor: User) {
         this.schoolClass.tutor = formTutor;
     }
 
-    addUserToStudents(user : User) {
+    addUserToStudents(user: User) {
         this.schoolClass.students.push(user);
     }
 
@@ -51,23 +44,24 @@ export class AddEditBaseComponent implements OnInit {
         this.schoolClass.classSpecializationList.push(this.chosenInfo.specialization);
     }
 
-    getFoundTutors(tutors : User[]) {
-        console.log("Mam nuczycieli w komponencie głównym");
+    getFoundTutors(tutors: User[]) {
+        console.log('Mam nuczycieli w komponencie głównym');
         this.searchResult.tutorList = tutors;
     }
 
-    getFoundStudents(students : User[]) {
+    getFoundStudents(students: User[]) {
         this.searchResult.students = students;
     }
 
-    async performUserActionToDatabase(url : string) {
-        let response = this.restService.post(url, this.schoolClass);
-        let bannerInfo = this.banerService.checkRespone(response, this.viewService.addSchoolClassResultMsg);
+    async performUserActionToDatabase(url: string) {
+        const response = this.restService.post(url, this.schoolClass);
+        console.log('send add request');
+        const bannerInfo = this.banerService.checkRespone(response, this.viewService.addSchoolClassResultMsg);
         console.log(response);
     }
 
     acceptForm() {
-        
+
     }
 
 }
