@@ -32,7 +32,7 @@ export class AdminUserListComponent implements OnInit {
 
   async getUsersByPagination(pageNr) {
     const url = Constants.SERVER_PROXY + '/users/get?limit=10' +
-      '&offset=' + pageNr;
+      '&offset=' + pageNr * 10;
     const response = await this.restService.get<User[]>(url);
     this.users = response.result;
     console.log(response);

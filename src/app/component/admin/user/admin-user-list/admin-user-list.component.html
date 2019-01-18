@@ -36,7 +36,7 @@
 <div>
   <ul class="pagination justify-content-center">
     <li *ngFor="let i of (userNumber / 10)| numberToArray" id="page-item-{{i}}" class="page-item">
-      <a class="page-link" (click)="getUsersByPagination(i + 1)"> {{ i + 1 }} </a>
+      <a class="page-link" (click)="getUsersByPagination(i)"> {{ i + 1 }} </a>
     </li>
   </ul>
 </div>
