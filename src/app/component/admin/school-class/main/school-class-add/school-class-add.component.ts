@@ -27,6 +27,7 @@ export class SchoolClassAddComponent extends AddEditBaseComponent {
   acceptForm() {
     const url = Constants.SERVER_PROXY + '/schoolclass/add';
     console.log('acceptForm');
+    console.log(this.schoolClass);
     this.performUserActionToDatabase(url);
   }
 

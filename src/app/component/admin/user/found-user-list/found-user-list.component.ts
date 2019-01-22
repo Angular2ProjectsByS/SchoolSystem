@@ -4,8 +4,6 @@ import { ViewService } from '@app/component/admin/user/admin-user-list/view-serv
 import { RestService } from '@app/service/global/request/rest-service.service';
 import { Constants } from '@app/constants/constants';
 
-
-
 @Component({
   selector: 'app-found-user-list',
   templateUrl: './found-user-list.component.html',
@@ -13,20 +11,19 @@ import { Constants } from '@app/constants/constants';
   providers: [RestService, ViewService]
 })
 export class FoundUserListComponent implements OnInit {
-  
-  @Input() users : User[];
-  viewService : ViewService;
-  @Output() chosenUser : EventEmitter<User> = new EventEmitter<User>();
-  @Input() isSearchResultForm : boolean;
-  @Input() infoOnly : boolean = false;
 
+  @Input() users;
+  viewService: ViewService;
+  @Output() chosenUser: EventEmitter<User> = new EventEmitter<User>();
+  @Input() isSearchResultForm: boolean;
+  @Input() infoOnly = false;
 
-  constructor(private restService: RestService, viewService: ViewService) { 
+  constructor(private restService: RestService, viewService: ViewService) {
     this.viewService = viewService;
   }
 
   chooseUser(i) {
-    console.log("chooseUser");
+    console.log('chooseUser');
     console.log(this.users[i]);
     this.chosenUser.emit(this.users[i]);
   }
@@ -36,8 +33,8 @@ export class FoundUserListComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log("Użytkownicy w found-user-component");
-    console.log(this.users); 
+    console.log('Użytkownicy w found-user-component');
+    console.log(this.users);
   }
 
 }

@@ -46,7 +46,11 @@ export class AddEditBaseComponent implements OnInit {
 
     getFoundTutors(tutors: User[]) {
         console.log('Mam nuczycieli w komponencie głównym');
-        this.searchResult.tutorList = tutors;
+        if (tutors.length !== 0) {
+          this.searchResult.tutorList = tutors;
+        } else {
+          // alert('Brak nauczycieli o podanych parametrach');
+        }
     }
 
     getFoundStudents(students: User[]) {
@@ -54,10 +58,17 @@ export class AddEditBaseComponent implements OnInit {
     }
 
     async performUserActionToDatabase(url: string) {
-        const response = this.restService.post(url, this.schoolClass);
+        this.schoolClass.id = 0;
+        console.log('school class: ');
+        console.log(this.schoolClass);
+        const response = await this.restService.post(url, this.schoolClass);
         console.log('send add request');
         const bannerInfo = this.banerService.checkRespone(response, this.viewService.addSchoolClassResultMsg);
+        console.log('response');
         console.log(response);
+        // if (response.status === 200) {
+        //   alert('Dodanie nowej klasy zakończone powodzeniem');
+        // }
     }
 
     acceptForm() {

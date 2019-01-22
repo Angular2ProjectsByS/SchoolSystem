@@ -3,7 +3,7 @@
   <thead>
       <tr class="container-fluid row-eq-height d-flex align-items-center">
           <th class="col-1 d-block">Lp.</th>
-          <th class="col-2 d-block">Rok</th>
+          <th class="col-2 d-block">Klasa/Rok</th>
           <th class="col-3 d-block">Prefix</th>
           <th class="col-3 d-block">Typ</th>
           <th class="col-3 d-block">Operacje</th>
@@ -30,7 +30,7 @@
           </td> 
           <td id="operations-section-{{i}}" class="col-12 col-md-3 d-none d-md-block justify-content-center align-self-center">
               <button title="Edytuj" class="btn btn-warning" (click)="modifyClass(i)"><i class="far fa-edit"></i></button>
-              <button title="Usuń" (click)="showDeleteModal(i)" class="btn btn-danger"><i class="far fa-trash-alt"></i></button>
+              <button title="Usuń" (click)="deleteSchoolClasss(i)" class="btn btn-danger"><i class="far fa-trash-alt"></i></button>
               <button title="Więcej" (click)="showMoreInfoSection(i)" class="btn grey-blue"><i class="fas fa-expand-arrows-alt"></i></button>
           </td>  
       </tr>

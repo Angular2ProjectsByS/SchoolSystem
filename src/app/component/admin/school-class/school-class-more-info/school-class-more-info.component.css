@@ -23,6 +23,10 @@
     font-weight: bolder;
 }
 
+.info-section .title {
+  font-size: 19px;
+}
+
 .info-entity {
     font-weight: bold;
 }

@@ -21,6 +21,7 @@ import { OccupationalGroupAddComponent } from '@app/component/admin/occupational
 import {EmailComponent} from '@app/component/email/email.component';
 import {EmailSendComponent} from '@app/component/email/email-send/email-send.component';
 import {EmailOneComponent} from '@app/component/email/email-one/email-one.component';
+import {OccupationalGroupListComponent} from '@app/component/admin/occupational-group/occupational-group-list/occupational-group-list.component';
 
 const appRoutes: Routes = [
     {
@@ -70,11 +71,15 @@ const appRoutes: Routes = [
                 component: AdminClassTypeComponent
             },
             {
+              path: 'school-class',
+              component: SchoolClassListComponent
+            },
+            {
                 path: 'school-class/add',
                 component: SchoolClassAddComponent
             },
             {
-                path: 'school-class/list',
+                path: 'school-class',
                 component: SchoolClassListComponent
             },
             {
@@ -102,8 +107,8 @@ const appRoutes: Routes = [
                 component: UserSearchComponent
             },
             {
-                path: 'occupational-group/list',
-                component: OccupationalGroupEditComponent
+                path: 'occupational-group',
+                component: OccupationalGroupListComponent
             },
             {
                 path: 'occupational-group/add',

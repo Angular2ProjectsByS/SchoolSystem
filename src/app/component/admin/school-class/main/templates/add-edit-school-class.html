@@ -28,7 +28,7 @@
                     </div>
                     <select class="form-control" id="classTypes"
                         name="school-class" [(ngModel)]="schoolClass.type" 
-                        #type (focusout)="viewService.validateRoles(type.value)">
+                        #type>
                         <option *ngFor="let type of infoToChoose.types" [ngValue]="type"> {{ type?.name }} </option>
                     </select>
                 </div>
@@ -71,7 +71,7 @@
                         </div>
                         <select class="form-control" id="classTypes"
                                 name="school-class" [(ngModel)]="schoolClass.prefix" 
-                            #type (focusout)="viewService.validateRoles(type.value)">
+                            #type>
                             <option *ngFor="let prefix of infoToChoose.prefixes" [ngValue]="prefix"> {{ prefix?.name }} </option>
                         </select>
                     </div>

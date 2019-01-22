@@ -20,13 +20,20 @@
         </div>
       </div>
   </div>
-  
   <div class="info-section">
-      <div class="title">Wychowawca</div>
-      <div class="row info">
-        <div class="col">
-            <app-found-user-list [infoOnly]="true" [users]="[schoolClass?.tutor]" [isSearchResultForm]="true"></app-found-user-list>
-        </div> 
+    <div class="title py-0 mb-0">Wychowawca</div>
+    <div class="row py-0">
+      <div class="col">
+        <app-found-user-list [infoOnly]="true" [users]="[schoolClass?.tutor]" [isSearchResultForm]="true"></app-found-user-list>
       </div>
+    </div>
+  </div>
+  <div class="info-section">
+    <div class="title py-0 mb-0">Uczniowie</div>
+      <div class="row py-0">
+      <div class="col">
+        <app-found-user-list [infoOnly]="true" [users]="schoolClass?.students" [isSearchResultForm]="true"></app-found-user-list>
+      </div>
+    </div>
   </div>
 </div>

@@ -8,13 +8,14 @@ import { SchoolClass } from '@app/component/admin/school-class/main/SchoolClass'
 })
 export class SchoolClassMoreInfoComponent implements OnInit {
 
-  @Input() schoolClass : SchoolClass = new SchoolClass();
+  @Input() schoolClass: SchoolClass = new SchoolClass();
 
   constructor() { }
 
   ngOnInit() {
-    console.log("schoolClass");
+    console.log('schoolClass');
     console.log(this.schoolClass);
+    console.log(this.schoolClass.students);
   }
 
 }

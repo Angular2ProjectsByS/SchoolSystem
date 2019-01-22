@@ -1,3 +1,75 @@
-<p>
-  occupational-group-add works!
-</p>
+<h3>Nowa grupa zajęciowa</h3>
+<div class="container-fluid bg-white">
+  <form class="py-3">
+    <div class="form-group">
+      <label for="inputState"><h4>Przedmiot</h4></label>
+      <select id="inputState" class="form-control" [(ngModel)]="occupationalGroup.schoolSubject" name="subject">
+        <option *ngFor="let subject of subjects" [ngValue]="subject">{{subject.name}}</option>
+      </select>
+    </div>
+    <h4>Nauczyciel: {{ occupationalGroup?.teacher?.basicInfo?.firstName + ' ' +
+      occupationalGroup?.teacher?.basicInfo?.lastName}}</h4>
+    <div id="no-teacher-alert" class="alert alert-warning alert-dismissible fade show" role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      <strong>Brak nauczyciela!</strong> Zmień parametry.
+    </div>
+    <div class="form-row d-flex justify-content-center teacher-search">
+      <div class="form-group col-3">
+        <input type="email" class="form-control" [(ngModel)]="teacherParam.firstName" placeholder="Imię" name="firstName">
+      </div>
+      <div class="form-group col-3">
+        <input type="email" class="form-control" [(ngModel)]="teacherParam.lastName" placeholder="Nazwisko" name="lastName">
+      </div>
+      <div class="form-group col-3">
+        <input class="form-control" placeholder="Pesel" [(ngModel)]="teacherParam.pesel" [textMask]="{mask: peselMask}"
+          name="pesel">
+      </div>
+      <div class="col-2">
+        <button class="btn btn-primary" (click)="findTeachers()">Szukaj</button>
+      </div>
+    </div>
+    <div class="form-row teacher-list py-2">
+      <li class="col border py-2 text-center" *ngFor="let teacher of foundTeachers;let i = index">
+        <span>{{teacher?.basicInfo?.firstName}} </span>
+        <span>{{teacher?.basicInfo?.lastName}}</span>
+        <button type="button" class="btn btn-success ml-2" (click)="chooseTeacher(i)">Wybierz</button>
+      </li>
+    </div>
+    <h4>Klasa: {{ occupationalGroup?.schoolClass?.startDate | yearToNumber
+      }}{{occupationalGroup?.schoolClass?.prefix.name}}</h4>
+    <div id="no-class-alert" class="alert alert-warning alert-dismissible fade show" role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      <strong>Brak klasy!</strong> Zmień parametry.
+    </div>
+    <div class="form-row d-flex justify-content-center class-search">
+      <div class="form-group col">
+        <select id="prefixToFind" class="form-control" [(ngModel)]="prefix" name="prefixToFind">
+          <option selected>Prefiks</option>
+          <option *ngFor="let pfx of prefixes" [ngValue]="pfx">{{pfx.name}}</option>
+        </select>
+      </div>
+      <div class="form-group col">
+        <select id="typeToFind" class="form-control" [(ngModel)]="type" name="typeToFind">
+          <option selected>Typ klasy</option>
+          <option *ngFor="let t of types" [ngValue]="t">{{t.name}}</option>
+        </select>
+      </div>
+      <div class="col-2">
+        <button class="btn btn-primary" (click)="findSchoolClass()">Szukaj</button>
+      </div>
+    </div>
+    <div class="form-row teacher-list py-2">
+      <li class="col border py-2 text-center" *ngFor="let schoolClass of foundClasses;let i = index">
+        <span> {{schoolClass?.startDate | yearToNumber}}</span>
+        <span>{{schoolClass?.prefix?.name}} </span>
+        <span>{{schoolClass?.type?.name}}</span>
+        <button type="button" class="btn btn-success ml-2" (click)="chooseSchoolClass(i)">Wybierz</button>
+      </li>
+    </div>
+    <button type="submit" class="btn btn-primary" (click)="addOccupationalGroup()">Dodaj</button>
+  </form>
+</div>
