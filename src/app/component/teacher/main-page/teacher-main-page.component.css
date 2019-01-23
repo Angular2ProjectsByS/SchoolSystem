@@ -1,0 +1,149 @@
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+
+.container-fluid {
+  margin-right: 0;
+  margin-left: 0;
+  padding: 0;
+}
+
+nav {
+  box-shadow: 0 0px 2px 2px #000;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1;
+}
+
+.nav-link {
+  color:#fff !important;
+  transition: .2s;
+  display: inline-block;
+  text-align: center;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+div.dropdown-menu {
+  overflow: hidden;
+}
+
+div.dropdown-menu a {
+  text-align: center;
+  transition: all .2s ease-in;
+}
+
+div.dropdown-menu a:hover {
+  background: #e1cd61;
+  transform: scale(1.05);
+  cursor: pointer;
+}
+
+
+.nav-link i {
+  margin-right: 5px;
+}
+
+.nav-link:hover {
+  color: #e1cd61 !important;
+  background-color: #fff;
+  transform: scale(1.05);
+}
+
+header {
+  opacity: .8;
+}
+
+header
+
+.pod {
+  display: flex;
+}
+
+.dropdown-item:hover {
+  background: black;
+}
+
+
+
+main {
+  margin: 65px 40px;
+  padding: 20px 15px;
+  border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: inset 0 0 0 1000px rgba(255,255,255,0.6);
+}
+
+h2 {
+  margin-bottom: 15px;
+}
+
+.school-classes {
+  background: #1abc9c;
+}
+
+.users {
+  background: #3498db;
+}
+
+.classrooms {
+  background: #9b59b6;
+}
+
+.student-groups {
+  background: #f1c40f;
+}
+
+.school-subjects {
+  background: #e67e22;
+}
+
+.register {
+  background: #e74c3c;
+}
+
+.notifi-sec {
+  color: #1abc9c;
+  font-size: 1.5rem;
+}
+
+.notifi-sec .mail-sec {
+  position: relative;
+}
+
+.notifi-sec .mail-sec .unread-number-msg {
+  position: absolute;
+  top: 6px;
+  right: -3px;
+  font-size: 0.5rem;
+  font-weight: bold;
+  padding: .1rem .3rem;
+  border-radius: 50%;
+  background: red;
+  color: white;
+  font-weight: bold;
+}
+
+
+
+@media only screen and (max-width: 380px) {
+  main {
+    margin-left:  5px;
+    margin-right:  5px;
+  }
+}
+
+@media only screen and (max-width: 575px) {
+  .nav-link {
+    height: 80px;
+    line-height: 60px;
+    font-size: 30px;
+  }
+}
+
+

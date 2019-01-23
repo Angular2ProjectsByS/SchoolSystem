@@ -1,0 +1,77 @@
+h4 {
+  text-align: center;
+}
+
+table {
+  font-size: 14px;
+  background: #fff;
+  margin: 16px 0;
+}
+
+table tr.container-fluid {
+  padding: 0;
+}
+
+table tbody:nth-child(odd) {
+  background: rgba(255, 255, 255, 1);
+}
+
+
+table tbody:nth-child(even) {
+  background: rgba(244, 244, 244, 1);
+}
+
+table thead {
+  background: #212529;
+}
+
+table thead tr th {
+  color: #eee;
+  font-size: 1em;
+}
+
+table td, table th {
+  text-align: center;
+  border: none;
+}
+
+table tbody tr td button {
+  margin-right: 5px;
+  transition: all .4s;
+}
+
+table tbody tr td button:hover {
+  transform: scale(1.2);
+}
+
+tbody tr div {
+  clear: both;
+  display: block;
+}
+
+.operation-cell {
+  border: 0;
+}
+
+i[id*=btn-op-section-] {
+  transition: all .2s;
+}
+
+app-school-class-more-info {
+  display: none;
+}
+
+.grey-blue {
+  background: #689AD3;
+}
+
+#calendar {
+  background: #fff;
+  padding-top: 15px;
+}
+
+@media only screen and (min-width: 767px) and (max-width: 772px) {
+  table tbody tr td button {
+    width: 40px;
+  }
+}

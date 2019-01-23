@@ -1,0 +1,46 @@
+<h4>Grupy zajęciowe</h4>
+<table *ngIf="occuGroups?.length > 0" class="table table-hover">
+  <thead>
+  <tr class="container-fluid row-eq-height d-flex align-items-center">
+    <th class="col-1 d-block">Lp.</th>
+    <th class="col-2 d-block">Klasa/Rok</th>
+    <th class="col-3 d-block">Typ</th>
+    <th class="col-3 d-block">Przedmiot</th>
+    <th class="col-3 d-block">Operacje</th>
+  </tr>
+  </thead>
+  <tbody *ngFor="let occuGroup of occuGroups; let i = index">
+  <tr class="container-fluid d-flex flex-wrap">
+    <td class="col-1 col-md-1 d-block justify-content-center align-self-center">{{ i + 1 }}</td>
+    <td class="col-2 col-md-2 d-block justify-content-center align-self-center">
+      <span class="align-middle h-100"> {{ occuGroup.schoolClass.startDate | yearToNumber }}{{ occuGroup.schoolClass.prefix.name }}</span>
+    </td>
+    <td class="col-3 col-md-3 d-block justify-content-center align-self-center">
+            <span>
+                {{ occuGroup.schoolClass.type.name }}
+            </span>
+    </td>
+    <td class="col-3 col-md-3 d-block justify-content-center align-self-center">
+                <span>
+                    {{ occuGroup.schoolSubject.name }}
+                </span>
+    </td>
+    <td (click)="showOperationSection(i)" class="col-3 d-md-none d-block justify-content-center align-self-center">
+      <i id="btn-op-section-{{i}}" class="fas fa-angle-right transition"></i>
+    </td>
+    <td id="operations-section-{{i}}" class="col-12 col-md-3 d-none d-md-block justify-content-center align-self-center">
+      <button title="Obecności" class="btn btn-success" routerLinkActive="active" [routerLink]="['presence']">
+        <i class="fas fa-list-ol"></i>
+      </button>
+      <button title="Oceny" class="btn btn-success" routerLinkActive="active" [routerLink]="['marks']">
+        <i class="far fa-star"></i>
+      </button>
+      <button title="Zaliczenia" class="btn btn-success" routerLinkActive="active" [routerLink]="['credit']">
+        <i class="fas fa-calendar"></i>
+      </button>
+    </td>
+  </tr>
+  </tbody>
+</table>
+<div id='calendar'></div>
+
