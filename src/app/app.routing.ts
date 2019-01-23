@@ -24,6 +24,7 @@ import {EmailOneComponent} from '@app/component/email/email-one/email-one.compon
 import {OccupationalGroupListComponent} from '@app/component/admin/occupational-group/occupational-group-list/occupational-group-list.component';
 import {TeacherMainPageComponent} from '@app/component/teacher/main-page/teacher-main-page.component';
 import {TOrgGroupComponent} from '@app/component/teacher/t-org-group/t-org-group.component';
+import {TOccugroupCreditComponent} from '@app/component/teacher/t-occugroup-credit/t-occugroup-credit.component';
 
 const appRoutes: Routes = [
     {
@@ -130,6 +131,18 @@ const appRoutes: Routes = [
         {
           path: 'occup-group',
           component: TOrgGroupComponent
+        },
+        {
+          path: 'occup-group/presence',
+          component: TOrgGroupComponent
+        },
+        {
+          path: 'occup-group/marks',
+          component: TOrgGroupComponent
+        },
+        {
+          path: 'occup-group/credit',
+          component: TOccugroupCreditComponent
         }
       ]
     }

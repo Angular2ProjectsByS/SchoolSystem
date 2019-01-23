@@ -30,8 +30,7 @@ import { AdminManageUserComponent } from './component/admin/user/admin-manage-us
 import { AdminUserAddComponent } from './component/admin/user/admin-user-add/admin-user-add.component';
 import { AdminUserEditComponent } from './component/admin/user/admin-user-edit/admin-user-edit.component';
 import { AdminUserListComponent } from './component/admin/user/admin-user-list/admin-user-list.component';
-import { HttpClientModule } from '@angular/common/http';
-import { TextMaskModule } from 'angular2-text-mask';
+
 import { UserMoreInfoComponent } from './component/admin/user/user-more-info/user-more-info.component';
 import { ClassSpecializationAddComponent } from './component/admin/school-class/specialization/class-specialization-add/class-specialization-add.component';
 import { ClassSpecializationEditComponent } from './component/admin/school-class/specialization/class-specialization-edit/class-specialization-edit.component';
@@ -51,8 +50,12 @@ import { EmailSendComponent } from './component/email/email-send/email-send.comp
 import { EmailOneComponent } from './component/email/email-one/email-one.component';
 import { TeacherMainPageComponent } from './component/teacher/main-page/teacher-main-page.component';
 import { TOrgGroupComponent } from './component/teacher/t-org-group/t-org-group.component';
-
-
+import { TOccugroupCreditComponent } from './component/teacher/t-occugroup-credit/t-occugroup-credit.component';
+import { TOccugroupCreditAddComponent } from './component/teacher/t-occugroup-credit-add/t-occugroup-credit-add.component';
+import {HttpClientModule} from '@angular/common/http';
+import {TextMaskModule} from 'angular2-text-mask';
+import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -96,10 +99,15 @@ import { TOrgGroupComponent } from './component/teacher/t-org-group/t-org-group.
     EmailSendComponent,
     EmailOneComponent,
     TeacherMainPageComponent,
-    TOrgGroupComponent
+    TOrgGroupComponent,
+    TOccugroupCreditComponent,
+    TOccugroupCreditAddComponent
   ],
   imports: [
     BrowserModule,
+    OwlDateTimeModule,
+    OwlNativeDateTimeModule,
+    BrowserAnimationsModule,
     FormsModule,
     HttpModule,
     TextMaskModule,
