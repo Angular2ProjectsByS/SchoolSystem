@@ -22,6 +22,8 @@ import {EmailComponent} from '@app/component/email/email.component';
 import {EmailSendComponent} from '@app/component/email/email-send/email-send.component';
 import {EmailOneComponent} from '@app/component/email/email-one/email-one.component';
 import {OccupationalGroupListComponent} from '@app/component/admin/occupational-group/occupational-group-list/occupational-group-list.component';
+import {TeacherMainPageComponent} from '@app/component/teacher/main-page/teacher-main-page.component';
+import {TOrgGroupComponent} from '@app/component/teacher/t-org-group/t-org-group.component';
 
 const appRoutes: Routes = [
     {
@@ -115,6 +117,21 @@ const appRoutes: Routes = [
                 component: OccupationalGroupAddComponent
             }
         ]
+    },
+    {
+      path: 'teacher',
+      component: TeacherMainPageComponent,
+      children: [
+        {
+          path: '',
+          redirectTo: '/teacher/occup-group',
+          pathMatch: 'full'
+        },
+        {
+          path: 'occup-group',
+          component: TOrgGroupComponent
+        }
+      ]
     }
 ];
 

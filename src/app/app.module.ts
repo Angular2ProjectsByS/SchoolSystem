@@ -49,6 +49,8 @@ import { OccupationalGroupListComponent } from '@app/component/admin/occupationa
 import { EmailComponent } from './component/email/email.component';
 import { EmailSendComponent } from './component/email/email-send/email-send.component';
 import { EmailOneComponent } from './component/email/email-one/email-one.component';
+import { TeacherMainPageComponent } from './component/teacher/main-page/teacher-main-page.component';
+import { TOrgGroupComponent } from './component/teacher/t-org-group/t-org-group.component';
 
 
 
@@ -92,7 +94,9 @@ import { EmailOneComponent } from './component/email/email-one/email-one.compone
     OccupationalGroupListComponent,
     EmailComponent,
     EmailSendComponent,
-    EmailOneComponent
+    EmailOneComponent,
+    TeacherMainPageComponent,
+    TOrgGroupComponent
   ],
   imports: [
     BrowserModule,
