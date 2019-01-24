@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Constants} from '@app/constants/constants';
 import {RestService} from '@app/service/global/request/rest-service.service';
+import {NavigationExtras, Router} from '@angular/router';
 declare var $: any;
 
 @Component({
@@ -11,7 +12,7 @@ declare var $: any;
 export class TOrgGroupComponent implements OnInit {
 
   occuGroups;
-  constructor(private restService: RestService) {}
+  constructor(private restService: RestService, private router: Router) {}
 
   async ngOnInit() {
     this.initCalendar();
@@ -28,6 +29,16 @@ export class TOrgGroupComponent implements OnInit {
       this.occuGroups = response.result;
       console.log(this.occuGroups);
     }
+  }
+
+  goCreditForOccuGroup(i) {
+    const navigationExtras: NavigationExtras = {
+      queryParams: {
+        'occuGroup': JSON.stringify(this.occuGroups[i])
+      }
+    };
+
+    this.router.navigate(['teacher/occup-group/credit'],  navigationExtras);
   }
 
   initCalendar() {

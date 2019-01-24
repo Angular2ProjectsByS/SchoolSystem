@@ -1,3 +1,30 @@
-<p>
-  t-occugroup-credit-add works!
-</p>
+<h3>Nowe zaliczenie</h3>
+<div class="container-fluid bg-white">
+  <form class="py-3">
+    <div class="form-row">
+      <div class="form-group col">
+        <label for="credit-name">Nazwa</label>
+        <input class="form-control" id="credit-name" [(ngModel)]="credit.name"
+               name='credit-name'>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col">
+        <label for="inputState">Typ</label>
+        <select id="inputState" class="form-control" [(ngModel)]="credit.creditType" name="subject">
+          <option *ngFor="let creditType of creditTypes" [ngValue]="creditType">{{creditType.name}}</option>
+        </select>
+      </div>
+      <div class="form-group col">
+        <label for="date-event">Termin</label>
+        <input class="form-control" id="date-event" [(ngModel)]="credit.event_date"
+               name='creationTime' [owlDateTime]="dt5" [owlDateTimeTrigger]="dt5">
+        <owl-date-time #dt5></owl-date-time>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary" (click)="addOccupationalGroup()">Dodaj</button>
+  </form>
+</div>
+
+
+

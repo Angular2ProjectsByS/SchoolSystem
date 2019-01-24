@@ -1,77 +1,41 @@
-<h3>Nowe zaliczenie</h3>
-<div class="container-fluid bg-white">
-  <form class="py-3">
-    <div class="form-group">
-      <label for="inputState"><h4>Typ</h4></label>
-      <select id="inputState" class="form-control" [(ngModel)]="credit.creditType" name="subject">
-        <option *ngFor="let creditType of creditTypes" [ngValue]="creditType">{{creditType.name}}</option>
-      </select>
-    </div>
-    <h4>Nauczyciel:</h4>
-    <div id="no-teacher-alert" class="alert alert-warning alert-dismissible fade show" role="alert">
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
-      <strong>Brak nauczyciela!</strong> Zmień parametry.
-    </div>
-    <div class="form-row d-flex justify-content-center teacher-search">
-      <div class="form-group col-3">
-        <input type="email" class="form-control"  placeholder="Imię" name="firstName">
-      </div>
-      <!--[(ngModel)]="null"-->
-      <div class="form-group col-3">
-        <input type="email" class="form-control" placeholder="Nazwisko" name="lastName">
-      </div>
-      <div class="form-group col-3">
-        <!--<input class="form-control" placeholder="Pesel" [textMask]="{mask: peselMask}"-->
-               <!--name="pesel">-->
-      </div>
-      <div class="col-2">
-        <!--<button class="btn btn-primary" (click)="findTeachers()">Szukaj</button>-->
-      </div>
-    </div>
-    <div class="form-row teacher-list py-2">
-      <!--<li class="col border py-2 text-center" *ngFor="let teacher of foundTeachers;let i = index">-->
-        <!--<span>{{teacher?.basicInfo?.firstName}} </span>-->
-        <!--<span>{{teacher?.basicInfo?.lastName}}</span>-->
-        <!--<button type="button" class="btn btn-success ml-2" (click)="chooseTeacher(i)">Wybierz</button>-->
-      <!--</li>-->
-    </div>
-    <h4>Klasa: </h4>
-    <div id="no-class-alert" class="alert alert-warning alert-dismissible fade show" role="alert">
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
-      <strong>Brak klasy!</strong> Zmień parametry.
-    </div>
-    <div class="form-row d-flex justify-content-center class-search">
-      <div class="form-group col">
-        <!--<select id="prefixToFind" class="form-control" [(ngModel)]="prefix" name="prefixToFind">-->
-          <!--<option selected>Prefiks</option>-->
-          <!--<option *ngFor="let pfx of prefixes" [ngValue]="pfx">{{pfx.name}}</option>-->
-        <!--</select>-->
-      </div>
-      <div class="form-group col">
-        <!--<select id="typeToFind" class="form-control" [(ngModel)]="type" name="typeToFind">-->
-          <!--<option selected>Typ klasy</option>-->
-          <!--<option *ngFor="let t of types" [ngValue]="t">{{t.name}}</option>-->
-        <!--</select>-->
-      </div>
-      <div class="col-2">
-        <!--<button class="btn btn-primary" (click)="findSchoolClass()">Szukaj</button>-->
-      </div>
-    </div>
-    <div class="form-row teacher-list py-2">
-      <!--<li class="col border py-2 text-center" *ngFor="let schoolClass of foundClasses;let i = index">-->
-        <!--<span> {{schoolClass?.startDate | yearToNumber}}</span>-->
-        <!--<span>{{schoolClass?.prefix?.name}} </span>-->
-        <!--<span>{{schoolClass?.type?.name}}</span>-->
-        <!--<button type="button" class="btn btn-success ml-2" (click)="chooseSchoolClass(i)">Wybierz</button>-->
-      <!--</li>-->
-    </div>
-    <button type="submit" class="btn btn-primary" (click)="addOccupationalGroup()">Dodaj</button>
-  </form>
-</div>
-<input [owlDateTime]="dt1" [owlDateTimeTrigger]="dt1" placeholder="Date Time">
-<owl-date-time #dt1></owl-date-time>
+<h3>Zaliczenia - {{ occuGroup.schoolClass.startDate | yearToNumber }}{{ occuGroup.schoolClass.prefix.name }}
+ - {{ occuGroup.schoolSubject.name }}</h3>
+<button class="btn btn-primary" (click)="addNewCreditForOccuGroup()">Dodaj zaliczenie</button>
+<!--<div id='calendar'></div>-->
+<table *ngIf="credits?.length > 0" class="table table-hover">
+  <thead>
+  <tr class="container-fluid row-eq-height d-flex align-items-center">
+    <th class="col-1 d-block">Lp.</th>
+    <th class="col-2 d-block">Nazwa</th>
+    <th class="col-3 d-block">Typ</th>
+    <th class="col-3 d-block">Utworzenie</th>
+    <th class="col-3 d-block">Start</th>
+  </tr>
+  </thead>
+  <tbody *ngFor="let credit of credits; let i = index">
+  <tr class="container-fluid d-flex flex-wrap">
+    <td class="col-1 col-md-1 d-block justify-content-center align-self-center">{{ i + 1 }}</td>
+    <td class="col-2 col-md-2 d-block justify-content-center align-self-center">
+      <span class="align-middle h-100"> {{ credit.name }} </span>
+    </td>
+    <td class="col-3 col-md-3 d-block justify-content-center align-self-center">
+            <span>
+                {{ credit.creditType.name }}
+            </span>
+    </td>
+    <td class="col-3 col-md-3 d-block justify-content-center align-self-center">
+        <span>
+            {{ credit.creationTime }}
+        </span>
+    </td>
+    <td class="col-3 d-block justify-content-center align-self-center">
+      <span>
+            {{ credit.event_date }}
+      </span>
+    </td>
+  </tr>
+  </tbody>
+</table>
+
+
 

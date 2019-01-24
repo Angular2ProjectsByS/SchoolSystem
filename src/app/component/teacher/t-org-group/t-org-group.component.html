@@ -35,12 +35,12 @@
       <button title="Oceny" class="btn btn-success" routerLinkActive="active" [routerLink]="['marks']">
         <i class="far fa-star"></i>
       </button>
-      <button title="Zaliczenia" class="btn btn-success" routerLinkActive="active" [routerLink]="['credit']">
+      <button title="Zaliczenia" class="btn btn-success" (click)="goCreditForOccuGroup(i)">
         <i class="fas fa-calendar"></i>
       </button>
     </td>
   </tr>
   </tbody>
 </table>
-<div id='calendar'></div>
+
 
