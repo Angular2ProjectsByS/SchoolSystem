@@ -25,6 +25,7 @@ import {OccupationalGroupListComponent} from '@app/component/admin/occupational-
 import {TeacherMainPageComponent} from '@app/component/teacher/main-page/teacher-main-page.component';
 import {TOrgGroupComponent} from '@app/component/teacher/t-org-group/t-org-group.component';
 import {TOccugroupCreditComponent} from '@app/component/teacher/t-occugroup-credit/t-occugroup-credit.component';
+import {TOccugroupCreditAddComponent} from '@app/component/teacher/t-occugroup-credit-add/t-occugroup-credit-add.component';
 
 const appRoutes: Routes = [
     {
@@ -143,6 +144,10 @@ const appRoutes: Routes = [
         {
           path: 'occup-group/credit',
           component: TOccugroupCreditComponent
+        },
+        {
+          path: 'occup-group/credit/add',
+          component: TOccugroupCreditAddComponent
         }
       ]
     }
