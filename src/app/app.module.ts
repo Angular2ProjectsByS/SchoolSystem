@@ -56,6 +56,9 @@ import {HttpClientModule} from '@angular/common/http';
 import {TextMaskModule} from 'angular2-text-mask';
 import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { TCreditComponent } from './component/teacher/t-credit/t-credit.component';
+import { TOccuGroupMarkComponent } from './component/teacher/t-occu-group-mark/t-occu-group-mark.component';
+import { TOccuGroupMarkAddComponent } from './component/teacher/t-occu-group-mark-add/t-occu-group-mark-add.component';
 
 
 @NgModule({
@@ -101,7 +104,10 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     TeacherMainPageComponent,
     TOrgGroupComponent,
     TOccugroupCreditComponent,
-    TOccugroupCreditAddComponent
+    TOccugroupCreditAddComponent,
+    TCreditComponent,
+    TOccuGroupMarkComponent,
+    TOccuGroupMarkAddComponent
   ],
   imports: [
     BrowserModule,

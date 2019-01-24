@@ -26,6 +26,7 @@ import {TeacherMainPageComponent} from '@app/component/teacher/main-page/teacher
 import {TOrgGroupComponent} from '@app/component/teacher/t-org-group/t-org-group.component';
 import {TOccugroupCreditComponent} from '@app/component/teacher/t-occugroup-credit/t-occugroup-credit.component';
 import {TOccugroupCreditAddComponent} from '@app/component/teacher/t-occugroup-credit-add/t-occugroup-credit-add.component';
+import {TCreditComponent} from '@app/component/teacher/t-credit/t-credit.component';
 
 const appRoutes: Routes = [
     {
@@ -128,6 +129,10 @@ const appRoutes: Routes = [
           path: '',
           redirectTo: '/teacher/occup-group',
           pathMatch: 'full'
+        },
+        {
+          path: 'credit',
+          component: TCreditComponent
         },
         {
           path: 'occup-group',
